@@ -9,20 +9,22 @@
     
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Spacing="125" >
+            <StackLayout Spacing="125">
 
                 <Frame BackgroundColor="#2196F3" Padding="12"  CornerRadius="0">
                     <Label Text="  User SignIn" HorizontalTextAlignment="Start" TextColor="White" FontSize="24"/>
                 </Frame>
 
-                <StackLayout  Spacing="12" Padding="20,10,20,10">
-                    <Entry x:Name="loginEntry" Placeholder="Login" Margin="20" Background="#000"/>
-                    <Entry x:Name="passwordEntry"  Placeholder = "Password" IsPassword ="True" Margin="20" Background="#000" />
+                <StackLayout  Spacing="12" Padding="20,10,20,10" >
+                    <Entry x:Name="loginEntry" Placeholder="Login" Margin="20" />
+                    <Entry x:Name="passwordEntry"  Placeholder = "Password" IsPassword ="True" Margin="20"  />
                 </StackLayout>
-
-                <Button  Text = "Sign In"  FontSize="Large"  Padding="120,20,120,20" Margin="32"
+                <StackLayout>
+                <Button  Text = "Sign In"  FontSize="Medium"  Padding="120,20,120,20" Margin="32"
                       HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
                          />
+                    <Label Text="SIGN UP" HorizontalOptions="Center" FontSize="Medium" Margin="1,1,1,32"></Label>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
