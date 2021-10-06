@@ -11,7 +11,9 @@ namespace Contacts
         {
             InitializeComponent();
 
-            MainPage = new SignInView();
+             MainPage = new SignInView();
+            // MainPage = new AddEditProfileView();
+
         }
 
         protected override void OnStart()

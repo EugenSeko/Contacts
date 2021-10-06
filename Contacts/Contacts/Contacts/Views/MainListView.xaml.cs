@@ -32,5 +32,11 @@ namespace Contacts.Views
         {
             await Navigation.PopModalAsync();
         }
+        private void Item_Selected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem != null)
+                headLabel.Text = e.SelectedItem.ToString();
+            ((ListView)sender).SelectedItem = null;
+        }
     }
 }
