@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Prism.Mvvm;
 
 namespace Contacts.ViewModels
 {
-    class SignInViewModel
+    class SignInViewModel: BindableBase
     {
+       
     }
 }

@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Contacts
+namespace Contacts.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class TestPage : ContentPage
     {
-        public MainPage()
+        public TestPage()
         {
             InitializeComponent();
         }

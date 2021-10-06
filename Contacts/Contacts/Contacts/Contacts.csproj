@@ -26,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
     <Folder Include="Enums\" />
     <Folder Include="Controls\" />
 
@@ -35,6 +34,9 @@
   <ItemGroup>
     <Compile Update="Views\MainListView.xaml.cs">
       <DependentUpon>MainListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
