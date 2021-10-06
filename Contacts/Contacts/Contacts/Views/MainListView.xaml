@@ -4,7 +4,7 @@
              x:Class="Contacts.Views.MainListView">
     <ContentPage.Content>
         <AbsoluteLayout>
-            <StackLayout>
+            <StackLayout >
                 <Frame BackgroundColor="#2196F3" Padding="12"  CornerRadius="0">
                     <StackLayout Orientation="Horizontal">
                         <ImageButton Source="/Images/plusButton.png" Background="Transparent" ></ImageButton>
@@ -13,7 +13,9 @@
                     </StackLayout>
                 </Frame>
                 <Label Text="Items list" x:Name="headLabel" HorizontalOptions="Center" FontSize="Large" />
-                <ListView x:Name="itemsList" ItemSelected="Item_Selected" ItemsSource="{Binding Items}" />
+                <ListView x:Name="itemsList" 
+                          ItemSelected="Item_Selected"
+                          ItemsSource="{Binding Items}" />
             </StackLayout>
             <ImageButton Source ="plus.png"
                          BackgroundColor="Transparent" 

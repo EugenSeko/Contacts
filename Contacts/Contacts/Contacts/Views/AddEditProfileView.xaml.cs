@@ -14,7 +14,9 @@ namespace Contacts.Views
     {
         public AddEditProfileView()
         {
-            InitializeComponent();
+             InitializeComponent();
+            //Image image = new Image { Source = "plus.png" };
+            //this.Content = image;
         }
     }
 }
