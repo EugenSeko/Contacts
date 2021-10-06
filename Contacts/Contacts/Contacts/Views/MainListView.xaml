@@ -4,9 +4,14 @@
              x:Class="Contacts.Views.MainListView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Frame BackgroundColor="#2196F3" Padding="12"  CornerRadius="0">
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="backButton" BackgroundColor="#2196f3" Text="arrow" TextColor="White" FontSize="16"/>
+                    <Label Text="  MainList" HorizontalTextAlignment="Start" TextColor="White" FontSize="24"/>
+                </StackLayout>
+            </Frame>
+            <Label Text="Items list" HorizontalOptions="Center" FontSize="Large" />
+            <ListView x:Name="itemsList" ItemsSource="{Binding Items}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

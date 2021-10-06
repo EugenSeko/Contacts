@@ -3,10 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.SignUpView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+            <ScrollView>
+                <StackLayout Spacing="125">
+
+                    <Frame BackgroundColor="#2196F3" Padding="12"  CornerRadius="0">
+                    <StackLayout Orientation="Horizontal">
+                        <Button x:Name="backButton" BackgroundColor="#2196f3" Text="arrow" TextColor="White" FontSize="16"/>
+                        <Label Text="  User SignUp" HorizontalTextAlignment="Start" TextColor="White" FontSize="24"/>
+                    </StackLayout>
+                    </Frame>
+
+                    <StackLayout  Spacing="12" Padding="20,10,20,10" >
+                        <Entry x:Name="loginEntry" Placeholder="Login" Margin="20" />
+                        <Entry x:Name="passwordEntry"  Placeholder = "Password" IsPassword ="True" Margin="20"  />
+                        <Entry x:Name="passwordConfirm"  Placeholder = "Confirm Password" IsPassword ="True" Margin="20"  />
+
+                </StackLayout>
+                    <StackLayout>
+                        <Button x:Name="signUpButton" Text = "Sign Up"  FontSize="Medium"  Padding="120,20,120,20" Margin="32"
+                      HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                         />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
 </ContentPage>

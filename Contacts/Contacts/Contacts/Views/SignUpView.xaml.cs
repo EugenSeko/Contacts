@@ -15,6 +15,16 @@ namespace Contacts.Views
         public SignUpView()
         {
             InitializeComponent();
+            backButton.Clicked += BackButton_Click;
+            signUpButton.Clicked += SignUpButton_Click;
+        }
+        private async void BackButton_Click(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
+        private async void SignUpButton_Click(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new MainListView());
         }
     }
 }
