@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Contacts.Models
 {
-    class User
+    class UserModel
     {
     }
 }

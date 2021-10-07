@@ -2,26 +2,50 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.TestPage">
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="{Binding Name}" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-        <Label Text="{Binding Count}"></Label>
-        <Button Text="increment" Command="{Binding IncrementButtonTapCommand}"></Button>
-        <Button Text="Reset" Command="{Binding ResetButtonTapCommand}"></Button>
-    </StackLayout>
+    <Grid RowDefinitions="70, *" >
+        <Grid Grid.Row="0"
+              ColumnDefinitions="0.3*,0.3*,0.3*">
+            
+            <Button Text="Add"
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    Command="{Binding AddButtonTapCommand}"/>
+            
+            <Entry Placeholder="First Name"
+                   Grid.Column="1"
+                   VerticalOptions="Center"
+                   Text="{Binding FirstName}"/>
+            
+            <Entry Placeholder="Last Name"
+                   Grid.Column="2"
+                   VerticalOptions="Center"
+                   Text="{Binding LastName}"/>
+
+        </Grid>
+        <ListView Grid.Row="1"
+                  HasUnevenRows="True"
+                  ItemsSource="{Binding ProfileList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <Grid>
+                                <StackLayout>
+                                    
+                                    <Label Text="{Binding FirstName}"/>
+                                    
+                                    <Label Text="{Binding LastName}"/>
+
+                                    <Label Text="{Binding CreationTime}"/>
+                                    
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
     
 
 </ContentPage>
