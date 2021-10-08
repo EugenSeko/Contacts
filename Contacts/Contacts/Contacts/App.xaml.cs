@@ -25,14 +25,16 @@ namespace Contacts
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<SignInView, SignInViewModel>();
             containerRegistry.RegisterForNavigation<TestPage, TestPageViewModel>();
-
+            containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
+            containerRegistry.RegisterForNavigation<SignUpView, SignUpViewModel>();
+            containerRegistry.RegisterForNavigation<AddEditProfileView, AddEditProfileViewModel>();
         }
 
         protected override void OnInitialized()
         {
             InitializeComponent();
-            NavigationService.NavigateAsync($"{nameof(TestPage)}");
-           // NavigationService.NavigateAsync($"{nameof(SignInView)}");
+           // NavigationService.NavigateAsync($"{nameof(TestPage)}");
+            NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(SignInView)}");
 
         }
 

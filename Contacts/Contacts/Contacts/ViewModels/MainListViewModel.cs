@@ -1,10 +1,23 @@
-﻿using System;
+﻿using Prism.Navigation;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using Contacts.Views;
+using Prism.Mvvm;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Contacts.ViewModels
 {
-    class MainListViewModel
+    class MainListViewModel : BaseViewModel
     {
+        public MainListViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
+
+        #region  --- Navigation ---     
+        public ICommand AddButtonTapCommand =>
+           new Command(GoToAddEditProfilePage);
+        #endregion
     }
 }

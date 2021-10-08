@@ -20,10 +20,21 @@
                     <Entry x:Name="passwordEntry"  Placeholder = "Password" IsPassword ="True" Margin="20"  />
                 </StackLayout>
                 <StackLayout>
-                <Button x:Name="signInButton" Text = "Sign In"  FontSize="Medium"  Padding="120,20,120,20" Margin="32"
-                      HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                    <Button 
+                        Command="{Binding SignInButtonTapCommand}"
+                        Text = "Sign In" 
+                        FontSize="Medium"
+                        Padding="120,20,120,20"
+                        Margin="32"
+                        HorizontalOptions="Center" 
+                        VerticalOptions="CenterAndExpand"
                          />
-                    <Button x:Name="signUpButton" Text="SIGN UP" HorizontalOptions="Center" FontSize="Medium" Margin="1,1,1,32"></Button>
+                    <Button x:Name="signUpButton"
+                            Command="{Binding SignUpButtonTapCommand}"
+                            Text="SIGN UP"
+                            HorizontalOptions="Center"
+                            FontSize="Medium"
+                            Margin="1,1,1,32"></Button>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

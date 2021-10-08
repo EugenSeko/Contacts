@@ -8,7 +8,6 @@
 
                     <Frame BackgroundColor="#2196F3" Padding="12"  CornerRadius="0">
                     <StackLayout Orientation="Horizontal">
-                        <Button x:Name="backButton" BackgroundColor="#2196f3" Text="arrow" TextColor="White" FontSize="16"/>
                         <Label Text="  User SignUp" HorizontalTextAlignment="Start" TextColor="White" FontSize="24"/>
                     </StackLayout>
                     </Frame>

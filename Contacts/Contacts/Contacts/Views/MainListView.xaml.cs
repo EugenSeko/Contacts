@@ -17,21 +17,15 @@ namespace Contacts.Views
         public MainListView()
         {
             InitializeComponent();
-         string[]items = new string[24];
-            for (int i = 0; i < 24; i++)
-            {
-                items[i] = $"Item {i}";
-            }
-            Items = items;
-            this.BindingContext = this;
-            backButton.Clicked += BackButton_Click;
-
-
+         //string[]items = new string[24];
+         //   for (int i = 0; i < 24; i++)
+         //   {
+         //       items[i] = $"Item {i}";
+         //   }
+         //   Items = items;
+         //   this.BindingContext = this;
         }
-        private async void BackButton_Click(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
-        }
+      
         private void Item_Selected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)

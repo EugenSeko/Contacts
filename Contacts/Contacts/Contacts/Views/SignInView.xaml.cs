@@ -15,17 +15,6 @@ namespace Contacts.Views
         public SignInView()
         {
             InitializeComponent();
-            signInButton.Clicked += SignInButton_Click;
-            signUpButton.Clicked += SignUpButton_Click;
         }
-        private async void SignInButton_Click(object sender, EventArgs e)
-        {
-             await Navigation.PushModalAsync(new MainListView());
-        }
-        private async void SignUpButton_Click(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new SignUpView());
-        }
-
     }
 }

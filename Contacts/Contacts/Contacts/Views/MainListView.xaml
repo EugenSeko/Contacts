@@ -5,19 +5,26 @@
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout >
-                <Frame BackgroundColor="#2196F3" Padding="12"  CornerRadius="0">
+                <Frame BackgroundColor="#2196F3"
+                       Padding="12" 
+                       CornerRadius="0">
                     <StackLayout Orientation="Horizontal">
-                        <ImageButton Source="/Images/plusButton.png" Background="Transparent" ></ImageButton>
-                        <Button x:Name="backButton" BackgroundColor="#2196f3" Text="arrow" TextColor="White" FontSize="16"/>
-                        <Label Text="  MainList" HorizontalTextAlignment="Start" TextColor="White" FontSize="24"/>
+                        <Label Text="  MainList" 
+                               HorizontalTextAlignment="Start"
+                               TextColor="White"
+                               FontSize="24"/>
                     </StackLayout>
                 </Frame>
-                <Label Text="Items list" x:Name="headLabel" HorizontalOptions="Center" FontSize="Large" />
+                <Label Text="Items list" 
+                       x:Name="headLabel" 
+                       HorizontalOptions="Center"
+                       FontSize="Large" />
                 <ListView x:Name="itemsList" 
                           ItemSelected="Item_Selected"
                           ItemsSource="{Binding Items}" />
             </StackLayout>
             <ImageButton Source ="plus.png"
+                         Command="{Binding AddButtonTapCommand}"
                          BackgroundColor="Transparent" 
                          WidthRequest="80" 
                          AbsoluteLayout.LayoutFlags="PositionProportional"

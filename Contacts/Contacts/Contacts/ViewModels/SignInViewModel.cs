@@ -1,9 +1,25 @@
-﻿using Prism.Mvvm;
+﻿using Contacts.Views;
+using Prism.Mvvm;
+using Prism.Navigation;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Contacts.ViewModels
 {
-    class SignInViewModel: BindableBase
+    class SignInViewModel : BaseViewModel
     {
-       
+
+        public SignInViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
+
+        #region --- Navigation ---
+        public ICommand SignInButtonTapCommand =>
+            new Command(GoToMainPage);
+
+        public ICommand SignUpButtonTapCommand =>
+            new Command(GoToSignUpPage);
+        #endregion
     }
 }
