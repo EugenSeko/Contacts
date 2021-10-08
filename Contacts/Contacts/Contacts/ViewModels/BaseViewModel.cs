@@ -12,10 +12,13 @@ namespace Contacts.ViewModels
 {
     class BaseViewModel : BindableBase
     {
-
+        public BaseViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
 
         #region --- Navigation ---
-        protected INavigationService _navigationService;
+        private readonly INavigationService _navigationService;
 
         public async void NavigateGoBack()
         {

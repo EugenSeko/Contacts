@@ -10,6 +10,9 @@ namespace Contacts.ViewModels
 {
     class AddEditProfileViewModel : BaseViewModel
     {
-        
+        public AddEditProfileViewModel(INavigationService navigationService) : base(navigationService)
+        {
+
+        }
     }
 }

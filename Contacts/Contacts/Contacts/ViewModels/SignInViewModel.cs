@@ -9,9 +9,9 @@ namespace Contacts.ViewModels
     class SignInViewModel : BaseViewModel
     {
 
-        public SignInViewModel(INavigationService navigationService)
+        public SignInViewModel(INavigationService navigationService) : base(navigationService)
         {
-            _navigationService = navigationService;
+            
         }
 
         #region --- Navigation ---

@@ -10,9 +10,8 @@ namespace Contacts.ViewModels
 {
     class MainListViewModel : BaseViewModel
     {
-        public MainListViewModel(INavigationService navigationService)
+        public MainListViewModel(INavigationService navigationService) : base(navigationService)
         {
-            _navigationService = navigationService;
         }
 
         #region  --- Navigation ---     

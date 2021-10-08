@@ -10,9 +10,8 @@ namespace Contacts.ViewModels
 {
     class SignUpViewModel : BaseViewModel
     {
-        public SignUpViewModel(INavigationService navigationService)
+        public SignUpViewModel(INavigationService navigationService) : base(navigationService)
         {
-            _navigationService = navigationService;
         }
 
         
