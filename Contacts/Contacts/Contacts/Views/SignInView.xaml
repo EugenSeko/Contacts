@@ -12,13 +12,25 @@
             <StackLayout Spacing="125">
 
                 <Frame BackgroundColor="#2196F3" Padding="12"  CornerRadius="0">
+                    
                     <Label Text="  User SignIn" HorizontalTextAlignment="Start" TextColor="White" FontSize="24"/>
                 </Frame>
 
                 <StackLayout  Spacing="12" Padding="20,10,20,10" >
-                    <Entry x:Name="loginEntry" Placeholder="Login" Margin="20" />
-                    <Entry x:Name="passwordEntry"  Placeholder = "Password" IsPassword ="True" Margin="20"  />
+                    
+                    <Entry x:Name="loginEntry"
+                           Text="{Binding UserName}"
+                           Placeholder="Login"
+                           Margin="20" />
+                    
+                    <Entry x:Name="passwordEntry" 
+                           Text="{Binding Password}"
+                           Placeholder = "Password" 
+                           IsPassword ="True" 
+                           Margin="20"  />
+                    
                 </StackLayout>
+                
                 <StackLayout>
                     <Button 
                         Command="{Binding SignInButtonTapCommand}"

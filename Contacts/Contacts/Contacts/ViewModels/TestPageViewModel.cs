@@ -1,4 +1,5 @@
-﻿using Contacts.Models;
+﻿using Acr.UserDialogs;
+using Contacts.Models;
 using Contacts.Services.Repository;
 using Contacts.Services.Settings;
 using Prism.Mvvm;
@@ -24,7 +25,11 @@ namespace Contacts.ViewModels
 
         #region --- Public Properties ---
 
-       public ICommand AddButtonTapCommand => new Command(OnAddButtonTap);
+        public ICommand AddButtonTapCommand => new Command(OnAddButtonTap);
+        public ICommand DeleteTapCommand => new Command(OnDeleteTap);
+        public ICommand UpdateTapCommand => new Command(OnUpdateTap);
+
+        
 
         private string _firstName;
         public string FirstName
@@ -38,6 +43,13 @@ namespace Contacts.ViewModels
         {
             get => _lastName;
             set => SetProperty(ref _lastName, value);
+        }
+
+        private ProfileModel _selectedItem;
+        public ProfileModel SelectedItem
+        {
+            get => _selectedItem;
+            set => SetProperty(ref _selectedItem, value);
         }
 
         private ObservableCollection<ProfileModel> _profileList; // паблик?
@@ -58,6 +70,17 @@ namespace Contacts.ViewModels
         }
         #endregion
         #region --- Overrides ---
+
+        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
+        {
+            base.OnPropertyChanged(args);
+            if (args.PropertyName == nameof(SelectedItem))
+            {
+                SelectedItem.FirstName = FirstName;
+                SelectedItem.LastName = LastName;
+            }
+        }
+
         #endregion
         #region --- Privat Helpers ---
         private async void OnAddButtonTap(object obj)
@@ -75,7 +98,51 @@ namespace Contacts.ViewModels
             //await _repository.DeleteAllAsync<ProfileModel>();
         }
 
-      
+        private async void OnUpdateTap(object obj)
+        {
+            if (SelectedItem != null)
+            {
+
+                var profile = new ProfileModel()
+                {
+                    Id = SelectedItem.Id,
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    CreationTime = DateTime.Now
+                };
+
+                var index = ProfileList.IndexOf(SelectedItem);
+
+                await _repository.UpdateAsync(profile);
+
+                ProfileList.Remove(SelectedItem);
+
+                ProfileList.Insert(index, profile);
+            }
+        }
+
+        private async void OnDeleteTap()
+        {
+            if(SelectedItem != null)
+            {
+                var confirmConfig = new ConfirmConfig()
+                {
+                    Message = "You really want to delete this profile?",
+                    OkText = "Delete",
+                    CancelText = "Cancel"
+                };
+
+                var confirm = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
+
+                if (confirm)
+                {
+                    await _repository.DeleteAsync(SelectedItem);
+
+                    ProfileList.Remove(SelectedItem);
+                }
+            } 
+        }
+
         #endregion
     }
 }

@@ -23,6 +23,7 @@ namespace Contacts.Services.Repository
 
                 // инициализируем таблицы
                 database.CreateTableAsync<ProfileModel>();
+                database.CreateTableAsync<UserModel>();
                 return database;
             });
         }

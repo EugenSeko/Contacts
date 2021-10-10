@@ -12,14 +12,13 @@ namespace Contacts.ViewModels
 {
     class BaseViewModel : BindableBase
     {
+        private readonly INavigationService _navigationService;
         public BaseViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
         }
 
         #region --- Navigation ---
-        private readonly INavigationService _navigationService;
-
         public async void NavigateGoBack()
         {
             await _navigationService.GoBackAsync();
@@ -27,7 +26,7 @@ namespace Contacts.ViewModels
 
         public async void GoToMainPage()
         {
-            await _navigationService.NavigateAsync(nameof(MainListView));
+            await _navigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(MainListView)}");
         }
         public async void GoToSignUpPage()
         {
@@ -44,6 +43,10 @@ namespace Contacts.ViewModels
         public async void GoToAddEditProfilePage()
         {
             await _navigationService.NavigateAsync(nameof(AddEditProfileView));
+        }
+        public async void GoToTestPage()
+        {
+            await _navigationService.NavigateAsync(nameof(TestPage));
         }
         #endregion
     }

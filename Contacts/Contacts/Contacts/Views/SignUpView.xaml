@@ -7,21 +7,49 @@
                 <StackLayout Spacing="125">
 
                     <Frame BackgroundColor="#2196F3" Padding="12"  CornerRadius="0">
+                        
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="  User SignUp" HorizontalTextAlignment="Start" TextColor="White" FontSize="24"/>
+                        
+                        <Label Text="{Binding UserName}"
+                               HorizontalTextAlignment="Start" 
+                               TextColor="White"
+                               FontSize="24"/>
+                        
                     </StackLayout>
+                        
                     </Frame>
 
                     <StackLayout  Spacing="12" Padding="20,10,20,10" >
-                        <Entry x:Name="loginEntry" Placeholder="Login" Margin="20" />
-                        <Entry x:Name="passwordEntry"  Placeholder = "Password" IsPassword ="True" Margin="20"  />
-                        <Entry x:Name="passwordConfirm"  Placeholder = "Confirm Password" IsPassword ="True" Margin="20"  />
+                        
+                        <Entry x:Name="loginEntry"
+                               Placeholder="Login"
+                               Margin="20"
+                               Text="{Binding UserName}"/>
+                        
+                        <Entry x:Name="passwordEntry" 
+                               Placeholder = "Password"
+                               IsPassword ="True" 
+                               Margin="20" 
+                               Text="{Binding Password}"/>
+                        
+                        <Entry x:Name="passwordConfirm"
+                               Placeholder = "Confirm Password"
+                               IsPassword ="True"
+                               Margin="20"  />
 
                 </StackLayout>
                     <StackLayout>
-                        <Button x:Name="signUpButton" Text = "Sign Up"  FontSize="Medium"  Padding="120,20,120,20" Margin="32"
-                      HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                        
+                        <Button x:Name="signUpButton" 
+                                Command="{Binding SignUpButtonTapCommand}"
+                                Text = "Sign Up" 
+                                FontSize="Medium"
+                                Padding="120,20,120,20"
+                                Margin="32"
+                                HorizontalOptions="Center"
+                                VerticalOptions="CenterAndExpand"
                          />
+                        
                     </StackLayout>
                 </StackLayout>
             </ScrollView>

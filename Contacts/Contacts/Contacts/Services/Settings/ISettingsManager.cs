@@ -6,7 +6,6 @@ namespace Contacts.Services.Settings
 {
    public interface ISettingsManager
     {
-        int Count { get; set; }
-        string Name { get; set; }
+        string UserName { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Contacts.Services.Repository;
+﻿using Contacts.Services.Authentication;
+using Contacts.Services.Repository;
 using Contacts.Services.Settings;
 using Contacts.ViewModels;
 using Contacts.Views;
@@ -14,6 +15,7 @@ namespace Contacts
     {
         public App()
         {
+           
         }
         #region ---Overrides---
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -21,6 +23,7 @@ namespace Contacts
             //Services
             containerRegistry.RegisterInstance<IRepository>(Container.Resolve<Repository>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());
+            containerRegistry.RegisterInstance<IAuthenticationService>(Container.Resolve<AuthenticationService>());
             // Navigation
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<SignInView, SignInViewModel>();
@@ -34,6 +37,8 @@ namespace Contacts
         {
             InitializeComponent();
            // NavigationService.NavigateAsync($"{nameof(TestPage)}");
+
+
             NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(SignInView)}");
 
         }

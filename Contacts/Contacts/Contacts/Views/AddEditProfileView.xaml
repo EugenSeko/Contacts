@@ -6,6 +6,7 @@
         <AbsoluteLayout>
             
             <ImageButton Source ="plus.png"
+                         Command="{Binding OnPlusTapButton}"
                          BackgroundColor="Transparent" 
                          WidthRequest="80" 
                          AbsoluteLayout.LayoutFlags="PositionProportional"

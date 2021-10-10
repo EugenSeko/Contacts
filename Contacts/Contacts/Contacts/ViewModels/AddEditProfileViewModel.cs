@@ -12,7 +12,10 @@ namespace Contacts.ViewModels
     {
         public AddEditProfileViewModel(INavigationService navigationService) : base(navigationService)
         {
-
         }
+
+        #region --- Navigation ---
+        public ICommand OnPlusTapButton => new Command(GoToTestPage);
+        #endregion
     }
 }

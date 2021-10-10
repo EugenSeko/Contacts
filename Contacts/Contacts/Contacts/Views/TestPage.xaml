@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.TestPage">
-    <Grid RowDefinitions="70, *" >
+    <Grid RowDefinitions="70, 70, *" >
         <Grid Grid.Row="0"
               ColumnDefinitions="0.3*,0.3*,0.3*">
             
@@ -22,8 +22,23 @@
                    Text="{Binding LastName}"/>
 
         </Grid>
-        <ListView Grid.Row="1"
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="0.5*, 0.5*">
+            
+            <Button Grid.Column="0"
+                    Text="Delete"
+                    Command="{Binding DeleteTapCommand}"/>
+            
+            <Button Grid.Column="1"
+                    Text="Update"
+                    Command="{Binding UpdateTapCommand}"/>
+
+        </Grid>
+        
+        <ListView Grid.Row="2"
                   HasUnevenRows="True"
+                  SelectedItem="{Binding SelectedItem}"
                   ItemsSource="{Binding ProfileList}">
             <ListView.ItemTemplate>
                 <DataTemplate>
