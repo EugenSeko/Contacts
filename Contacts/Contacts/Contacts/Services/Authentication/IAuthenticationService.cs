@@ -8,6 +8,9 @@ namespace Contacts.Services.Authentication
 {
     public interface IAuthenticationService
     {
+
+         void ExitAuthorisation();
+        
          void GetAllUsers(); //временно
 
          Task<string> AuthorisatonAsync(string username, string password);

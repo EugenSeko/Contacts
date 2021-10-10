@@ -26,7 +26,12 @@ namespace Contacts.ViewModels
 
         public async void GoToMainPage()
         {
-            await _navigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(MainListView)}");
+            await _navigationService.NavigateAsync("/"+nameof(MainListView));
+        }
+
+        public async void GoBackToRootAsync()
+        {
+            await _navigationService.GoBackToRootAsync();
         }
         public async void GoToSignUpPage()
         {
@@ -34,7 +39,7 @@ namespace Contacts.ViewModels
         }
         public async void GoSignInPage()
         {
-            await _navigationService.NavigateAsync(nameof(SignInView));
+            await _navigationService.NavigateAsync("/"+nameof(SignInView));
         }
         public async void GoToSettingsPage()
         {

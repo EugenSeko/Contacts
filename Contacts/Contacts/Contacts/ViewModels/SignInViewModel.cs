@@ -4,6 +4,7 @@ using Contacts.Views;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -24,7 +25,6 @@ namespace Contacts.ViewModels
             _authenticationService = authenticationService;
             _settingsManager = settingsManager;
 
-            if (_settingsManager.UserName != null) { GoToMainPage(); }
         }
 
         public ICommand SignInButtonTapCommand => new Command(TryAuthorisation);
@@ -33,7 +33,10 @@ namespace Contacts.ViewModels
         {
             string done = await  _authenticationService.AuthorisatonAsync(_userName, _password);
 
-            if (done == "done") { GoToMainPage(); }
+            if (done == "done") {
+                Console.WriteLine("Done");
+                GoToMainPage();
+            }
         }
 
 

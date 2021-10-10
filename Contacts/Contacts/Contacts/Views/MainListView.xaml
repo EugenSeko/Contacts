@@ -9,10 +9,15 @@
                        Padding="12" 
                        CornerRadius="0">
                     <StackLayout Orientation="Horizontal">
+                        
                         <Label Text="  MainList" 
                                HorizontalTextAlignment="Start"
                                TextColor="White"
                                FontSize="24"/>
+                        <Button Text="exit"
+                                TextColor="White"
+                                Command="{Binding OnExitButtonTap}"/>
+
                     </StackLayout>
                 </Frame>
                 <Label Text="Items list" 

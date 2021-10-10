@@ -15,6 +15,8 @@ namespace Contacts.Services.Authentication
         private ISettingsManager _settingsManager;
         private IRepository _repository;
 
+        
+
         public AuthenticationService(IRepository repository, ISettingsManager settingsManager)
         {
             _settingsManager = settingsManager;
@@ -58,8 +60,8 @@ namespace Contacts.Services.Authentication
 
                  await _repository.InsertAsync(user); // добавляем в базу
 
-               // await _repository.DeleteAllAsync<UserModel>(); //временно 
-               
+                
+
             }
 
             return await Task.Run(() => isDone);
@@ -83,11 +85,18 @@ namespace Contacts.Services.Authentication
                         done = "done";
 
                         _settingsManager.UserName = username; // Сохраняем в настройки
+
                     }
                 }
             }
 
             return await Task.Run(() => done);
+        }
+
+        public void ExitAuthorisation()
+        {
+           // await _repository.DeleteAllAsync<UserModel>();
+            _settingsManager.UserName = null;                //oчистка таблицы и настроек
         }
     }
 }
