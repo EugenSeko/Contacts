@@ -5,14 +5,22 @@ using System.Text;
 
 namespace Contacts.Models
 {
-     public class ProfileModel : IEntityBase
+    [Table("Profiles")]
+    public class ProfileModel : IEntityBase
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey, AutoIncrement,Column("_id")]
         public int Id { get; set; }
+
+        public string Author { get; set; } // ключ
+
+
+        public string NicktName { get; set; }
 
         public string FirstName { get; set; }
         
         public string LastName { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public DateTime CreationTime { get; set; }
 

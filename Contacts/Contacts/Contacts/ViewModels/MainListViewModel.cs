@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Contacts.Services.Authentication;
 using Contacts.Services.Settings;
+using Contacts.Services.Profiles;
 
 namespace Contacts.ViewModels
 {
@@ -14,15 +15,18 @@ namespace Contacts.ViewModels
     {
         private IAuthenticationService _authenticationService;
         private ISettingsManager _settingsManager;
+        private IProfileManager _profileManager;
+
 
 
         public MainListViewModel(INavigationService navigationService,
                                  ISettingsManager settingsManager,
-                                 IAuthenticationService authenticationService) : base(navigationService)
+                                 IAuthenticationService authenticationService,
+                                 IProfileManager profileManager) : base(navigationService)
         {
             _authenticationService = authenticationService;
             _settingsManager = settingsManager;
-
+            _profileManager = profileManager;
         }
 
         public ICommand OnExitButtonTap => new Command(ExitAuthorisation);
@@ -31,6 +35,9 @@ namespace Contacts.ViewModels
         {
             _authenticationService.ExitAuthorisation();
             GoSignInPage();
+
+           // _profileManager.GetAllProfiles(); //временно
+
         }
 
 

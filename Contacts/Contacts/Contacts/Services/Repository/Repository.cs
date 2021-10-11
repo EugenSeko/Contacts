@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 using System.IO;
+using Contacts.Services.Settings;
 
 namespace Contacts.Services.Repository
 {
@@ -13,8 +14,10 @@ namespace Contacts.Services.Repository
         
         private Lazy<SQLiteAsyncConnection> _database;
 
+
         public Repository()
         {
+
             _database = new Lazy<SQLiteAsyncConnection>(() => 
             {
                 // Путь к базе на локальном устройстве
@@ -28,6 +31,8 @@ namespace Contacts.Services.Repository
             });
         }
 
+        #region --- Common Methods ---
+
         public Task<int> DeleteAsync<T>(T entity) where T : IEntityBase, new()
         {
             return _database.Value.DeleteAsync(entity);
@@ -38,13 +43,6 @@ namespace Contacts.Services.Repository
             return _database.Value.Table<T>().ToListAsync();
         }
 
-        // ----------------------------------------
-        public Task<int> DeleteAllAsync<T>() where T : IEntityBase, new()
-        {
-            return _database.Value.DeleteAllAsync<T>();
-           // return _database.Value.DropTableAsync<T>();
-        }
-        //------------------------
         public Task<int> InsertAsync<T>(T entity) where T : IEntityBase, new()
         {
             return _database.Value.InsertAsync(entity);
@@ -54,5 +52,13 @@ namespace Contacts.Services.Repository
         {
             return _database.Value.UpdateAsync(entity);
         }
+        public Task<int> DeleteAllAsync<T>() where T : IEntityBase, new()
+        {
+            return _database.Value.DeleteAllAsync<T>();
+            // return _database.Value.DropTableAsync<T>();
+        }
+
+        #endregion
+        
     }
 }

@@ -34,7 +34,7 @@ namespace Contacts.ViewModels
             set => SetProperty(ref _password, value);
         }
 
-        private async void OnSignUpButtonTap(object obj)
+        private async void OnSignUpButtonTap(object obj) 
         {
             var done = await _authenticationService.RegistrationAsync(UserName, Password);
 
@@ -42,7 +42,6 @@ namespace Contacts.ViewModels
 
             if (done) 
             {
-                _authenticationService.GetAllUsers(); //временно
 
                 GoSignInPage();
             } 

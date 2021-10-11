@@ -23,18 +23,7 @@ namespace Contacts.Services.Authentication
             _repository = repository;
         }
 
-        public  async void GetAllUsers() //временно
-        {
-            var list =   await _repository.GetAllAsync<UserModel>();
-            
-            foreach(var um in list)
-            {
-            Console.WriteLine(um.Id);
-            Console.WriteLine(um.UserName);
-            Console.WriteLine(um.Password);
-
-            }
-        }
+       
 
         public async Task<bool> RegistrationAsync(string username, string password)
         {

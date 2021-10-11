@@ -87,6 +87,7 @@ namespace Contacts.ViewModels
         {
             var profile = new ProfileModel()
             {
+                Author = _settingsManager.UserName, 
                 FirstName = FirstName,
                 LastName = LastName,
                 CreationTime = DateTime.Now
@@ -95,7 +96,7 @@ namespace Contacts.ViewModels
             var id = await _repository.InsertAsync(profile);
             profile.Id = id;
             ProfileList.Add(profile);
-            //await _repository.DeleteAllAsync<ProfileModel>();
+           // await _repository.DeleteAllAsync<ProfileModel>(); // удаление таблицы
         }
 
         private async void OnUpdateTap(object obj)
