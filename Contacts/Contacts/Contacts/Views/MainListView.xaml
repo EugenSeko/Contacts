@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Contacts.Views.MainListView">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout >
+                <Frame BackgroundColor="#2196F3"
+                       Padding="12" 
+                       CornerRadius="0">
+                    <StackLayout Orientation="Horizontal">
+                        
+                        <Label Text="  MainList" 
+                               HorizontalTextAlignment="Start"
+                               TextColor="White"
+                               FontSize="24"/>
+                        <Button Text="exit"
+                                TextColor="White"
+                                Command="{Binding OnExitButtonTap}"/>
+
+                    </StackLayout>
+                </Frame>
+                <Label Text="Items list" 
+                       x:Name="headLabel" 
+                       HorizontalOptions="Center"
+                       FontSize="Large" />
+                <ListView x:Name="itemsList" 
+                          ItemSelected="Item_Selected"
+                          ItemsSource="{Binding Items}" />
+            </StackLayout>
+            <ImageButton Source ="plus.png"
+                         Command="{Binding AddButtonTapCommand}"
+                         BackgroundColor="Transparent" 
+                         WidthRequest="80" 
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds=".95,.95,80,80"></ImageButton>
+
+        </AbsoluteLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
