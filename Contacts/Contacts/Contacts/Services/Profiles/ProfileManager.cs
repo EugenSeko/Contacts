@@ -23,45 +23,11 @@ namespace Contacts.Services.Profiles
         }
 
         #region --- Public Properties ---
-        public int Id 
+        
+        public ProfileModel Profile 
         { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException(); 
-        }
-
-        public string Author 
-        { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException();
-        }
-
-        public string NicktName
-        { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException();
-        }
-
-        public string FirstName 
-        { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException();
-        }
-
-        public string LastName 
-        { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException();
-        }
-
-        public string ImageUrl 
-        { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException();
-        }
-        public DateTime CreationTime 
-        { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException();
+            get; 
+            set; 
         }
 
         public ObservableCollection<ProfileModel> ProfileList 
@@ -72,7 +38,7 @@ namespace Contacts.Services.Profiles
 
         #endregion
 
-        public async void GetAllProfiles() // получаем все профили определенного юзера
+        public async Task<ObservableCollection<ProfileModel>> GetAllProfilesAsync() // получаем все профили определенного юзера
         {
             var profileList = await _repository.GetAllAsync<ProfileModel>();
 
@@ -83,14 +49,16 @@ namespace Contacts.Services.Profiles
             foreach(ProfileModel m in v)
             {
                 ProfileList.Add(m);
-                Console.WriteLine(m.Author); //временно
-                Console.WriteLine(m.FirstName);
-                Console.WriteLine(m.LastName);
-                Console.WriteLine(m.ImageUrl);
-                Console.WriteLine(m.Id);
-                Console.WriteLine(m.NicktName);
+                //Console.WriteLine(m.Author); //временно
+                //Console.WriteLine(m.FirstName);
+                //Console.WriteLine(m.LastName);
+                //Console.WriteLine(m.ImageUrl);
+                //Console.WriteLine(m.Id);
+                //Console.WriteLine(m.NicktName);
 
             }
+
+            return ProfileList;
 
         }
     }

@@ -23,6 +23,8 @@ namespace Contacts.ViewModels
             _repository = repository;
         }
 
+
+
         #region --- Public Properties ---
 
         public ICommand AddButtonTapCommand => new Command(OnAddButtonTap);
@@ -52,7 +54,7 @@ namespace Contacts.ViewModels
             set => SetProperty(ref _selectedItem, value);
         }
 
-        private ObservableCollection<ProfileModel> _profileList; // паблик?
+        private ObservableCollection<ProfileModel> _profileList; 
 
         public ObservableCollection<ProfileModel> ProfileList
         {

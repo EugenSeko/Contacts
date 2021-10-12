@@ -2,18 +2,42 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.AddEditProfileView">
-    <ContentPage.Content>
-        <AbsoluteLayout>
-            
-            <ImageButton Source ="plus.png"
-                         Command="{Binding OnPlusTapButton}"
-                         BackgroundColor="Transparent" 
-                         WidthRequest="80" 
-                         AbsoluteLayout.LayoutFlags="PositionProportional"
-                         AbsoluteLayout.LayoutBounds=".95,.95,80,80"></ImageButton>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
 
+        <ScrollView Grid.Row="0">
+            <StackLayout>
+                <StackLayout HeightRequest="220" BackgroundColor="Pink" Padding="15">
+                    <Image Source="plus.png"/>
+                </StackLayout>
+                <StackLayout HeightRequest="220" BackgroundColor="#54c1e5" Padding="15">
+                    <Image Source="plus.png"/>
+                </StackLayout>
+                <StackLayout HeightRequest="220" BackgroundColor="#bfeb80" Padding="15">
+                    <Image Source="plus.png"/>
+                </StackLayout>
+                <StackLayout HeightRequest="220" BackgroundColor="PaleVioletRed" Padding="15">
+                    <Image Source="plus.png"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
 
-        </AbsoluteLayout>
-    </ContentPage.Content>
+        <!--<Button Grid.Row="0" 
+                Text="Add animal" 
+                BorderColor="#2b3c3c"
+                BorderWidth="1" 
+                FontAttributes="Bold" 
+                BackgroundColor="#4ba862" 
+                BorderRadius="35"
+                TextColor="White"
+                HorizontalOptions="End"
+                WidthRequest="160"
+                HeightRequest="70" 
+                Margin="0,0,20,22"
+                VerticalOptions="End"/>-->
+
+    </Grid>
 </ContentPage>
