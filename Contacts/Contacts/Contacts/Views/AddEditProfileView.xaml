@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.AddEditProfileView">
-    <ContentPage.Content>
+    <ContentPage.Content> <!--внимание. при повороте страницы все ломается-->
         <Grid RowDefinitions="0.05*,0.3*,0.09*,0.09*,0.32*" 
           RowSpacing="10">
             <!--<Grid.RowDefinitions>

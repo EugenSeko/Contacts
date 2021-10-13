@@ -55,7 +55,7 @@
                             <ViewCell>
                                 <ViewCell.ContextActions >
                                     <MenuItem Text="Вверх"
-                                       Command= "{Binding MoveToTopCommand}" /> <!--текущая не биндится-->
+                                       Command= "{Binding MoveToTopCommand}" /> <!--внимание. не биндится-->
                                     <MenuItem Text="Вниз"
                                               Command="{Binding Path=ListViewModel.MoveToBottomCommand}"
                                               CommandParameter="{Binding}" />
