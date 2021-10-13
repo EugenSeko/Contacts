@@ -2,42 +2,49 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.AddEditProfileView">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-
-        <ScrollView Grid.Row="0">
-            <StackLayout>
-                <StackLayout HeightRequest="220" BackgroundColor="Pink" Padding="15">
-                    <Image Source="plus.png"/>
-                </StackLayout>
-                <StackLayout HeightRequest="220" BackgroundColor="#54c1e5" Padding="15">
-                    <Image Source="plus.png"/>
-                </StackLayout>
-                <StackLayout HeightRequest="220" BackgroundColor="#bfeb80" Padding="15">
-                    <Image Source="plus.png"/>
-                </StackLayout>
-                <StackLayout HeightRequest="220" BackgroundColor="PaleVioletRed" Padding="15">
-                    <Image Source="plus.png"/>
-                </StackLayout>
-            </StackLayout>
-        </ScrollView>
-
-        <!--<Button Grid.Row="0" 
-                Text="Add animal" 
-                BorderColor="#2b3c3c"
-                BorderWidth="1" 
-                FontAttributes="Bold" 
-                BackgroundColor="#4ba862" 
-                BorderRadius="35"
-                TextColor="White"
-                HorizontalOptions="End"
-                WidthRequest="160"
-                HeightRequest="70" 
-                Margin="0,0,20,22"
-                VerticalOptions="End"/>-->
+    <ContentPage.Content>
+        <Grid RowDefinitions="0.05*,0.3*,0.09*,0.09*,0.32*" 
+          RowSpacing="10">
+            <!--<Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>-->
+            <Grid Grid.Row="0"
+                     BackgroundColor="#2196F3">
+            <ImageButton Grid.Column="0" 
+                         Source="L_arrow.png" 
+                         BackgroundColor="Transparent"
+                         HorizontalOptions="Start"
+                         HeightRequest="40" 
+                         WidthRequest="40"/>
+            <Label Grid.Column="1" 
+                   Text="Add profile" FontSize="Title"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+            <ImageButton Grid.Column="2" 
+                         Source="save.png"
+                         BackgroundColor="Transparent"
+                         HeightRequest="40"
+                         WidthRequest="40" 
+                         Margin="0,0,0,0"
+                         HorizontalOptions="End"/>
+        </Grid>
+        <Image Grid.Row="1"
+               Source="user.png"
+               BackgroundColor="Transparent"
+               />
+        <Entry Grid.Row="2"
+               Placeholder="NickName"
+                Margin="40,10,40,10"
+               VerticalOptions="End"  />
+        <Entry Grid.Row="3"
+               Placeholder="Name" 
+                Margin="40,10,40,10"
+               VerticalOptions="End" />
+        <Editor Grid.Row="4"
+                BackgroundColor="Gray"
+                Margin="40,30,40,30"
+                Placeholder="Description" />
 
     </Grid>
+    </ContentPage.Content>
 </ContentPage>
