@@ -11,9 +11,9 @@ namespace Contacts.Services.Profiles
     {
         ProfileModel Profile { get; set; }
 
-        ObservableCollection<ProfileModel> ProfileList { get; set; }
+        List<ProfileModel> ProfileList { get; set; }
 
-        Task<ObservableCollection<ProfileModel>> GetAllProfilesAsync();
+        Task<List<ProfileModel>> GetAllProfilesAsync();
 
     }
 }

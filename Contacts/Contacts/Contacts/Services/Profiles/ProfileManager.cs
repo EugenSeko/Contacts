@@ -30,7 +30,7 @@ namespace Contacts.Services.Profiles
             set; 
         }
 
-        public ObservableCollection<ProfileModel> ProfileList 
+        public List<ProfileModel> ProfileList 
         { 
             get; 
             set; 
@@ -38,24 +38,17 @@ namespace Contacts.Services.Profiles
 
         #endregion
 
-        public async Task<ObservableCollection<ProfileModel>> GetAllProfilesAsync() // получаем все профили определенного юзера
+        public async Task<List<ProfileModel>> GetAllProfilesAsync() // получаем все профили определенного юзера
         {
             var profileList = await _repository.GetAllAsync<ProfileModel>();
 
-            ProfileList = new ObservableCollection<ProfileModel>();
+            ProfileList = new List<ProfileModel>();
 
             var v = profileList.Where(p => p.Author == _settingsManager.UserName);
 
             foreach(ProfileModel m in v)
             {
                 ProfileList.Add(m);
-                //Console.WriteLine(m.Author); //временно
-                //Console.WriteLine(m.FirstName);
-                //Console.WriteLine(m.LastName);
-                //Console.WriteLine(m.ImageUrl);
-                //Console.WriteLine(m.Id);
-                //Console.WriteLine(m.NicktName);
-
             }
 
             return ProfileList;

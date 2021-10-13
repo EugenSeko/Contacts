@@ -14,7 +14,7 @@ namespace Contacts.Models
         public string Author { get; set; } // ключ
 
 
-        public string NicktName { get; set; }
+        public string NickName { get; set; }
 
         public string FirstName { get; set; }
         

@@ -30,14 +30,37 @@ namespace Contacts.ViewModels
             _authenticationService = authenticationService;
             _settingsManager = settingsManager;
             _profileManager = profileManager;
+
+            GetProfileList();
         }
+
 
 
         public async Task InitializeAsync(INavigationParameters parameters)
         {
-            var profiles = await  _profileManager.GetAllProfilesAsync();
+            //var profiles = await  _profileManager.GetAllProfilesAsync();
 
-            ProfileList = profiles;
+            //var v = profiles;
+        }
+
+        public async void GetProfileList()
+        {
+            var profiles = await _profileManager.GetAllProfilesAsync();
+            ProfileList = new ObservableCollection<ProfileViewModel>();
+            ProfileViewModel pvm = new ProfileViewModel();
+            foreach(ProfileModel m in profiles)
+            {
+                pvm.Id = m.Id;
+                pvm.FirstName = m.FirstName;
+                pvm.Author = m.Author;
+                pvm.CreationTime = m.CreationTime;
+                pvm.LastName = m.LastName;
+                pvm.ImageUrl = m.ImageUrl;
+                pvm.NickName = m.NickName;
+                pvm.ListViewModel = this;
+                ProfileList.Add(pvm);
+            }
+
         }
 
 
@@ -72,9 +95,9 @@ namespace Contacts.ViewModels
             set => SetProperty(ref _selectedItem, value);
         }
 
-        private ObservableCollection<ProfileModel> _profileList;
+        private ObservableCollection<ProfileViewModel> _profileList;
 
-        public ObservableCollection<ProfileModel> ProfileList
+        public ObservableCollection<ProfileViewModel> ProfileList
         {
             get => _profileList;
             set => SetProperty(ref _profileList, value);
