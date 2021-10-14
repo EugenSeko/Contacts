@@ -11,6 +11,7 @@ using Contacts.Services.Settings;
 using Contacts.Services.Profiles;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Acr.UserDialogs;
 
 namespace Contacts.ViewModels
 {
@@ -19,9 +20,6 @@ namespace Contacts.ViewModels
         private IAuthenticationService _authenticationService;
         private ISettingsManager _settingsManager;
         private IProfileManager _profileManager;
-
-
-
         public MainListViewModel(INavigationService navigationService,
                                  ISettingsManager settingsManager,
                                  IAuthenticationService authenticationService,
@@ -30,20 +28,14 @@ namespace Contacts.ViewModels
             _authenticationService = authenticationService;
             _settingsManager = settingsManager;
             _profileManager = profileManager;
-
-            GetProfileList();
         }
-
-
 
         public async Task InitializeAsync(INavigationParameters parameters)
         {
-            //var profiles = await  _profileManager.GetAllProfilesAsync();
-
-            //var v = profiles;
+            await GetProfileList();
         }
 
-        public async void GetProfileList()
+        private async Task GetProfileList()
         {
             var profiles = await _profileManager.GetAllProfilesAsync();
 
@@ -68,33 +60,10 @@ namespace Contacts.ViewModels
 
         }
 
-
         #region --- Public Properties
 
-
-        private string _firstName;
-        public string FirstName
-        {
-            get => _firstName;
-            set => SetProperty(ref _firstName, value);
-        }
-
-        private string _lastName;
-        public string LastName
-        {
-            get => _lastName;
-            set => SetProperty(ref _lastName, value);
-        }
-
-        private string _nickName;
-        public string NickName
-        {
-            get => _lastName;
-            set => SetProperty(ref _nickName, value);
-        }
-
-        private ProfileModel _selectedItem;
-        public ProfileModel SelectedItem
+        private ProfileViewModel _selectedItem;
+        public ProfileViewModel SelectedItem
         {
             get => _selectedItem;
             set => SetProperty(ref _selectedItem, value);
@@ -110,19 +79,45 @@ namespace Contacts.ViewModels
 
         #endregion
 
-
         #region --- Commands ---
         public ICommand OnLogautButtonTap => new Command(ExitAuthorisation);
-        public ICommand OnSettingsButtonTap => new Command(Settings);
+        public ICommand OnSettingsButtonTap => new Command(GoSettings);
         public ICommand OnAddButtonTap => new Command(AddNewProfile);
-        public ICommand MoveToTopCommand => new Command(Settings);
-
-
-
+        public ICommand OnDeleteButtonTap => new Command(DeleteAsync);
+        public ICommand OnEditButtonTap => new Command(GoEdit);
         #endregion
 
-
         #region --- Privat Helpers ---
+        private void GoEdit(object profileObj)
+        {
+            ProfileViewModel profile = profileObj as ProfileViewModel;
+            int id = profile.Id;
+            
+            GoToAddEditProfilePage(id);
+        }
+
+        private async void DeleteAsync(object profileObj) // внимание может не асинк
+        {
+            if (profileObj != null)
+            {
+                var confirmConfig = new ConfirmConfig()
+                {
+                    Message = "You really want to delete this profile?",
+                    OkText = "Delete",
+                    CancelText = "Cancel"
+                };
+
+                var confirm = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
+
+                if (confirm)
+                {
+                    ProfileViewModel profile = profileObj as ProfileViewModel;
+                    await _profileManager.DeleteAsync(profile.ProfileModel);
+                    ProfileList.Remove(profile);
+                }
+            }
+        }
+
         private void ExitAuthorisation(object obj)
         {
             _authenticationService.ExitAuthorisation(); 
@@ -132,10 +127,10 @@ namespace Contacts.ViewModels
 
         private void AddNewProfile(object obj)
         {
-            GoToAddEditProfilePage();
+            GoToAddEditProfilePage(-1); // внимание параметр id отрицательный
         }
 
-        private void Settings(object obj)
+        private void GoSettings(object obj)
         {
             GoToSettingsPage();
         }

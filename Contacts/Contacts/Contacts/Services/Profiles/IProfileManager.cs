@@ -15,5 +15,10 @@ namespace Contacts.Services.Profiles
 
         Task<List<ProfileModel>> GetAllProfilesAsync();
 
+        Task<int> DeleteAsync(ProfileModel profile);
+
+        Task<ProfileModel> GetProfileById(int id);
+
+
     }
 }

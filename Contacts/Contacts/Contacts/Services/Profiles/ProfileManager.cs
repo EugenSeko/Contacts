@@ -38,6 +38,22 @@ namespace Contacts.Services.Profiles
 
         #endregion
 
+        public async Task<int>  DeleteAsync(ProfileModel profile)
+        {
+            return await _repository.DeleteAsync(profile);
+        }
+
+        public async Task<ProfileModel> GetProfileById(int id)
+        {
+           ProfileList = await GetAllProfilesAsync();
+            ProfileModel pm = new ProfileModel(); // null?
+            foreach(ProfileModel m in ProfileList)
+            {
+                if (m.Id == id) pm = m;
+            }
+            return pm;
+        }
+
         public async Task<List<ProfileModel>> GetAllProfilesAsync() // получаем все профили определенного юзера
         {
             var profileList = await _repository.GetAllAsync<ProfileModel>();

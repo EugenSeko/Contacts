@@ -37,7 +37,7 @@
                 Margin="40,10,40,10"
                VerticalOptions="End"  />
         <Entry Grid.Row="3"
-               Placeholder="Name" 
+               Placeholder="{Binding Path=Profile.FirstName}" 
                 Margin="40,10,40,10"
                VerticalOptions="End" />
         <Editor Grid.Row="4"

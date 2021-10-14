@@ -54,14 +54,11 @@
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.ContextActions >
-                                    <MenuItem Text="Вверх"
-                                              Command= "{Binding Path=ListViewModel.OnSettingsButtonTap}"
+                                    <MenuItem Text="edit"
+                                              Command= "{Binding Path=ListViewModel.OnEditButtonTap}"
                                               CommandParameter="{Binding}"/> 
-                                    <MenuItem Text="Вниз"
-                                              Command="{Binding Path=ListViewModel.MoveToBottomCommand}"
-                                              CommandParameter="{Binding}" />
-                                    <MenuItem Text="Удалить"
-                                              Command="{Binding Path=ListViewModel.RemoveCommand}" 
+                                    <MenuItem Text="delete"
+                                              Command="{Binding Path=ListViewModel.OnDeleteButtonTap}"
                                               CommandParameter="{Binding}" />
                                 </ViewCell.ContextActions>
                                 <ViewCell.View>
@@ -91,7 +88,6 @@
                 </ListView>
 
             </Grid>
-
             <ImageButton Source ="plus.png"
                          Command="{Binding OnAddButtonTap}"
                          BackgroundColor="#2196F3" 

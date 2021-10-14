@@ -49,14 +49,18 @@ namespace Contacts.ViewModels
         {
             await _navigationService.NavigateAsync(nameof(SettingsView));
         }
-        public async void GoToAddEditProfilePage()
+        public  async void GoToAddEditProfilePage(int id)
         {
-            await _navigationService.NavigateAsync(nameof(AddEditProfileView));
+            var p = new NavigationParameters();
+            p.Add("id", id);
+            await _navigationService.NavigateAsync(nameof(AddEditProfileView),p);
         }
         public async void GoToTestPage()
         {
             await _navigationService.NavigateAsync(nameof(TestPage));
         }
+
+
         #endregion
     }
 }
