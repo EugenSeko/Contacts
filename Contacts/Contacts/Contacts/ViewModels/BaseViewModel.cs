@@ -20,8 +20,6 @@ namespace Contacts.ViewModels
             _navigationService = navigationService;
         }
 
-
-
         #region --- Navigation ---
         public async void NavigateGoBack()
         {

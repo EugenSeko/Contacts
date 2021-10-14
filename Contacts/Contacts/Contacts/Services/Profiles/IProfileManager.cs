@@ -19,6 +19,8 @@ namespace Contacts.Services.Profiles
 
         Task<ProfileModel> GetProfileById(int id);
 
+        Task<int> CreateAsync(ProfileModel profile);
+
 
     }
 }

@@ -34,7 +34,6 @@ namespace Contacts.ViewModels
         {
             await GetProfileList();
         }
-
         private async Task GetProfileList()
         {
             var profiles = await _profileManager.GetAllProfilesAsync();
@@ -48,26 +47,25 @@ namespace Contacts.ViewModels
                 pvm = new ProfileViewModel();
 
                 pvm.Id = m.Id;
-                pvm.FirstName = m.FirstName;
+                pvm.Name = m.Name;
                 pvm.Author = m.Author;
                 pvm.CreationTime = m.CreationTime;
-                pvm.LastName = m.LastName;
+                pvm.Description = m.Description;
                 pvm.ImageUrl = m.ImageUrl;
                 pvm.NickName = m.NickName;
                 pvm.ListViewModel = this;
                 ProfileList.Add(pvm);
             }
-
         }
 
-        #region --- Public Properties
+        #region --- Public Properties ---
 
         private ProfileViewModel _selectedItem;
-        public ProfileViewModel SelectedItem
-        {
-            get => _selectedItem;
-            set => SetProperty(ref _selectedItem, value);
-        }
+        //public ProfileViewModel SelectedItem
+        //{
+        //    get => _selectedItem;
+        //    set => SetProperty(ref _selectedItem, value);
+        //}
 
         private ObservableCollection<ProfileViewModel> _profileList;
 

@@ -57,26 +57,26 @@ namespace Contacts.ViewModels
             }
         }
 
-        public string FirstName
+        public string Name
         {
-            get { return ProfileModel.FirstName; }
+            get { return ProfileModel.Name; }
             set
             {
-                if (ProfileModel.FirstName != value)
+                if (ProfileModel.Name != value)
                 {
-                    ProfileModel.FirstName = value;
+                    ProfileModel.Name = value;
                     OnPropertyChanged("FirstName");
                 }
             }
         }
-        public string LastName
+        public string Description
         {
-            get { return ProfileModel.LastName; }
+            get { return ProfileModel.Description; }
             set
             {
-                if (ProfileModel.LastName != value)
+                if (ProfileModel.Description != value)
                 {
-                    ProfileModel.LastName = value;
+                    ProfileModel.Description = value;
                     OnPropertyChanged("LastName");
                 }
             }

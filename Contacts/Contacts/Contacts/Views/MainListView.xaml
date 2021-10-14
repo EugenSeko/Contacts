@@ -3,19 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.MainListView">
     <ContentPage.Content>
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
             <Grid RowDefinitions="56, *"
                   >
                 <Grid Grid.Row="0" BackgroundColor="#2196F3"
                        ColumnDefinitions="0.7*,0.3*,0.3*"
                       ColumnSpacing="0"
                          >
-
                     <Label Text="Main List" 
                     BackgroundColor="Transparent"
                     FontSize="Title"
@@ -23,7 +20,6 @@
                     Grid.Column="0"
                     VerticalOptions="Center"
                     />
-
                     <ImageButton Source ="plus.png"
                      BackgroundColor="Transparent"
                      Margin="0,0,0,0"  
@@ -33,7 +29,6 @@
                      HeightRequest="35"
                      Command="{Binding OnLogautButtonTap}"            
                      />
-
                     <ImageButton Source ="plus.png"
                      BackgroundColor="Transparent"
                      Margin="0,0,0,0"
@@ -43,9 +38,7 @@
                      HeightRequest="35"
                      Command="{Binding OnSettingsButtonTap}"          
                      />
-
                 </Grid>
-
                 <ListView Grid.Row="1"
                   HasUnevenRows="True"
                   SelectedItem="{Binding SelectedItem}"
@@ -64,17 +57,12 @@
                                 <ViewCell.View>
                                     <Grid ColumnDefinitions="0.3*,0.7*"  >
                                         <StackLayout Grid.Column="1">
-
-                                            <Label Text="{Binding FirstName}"/>
-
                                             <Label Text="{Binding Id}"/>
-
-                                            <Label Text="{Binding LastName}"/>
-
+                                            <Label Text="{Binding NickName}"/>
+                                            <Label Text="{Binding Name}"/>
+                                            <Label Text="{Binding Description}"/>
                                             <Label Text="{Binding CreationTime}"/>
-
                                         </StackLayout>
-
                                         <Frame Grid.Column="0" >
                                             <Image Source="user.png"
                                                    Aspect="AspectFit"
@@ -86,7 +74,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
             </Grid>
             <ImageButton Source ="plus.png"
                          Command="{Binding OnAddButtonTap}"
@@ -98,8 +85,6 @@
                          VerticalOptions="End"
                          HorizontalOptions="End"
                         />
-
         </Grid>
-
     </ContentPage.Content>
 </ContentPage>

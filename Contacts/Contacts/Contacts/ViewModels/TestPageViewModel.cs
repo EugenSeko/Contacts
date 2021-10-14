@@ -78,8 +78,8 @@ namespace Contacts.ViewModels
             base.OnPropertyChanged(args);
             if (args.PropertyName == nameof(SelectedItem))
             {
-                SelectedItem.FirstName = FirstName;
-                SelectedItem.LastName = LastName;
+                SelectedItem.Name = FirstName;
+                SelectedItem.Description = LastName;
             }
         }
 
@@ -90,8 +90,8 @@ namespace Contacts.ViewModels
             var profile = new ProfileModel()
             {
                 Author = _settingsManager.UserName, 
-                FirstName = FirstName,
-                LastName = LastName,
+                Name = FirstName,
+                Description = LastName,
                 CreationTime = DateTime.Now
             };
             // await _repository.InsertAsync<ProfileModel>(profile);
@@ -109,8 +109,8 @@ namespace Contacts.ViewModels
                 var profile = new ProfileModel()
                 {
                     Id = SelectedItem.Id,
-                    FirstName = FirstName,
-                    LastName = LastName,
+                    Name = FirstName,
+                    Description = LastName,
                     CreationTime = DateTime.Now
                 };
 

@@ -12,6 +12,7 @@
                      BackgroundColor="#2196F3">
             <ImageButton Grid.Column="0" 
                          Source="L_arrow.png" 
+                         Command="{Binding OnLArrowTapButton}"
                          BackgroundColor="Transparent"
                          HorizontalOptions="Start"
                          HeightRequest="40" 
@@ -22,6 +23,7 @@
                    VerticalOptions="Center"/>
             <ImageButton Grid.Column="2" 
                          Source="save.png"
+                         Command="{Binding OnSaveButton}"
                          BackgroundColor="Transparent"
                          HeightRequest="40"
                          WidthRequest="40" 
@@ -34,16 +36,20 @@
                />
         <Entry Grid.Row="2"
                Placeholder="NickName"
+               Text="{Binding NickName}"
                 Margin="40,10,40,10"
                VerticalOptions="End"  />
         <Entry Grid.Row="3"
-               Placeholder="{Binding Path=Profile.FirstName}" 
+               Placeholder="Name" 
+               Text="{Binding Name }"
                 Margin="40,10,40,10"
                VerticalOptions="End" />
-        <Editor Grid.Row="4"
+        <Editor Grid.Row="4" 
+                Placeholder="Description"
+                Text="{Binding Description}"
                 BackgroundColor="Gray"
                 Margin="40,30,40,30"
-                Placeholder="Description" />
+                 />
 
     </Grid>
     </ContentPage.Content>

@@ -43,6 +43,11 @@ namespace Contacts.Services.Profiles
             return await _repository.DeleteAsync(profile);
         }
 
+        public async Task<int> CreateAsync(ProfileModel profile)
+        {
+           return await _repository.InsertAsync<ProfileModel>(profile);
+        }
+
         public async Task<ProfileModel> GetProfileById(int id)
         {
            ProfileList = await GetAllProfilesAsync();
