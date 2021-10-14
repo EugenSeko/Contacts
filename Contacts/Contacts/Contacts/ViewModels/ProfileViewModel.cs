@@ -1,4 +1,5 @@
 ﻿using Contacts.Models;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,10 +7,9 @@ using System.Text;
 
 namespace Contacts.ViewModels
 {
-    class ProfileViewModel : INotifyPropertyChanged
+    class ProfileViewModel : BindableBase
 
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         public ProfileModel ProfileModel { get; set; }
         public MainListViewModel ListViewModel { get; set; }
 
@@ -18,98 +18,55 @@ namespace Contacts.ViewModels
             ProfileModel = new ProfileModel();
         }
 
+        private int _id;
         public int Id
         {
-            get { return ProfileModel.Id; }
-            set
-            {
-                if (ProfileModel.Id != value)
-                {
-                    ProfileModel.Id = value;
-                    OnPropertyChanged("Id");
-                }
-            }
+            get => _id;
+            set => SetProperty(ref _id, value);
+
         }
 
+        private string _author;
         public string Author
         {
-            get { return ProfileModel.Author; }
-            set
-            {
-                if (ProfileModel.Author != value)
-                {
-                    ProfileModel.Author = value;
-                    OnPropertyChanged("Author");
-                }
-            }
+            get => _author;
+            set => SetProperty(ref _author, value);
         }
 
-        public string NickName
-        {
-            get { return ProfileModel.NickName; }
-            set
-            {
-                if (ProfileModel.NickName != value)
-                {
-                    ProfileModel.NickName = value;
-                    OnPropertyChanged("NickName");
-                }
-            }
-        }
-
+        private string _name;
         public string Name
         {
-            get { return ProfileModel.Name; }
-            set
-            {
-                if (ProfileModel.Name != value)
-                {
-                    ProfileModel.Name = value;
-                    OnPropertyChanged("FirstName");
-                }
-            }
-        }
-        public string Description
-        {
-            get { return ProfileModel.Description; }
-            set
-            {
-                if (ProfileModel.Description != value)
-                {
-                    ProfileModel.Description = value;
-                    OnPropertyChanged("LastName");
-                }
-            }
-        }
-        public string ImageUrl
-        {
-            get { return ProfileModel.ImageUrl; }
-            set
-            {
-                if (ProfileModel.ImageUrl != value)
-                {
-                    ProfileModel.ImageUrl = value;
-                    OnPropertyChanged("ImageUrl");
-                }
-            }
-        }
-        public DateTime CreationTime
-        {
-            get { return ProfileModel.CreationTime; }
-            set
-            {
-                if (ProfileModel.CreationTime != value)
-                {
-                    ProfileModel.CreationTime = value;
-                    OnPropertyChanged("CreationTime");
-                }
-            }
+            get => _name;
+            set => SetProperty(ref _name, value);
         }
 
-        protected void OnPropertyChanged(string propName)
+        private string _nickname;
+        public string NickName
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            get => _nickname;
+            set => SetProperty(ref _nickname, value);
         }
+
+        private string _description;
+        public string Description
+        {
+            get => _description;
+            set => SetProperty(ref _description, value);
+        }
+
+        private string _imageurl;
+        public string ImageUrl
+        {
+            get => _imageurl;
+            set => SetProperty(ref _imageurl, value);
+        }
+
+        private DateTime _creationtime;
+        public DateTime CreationTime
+        {
+            get => _creationtime;
+            set => SetProperty(ref _creationtime, value);
+        }
+
     }
 }
