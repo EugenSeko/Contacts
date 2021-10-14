@@ -46,10 +46,15 @@ namespace Contacts.ViewModels
         public async void GetProfileList()
         {
             var profiles = await _profileManager.GetAllProfilesAsync();
+
             ProfileList = new ObservableCollection<ProfileViewModel>();
-            ProfileViewModel pvm = new ProfileViewModel();
-            foreach(ProfileModel m in profiles)
+
+            ProfileViewModel pvm;
+
+            foreach (ProfileModel m in profiles)
             {
+                pvm = new ProfileViewModel();
+
                 pvm.Id = m.Id;
                 pvm.FirstName = m.FirstName;
                 pvm.Author = m.Author;

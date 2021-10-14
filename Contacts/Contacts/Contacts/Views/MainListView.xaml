@@ -55,8 +55,8 @@
                             <ViewCell>
                                 <ViewCell.ContextActions >
                                     <MenuItem Text="Вверх"
-                                       Command= "{Binding Path=ListViewModel.OnSettingsButtonTap}"
-                                              CommandParameter="{Binding}"/> <!--внимание. не биндится-->
+                                              Command= "{Binding Path=ListViewModel.OnSettingsButtonTap}"
+                                              CommandParameter="{Binding}"/> 
                                     <MenuItem Text="Вниз"
                                               Command="{Binding Path=ListViewModel.MoveToBottomCommand}"
                                               CommandParameter="{Binding}" />
