@@ -10,6 +10,7 @@ using Contacts.Models;
 using System.Threading.Tasks;
 using Contacts.Services.Settings;
 using Xamarin.Essentials;
+using Contacts.Converters;
 
 namespace Contacts.ViewModels
 {
@@ -19,10 +20,13 @@ namespace Contacts.ViewModels
         private readonly ISettingsManager _settingsManager;
         public AddEditProfileViewModel(INavigationService navigationService, 
                                        IProfileManager profileManager, 
-                                       ISettingsManager settingsManager) : base(navigationService)
+                                       ISettingsManager settingsManager
+                                                                        ) : base(navigationService)
         {
             _profileManager = profileManager;
             _settingsManager = settingsManager;
+            _id = Global.Id;
+             Init(_id);
         }
 
         private int _id;
@@ -62,6 +66,12 @@ namespace Contacts.ViewModels
             get => _imageurl;
             set => SetProperty(ref _imageurl, value);
         }
+        private DateTime _creationtime;
+        public DateTime CreationTime
+        {
+            get => _creationtime;
+            set => SetProperty(ref _creationtime, value);
+        }
         #endregion
         #region --- Commands ---
         public ICommand OnSaveButton => new Command(Save);
@@ -70,31 +80,43 @@ namespace Contacts.ViewModels
         public ICommand OnTapImage => new Command(PickImage);
         #endregion
         #region --- Private Helpers ---
-        private async Task GetProfile()
+        private async void Init(int id)
         {
-            Profile = await _profileManager.GetProfileById(_id);
+            if(id >= 0)
+            {
+                Profile = await _profileManager.GetProfileById(_id);
+                Name = Profile.Name;
+                CreationTime = Profile.CreationTime;
+                NickName = Profile.NickName;
+                Description = Profile.Description;
+                ImageUrl = Profile.ImageUrl;
+            }
+            else if(id ==-2)
+            {
+                Profile.Name = Name;
+                Profile.NickName = NickName;
+                Profile.CreationTime = DateTime.Now;
+                Profile.Description = Description;
+                Profile.ImageUrl = ImageUrl;
+                Profile.Author = _settingsManager.UserName;
+            }
         }
         private async void Save()
         {
             if(_id >= 0)// Update // текущее
             {
-                await GetProfile();
+                Profile = new ProfileModel();
+                Profile.Id = _id;
+                Init(-2);
+                await _profileManager.UpdateAsync(Profile);
             }
             else// Create
             {
-                ProfileModel profile = new ProfileModel()
-                {
-                    Author = _settingsManager.UserName, // внимание: свойство юзернейм лучше поменять
-                    Name = Name,
-                    NickName = NickName,
-                    CreationTime = DateTime.Now,
-                    Description = Description,
-                    ImageUrl = ImageUrl
-                };
-                await _profileManager.CreateAsync(profile);
+                Profile = new ProfileModel();
+                Init(-2);
+                await _profileManager.CreateAsync(Profile);
             }
         }
-
         private async void PickImage()
         {
              {

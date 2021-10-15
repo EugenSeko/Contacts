@@ -21,6 +21,9 @@ namespace Contacts.Services.Profiles
 
         Task<int> CreateAsync(ProfileModel profile);
 
+        Task<int> UpdateAsync(ProfileModel profile);
+
+
 
     }
 }

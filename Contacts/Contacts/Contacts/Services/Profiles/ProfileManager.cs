@@ -22,6 +22,8 @@ namespace Contacts.Services.Profiles
             _repository = repository;
         }
 
+
+
         #region --- Public Properties ---
         
         public ProfileModel Profile 
@@ -35,8 +37,15 @@ namespace Contacts.Services.Profiles
             get; 
             set; 
         }
+        private string _name;
+        public string Name
+        {
+            get => _settingsManager.UserName;
+            set { _settingsManager.UserName = value; }
+        }
 
         #endregion
+
 
         public async Task<int>  DeleteAsync(ProfileModel profile)
         {
@@ -47,7 +56,10 @@ namespace Contacts.Services.Profiles
         {
            return await _repository.InsertAsync<ProfileModel>(profile);
         }
-
+        public async Task<int> UpdateAsync(ProfileModel profile)
+        {
+            return await _repository.UpdateAsync(profile);
+        }
         public async Task<ProfileModel> GetProfileById(int id)
         {
            ProfileList = await GetAllProfilesAsync();

@@ -55,6 +55,7 @@ namespace Contacts.ViewModels
         #region --- Privat Helpers ---
         private void GoEdit(object profileObj)
         {
+            Global.Id = (profileObj as ProfileViewModel).Id;
             GoToAddEditProfilePage((profileObj as ProfileViewModel).Id);
         }
         private async void DeleteAsync(object profileObj) 
@@ -85,6 +86,7 @@ namespace Contacts.ViewModels
         }
         private void AddNewProfile(object obj)
         {
+            Global.Id = -1;
             GoToAddEditProfilePage(-1); // внимание параметр id отрицательный
         }
         private void GoSettings(object obj)
