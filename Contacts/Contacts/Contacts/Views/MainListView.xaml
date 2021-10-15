@@ -20,7 +20,7 @@
                     Grid.Column="0"
                     VerticalOptions="Center"
                     />
-                    <ImageButton Source ="plus.png"
+                    <ImageButton Source ="exitB.png"
                      BackgroundColor="Transparent"
                      Margin="0,0,0,0"  
                      Padding="0,0,0,0"            
@@ -29,7 +29,7 @@
                      HeightRequest="35"
                      Command="{Binding OnLogautButtonTap}"            
                      />
-                    <ImageButton Source ="plus.png"
+                    <ImageButton Source ="settings.png"
                      BackgroundColor="Transparent"
                      Margin="0,0,0,0"
                      Padding="0,0,0,0"           

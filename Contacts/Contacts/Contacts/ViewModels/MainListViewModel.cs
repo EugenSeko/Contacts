@@ -11,7 +11,7 @@ using Contacts.Converters;
 
 namespace Contacts.ViewModels
 {
-    class MainListViewModel : BaseViewModel, IInitializeAsync
+    class MainListViewModel : BaseViewModel
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IProfileManager _profileManager;
@@ -21,12 +21,10 @@ namespace Contacts.ViewModels
         {
             _authenticationService = authenticationService;
             _profileManager = profileManager;
+              Init();
         }
-        public async Task InitializeAsync(INavigationParameters parameters)
-        {
-            await Init();
-        }
-        private async Task Init()
+        
+        private async void Init()
         {
             var profiles = await _profileManager.GetAllProfilesAsync();
             var list = new ObservableCollection<ProfileViewModel>();
@@ -40,7 +38,6 @@ namespace Contacts.ViewModels
             }
             ProfileList = list;
         }
-
         #region --- Public Properties ---
         private ObservableCollection<ProfileViewModel> _profileList;
         public ObservableCollection<ProfileViewModel> ProfileList
