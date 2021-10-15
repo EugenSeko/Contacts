@@ -4,20 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Contacts.ViewModels
 {
-    class ProfileViewModel : BindableBase
-
+   public class ProfileViewModel : BindableBase
     {
-        public ProfileModel ProfileModel { get; set; }
-        public MainListViewModel ListViewModel { get; set; }
-
-        public ProfileViewModel()
-        {
-            ProfileModel = new ProfileModel();
-        }
-
+        #region --- Public Properties ---
         private int _id;
         public int Id
         {
@@ -67,6 +61,24 @@ namespace Contacts.ViewModels
             get => _creationtime;
             set => SetProperty(ref _creationtime, value);
         }
+        #endregion
+
+        #region --- Command ---
+        private ICommand _deletecommand;
+        public ICommand DeleteCommand
+        {
+            get => _deletecommand;
+            set => SetProperty(ref _deletecommand, value);
+
+        }
+        private ICommand _editcommand;
+        public ICommand EditCommand
+        {
+            get => _editcommand;
+            set => SetProperty(ref _editcommand, value);
+
+        }
+        #endregion
 
     }
 }

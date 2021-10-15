@@ -41,17 +41,16 @@
                 </Grid>
                 <ListView Grid.Row="1"
                   HasUnevenRows="True"
-                  SelectedItem="{Binding SelectedItem}"
                   ItemsSource="{Binding ProfileList}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.ContextActions >
                                     <MenuItem Text="edit"
-                                              Command= "{Binding Path=ListViewModel.OnEditButtonTap}"
+                                              Command= "{Binding EditCommand}"
                                               CommandParameter="{Binding}"/> 
                                     <MenuItem Text="delete"
-                                              Command="{Binding Path=ListViewModel.OnDeleteButtonTap}"
+                                              Command="{Binding DeleteCommand }"
                                               CommandParameter="{Binding}" />
                                 </ViewCell.ContextActions>
                                 <ViewCell.View>

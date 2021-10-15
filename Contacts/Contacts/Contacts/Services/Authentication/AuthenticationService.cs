@@ -11,19 +11,13 @@ namespace Contacts.Services.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {
-        // Подтягиваем вспомогательные сервисы.
-        private ISettingsManager _settingsManager;
-        private IRepository _repository;
-
-        
-
+        private readonly ISettingsManager _settingsManager;
+        private readonly IRepository _repository;
         public AuthenticationService(IRepository repository, ISettingsManager settingsManager)
         {
             _settingsManager = settingsManager;
             _repository = repository;
         }
-
-       
 
         public async Task<bool> RegistrationAsync(string username, string password)
         {
@@ -84,8 +78,7 @@ namespace Contacts.Services.Authentication
 
         public void ExitAuthorisation()
         {
-           // await _repository.DeleteAllAsync<UserModel>();
-            _settingsManager.UserName = null;                //oчистка таблицы и настроек
+            _settingsManager.UserName = null;            
         }
     }
 }

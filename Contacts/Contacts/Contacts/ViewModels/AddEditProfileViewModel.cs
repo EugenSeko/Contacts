@@ -14,8 +14,8 @@ namespace Contacts.ViewModels
 {
     class AddEditProfileViewModel : BaseViewModel, INavigationAware
     {
-        private IProfileManager _profileManager;
-        private ISettingsManager _settingsManager;
+        private readonly IProfileManager _profileManager;
+        private readonly ISettingsManager _settingsManager;
         public AddEditProfileViewModel(INavigationService navigationService, 
                                        IProfileManager profileManager, 
                                        ISettingsManager settingsManager) : base(navigationService)
@@ -64,8 +64,7 @@ namespace Contacts.ViewModels
         #region --- Private Helpers ---
         private async Task GetProfile()
         {
-            var v = await _profileManager.GetProfileById(_id);
-            Profile = v;
+            Profile = await _profileManager.GetProfileById(_id);
         }
         private async void Save()
         {
@@ -75,14 +74,14 @@ namespace Contacts.ViewModels
             }
             else// Create
             {
-                ProfileModel profile = new ProfileModel();
-
-                profile.Author = _settingsManager.UserName; // внимание: свойство юзернейм лучше поменять
-                profile.Name = Name;  
-                profile.NickName = NickName;
-                profile.CreationTime = DateTime.Now;
-                profile.Description = Description;
-
+                ProfileModel profile = new ProfileModel()
+                {
+                    Author = _settingsManager.UserName, // внимание: свойство юзернейм лучше поменять
+                    Name = Name,
+                    NickName = NickName,
+                    CreationTime = DateTime.Now,
+                    Description = Description
+                };
                 await _profileManager.CreateAsync(profile);
             }
         }
