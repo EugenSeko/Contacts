@@ -9,6 +9,7 @@ using Contacts.Services.Profiles;
 using Contacts.Models;
 using System.Threading.Tasks;
 using Contacts.Services.Settings;
+using Xamarin.Essentials;
 
 namespace Contacts.ViewModels
 {
@@ -55,11 +56,18 @@ namespace Contacts.ViewModels
             get => _description;
             set => SetProperty(ref _description, value);
         }
+        private string _imageurl="user.png";
+        public string ImageUrl
+        {
+            get => _imageurl;
+            set => SetProperty(ref _imageurl, value);
+        }
         #endregion
         #region --- Commands ---
         public ICommand OnSaveButton => new Command(Save);
         public ICommand OnPlusTapButton => new Command(GoToTestPage);
         public ICommand OnLArrowTapButton => new Command(GoToMainPage);
+        public ICommand OnTapImage => new Command(PickImage);
         #endregion
         #region --- Private Helpers ---
         private async Task GetProfile()
@@ -80,9 +88,27 @@ namespace Contacts.ViewModels
                     Name = Name,
                     NickName = NickName,
                     CreationTime = DateTime.Now,
-                    Description = Description
+                    Description = Description,
+                    ImageUrl = ImageUrl
                 };
                 await _profileManager.CreateAsync(profile);
+            }
+        }
+
+        private async void PickImage()
+        {
+             {
+                try
+                {
+                    var result = await MediaPicker.CapturePhotoAsync();
+                    //var result = await FilePicker.PickAsync(PickOptions.Default);
+                    if (result != null)
+                        ImageUrl = result.FullPath;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
             }
         }
         #endregion

@@ -30,11 +30,15 @@
                          Margin="0,0,0,0"
                          HorizontalOptions="End"/>
         </Grid>
-        <Image Grid.Row="1"
-               Source="user.png"
+            <Image Grid.Row="1"
+               Source = "{Binding ImageUrl}"
                BackgroundColor="Transparent"
-               />
-        <Entry Grid.Row="2"
+               >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnTapImage}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Entry Grid.Row="2"
                Placeholder="NickName"
                Text="{Binding NickName}"
                 Margin="40,10,40,10"

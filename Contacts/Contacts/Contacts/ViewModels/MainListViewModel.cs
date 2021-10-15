@@ -33,6 +33,7 @@ namespace Contacts.ViewModels
             var v = profiles.Select(x => x.ToProfileViewModel());
             foreach (var p in v) 
             {
+                if (p.ImageUrl == null)  p.ImageUrl = "user.png";
                 p.DeleteCommand = new Command(DeleteAsync);
                 p.EditCommand = new Command(GoEdit);
                 list.Add(p); 
