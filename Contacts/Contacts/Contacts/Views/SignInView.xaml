@@ -4,9 +4,9 @@
              x:Class="Contacts.Views.SignInView">
     
     <ContentPage.Resources>
-        <StyleSheet Source="/Views/Styles.css" />
     </ContentPage.Resources>
-    
+ 
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="125">
@@ -22,17 +22,15 @@
                            Text="{Binding UserName}"
                            Placeholder="Login"
                            Margin="20" />
-                    
                     <Entry x:Name="passwordEntry" 
                            Text="{Binding Password}"
                            Placeholder = "Password" 
                            IsPassword ="True" 
                            Margin="20"  />
-                    
                 </StackLayout>
-                
                 <StackLayout>
-                    <Button 
+                    <Button
+                        x:Name="signInButton"
                         Command="{Binding SignInButtonTapCommand}"
                         Text = "Sign In" 
                         FontSize="Medium"
@@ -40,13 +38,26 @@
                         Margin="32"
                         HorizontalOptions="Center" 
                         VerticalOptions="CenterAndExpand"
-                         />
-                    <Button x:Name="signUpButton"
-                            Command="{Binding SignUpButtonTapCommand}"
-                            Text="SIGN UP"
-                            HorizontalOptions="Center"
-                            FontSize="Medium"
-                            Margin="1,1,1,32"></Button>
+                        IsEnabled="False"
+                        >
+                    </Button>   
+                    
+                    <Label HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand"
+                           FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="SIGN Up"
+                                 TextColor="Blue"
+                                 TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SignUpButtonTapCommand}"
+                                          />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

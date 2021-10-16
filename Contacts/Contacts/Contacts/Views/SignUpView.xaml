@@ -10,7 +10,7 @@
                         
                     <StackLayout Orientation="Horizontal">
                         
-                        <Label Text="{Binding UserName}"
+                        <Label Text="SignUp"
                                HorizontalTextAlignment="Start" 
                                TextColor="White"
                                FontSize="24"/>

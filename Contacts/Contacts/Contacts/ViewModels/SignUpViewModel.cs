@@ -50,7 +50,7 @@ namespace Contacts.ViewModels
             var confirmConfig = new ConfirmConfig()
             {
                 OkText="Ok",
-                CancelText="Cancel"
+                CancelText=""
             };
             if(_password==null || _userName == null)
             {
@@ -116,6 +116,7 @@ namespace Contacts.ViewModels
                 await UserDialogs.Instance.ConfirmAsync(confirmConfig);
                 return;
             }
+            Converters.Global.Login = UserName;
             GoSignInPage();
 
         }
