@@ -32,7 +32,6 @@ namespace Contacts.Services.Authentication
                     isDone = false;
                 }
             }
-
             if (isDone) 
             {
                 var user = new UserModel()
@@ -40,13 +39,8 @@ namespace Contacts.Services.Authentication
                     UserName = username,
                     Password = password,
                 };
-
                  await _repository.InsertAsync(user); // добавляем в базу
-
-                
-
             }
-
             return await Task.Run(() => isDone);
             
         }
@@ -68,7 +62,6 @@ namespace Contacts.Services.Authentication
                         done = "done";
 
                         _settingsManager.UserName = username; // Сохраняем в настройки
-
                     }
                 }
             }
