@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Contacts.Services.Settings;
 using Xamarin.Essentials;
 using Contacts.Converters;
+using Acr.UserDialogs;
 
 namespace Contacts.ViewModels
 {
@@ -77,7 +78,7 @@ namespace Contacts.ViewModels
         public ICommand OnSaveButton => new Command(Save);
         public ICommand OnPlusTapButton => new Command(GoToTestPage);
         public ICommand OnLArrowTapButton => new Command(GoToMainPage);
-        public ICommand OnTapImage => new Command(PickImage);
+        public ICommand OnTapImage => new Command(ActionDialog);
         #endregion
         #region --- Private Helpers ---
         private async void Init(int id)
@@ -117,13 +118,35 @@ namespace Contacts.ViewModels
                 await _profileManager.CreateAsync(Profile);
             }
         }
+        private void ActionDialog()
+        {
+            UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
+                           .SetTitle("Choose Type")
+                           .Add("Capture", PickImage, "woman.png")
+                           .Add("File", PickFile, "woman.png")
+                           .SetUseBottomSheet(false));
+        }
         private async void PickImage()
         {
              {
                 try
                 {
                     var result = await MediaPicker.CapturePhotoAsync();
-                    //var result = await FilePicker.PickAsync(PickOptions.Default);
+                    if (result != null)
+                        ImageUrl = result.FullPath;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
+        }
+        private async void PickFile()
+        {
+            {
+                try
+                {
+                    var result = await FilePicker.PickAsync(PickOptions.Default);
                     if (result != null)
                         ImageUrl = result.FullPath;
                 }
