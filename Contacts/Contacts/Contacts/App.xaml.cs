@@ -44,9 +44,9 @@ namespace Contacts
         {
             InitializeComponent();
             // NavigationService.NavigateAsync($"/{nameof(AddEditProfileView)}");
-           // NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(MainListView)}");
+            // NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(MainListView)}");
 
-            var settingsManager = Container.Resolve<ISettingsManager>(); 
+            var settingsManager = Container.Resolve<ISettingsManager>();
 
             if (settingsManager.UserName == null)
             {

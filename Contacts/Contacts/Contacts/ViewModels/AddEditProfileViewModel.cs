@@ -104,7 +104,13 @@ namespace Contacts.ViewModels
         }
         private async void Save()
         {
-            if(_id >= 0)// Update // текущее
+            if (Name == null || NickName == null || Name == "" || NickName == "") return;
+
+            Console.WriteLine("Name---" + Name);
+            Console.WriteLine("Nickname---" + NickName);
+
+
+            if (_id >= 0)// Update // текущее
             {
                 Profile = new ProfileModel();
                 Profile.Id = _id;
@@ -117,6 +123,7 @@ namespace Contacts.ViewModels
                 Init(-2);
                 await _profileManager.CreateAsync(Profile);
             }
+            GoToMainPage();
         }
         private void ActionDialog()
         {

@@ -32,6 +32,8 @@ namespace Contacts.ViewModels
 
         private async void TryAuthorisation(object obj)
         {
+            if (UserName == null || UserName == "" || Password == null || Password == "") return;
+
             string done = await  _authenticationService.AuthorisatonAsync(_userName, _password);
             var confirmConfig = new ConfirmConfig()
             {
