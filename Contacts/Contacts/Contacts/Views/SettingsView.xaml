@@ -4,9 +4,9 @@
              x:Class="Contacts.Views.SettingsView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <RadioButton >
+                
+            </RadioButton>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

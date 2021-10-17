@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using Acr.UserDialogs;
 using System.Linq;
 using Contacts.Converters;
+using System;
 
 namespace Contacts.ViewModels
 {
@@ -45,6 +46,14 @@ namespace Contacts.ViewModels
             get => _profileList;
             set => SetProperty(ref _profileList, value);
         }
+        private ProfileViewModel _selecteditem;
+        public ProfileViewModel SelectedItem
+        {
+            get => _selecteditem;
+            set => SetProperty(ref _selecteditem, value);
+        }
+        
+
         #endregion
         #region --- Commands ---
         public ICommand OnLogautButtonTap => new Command(ExitAuthorisation);

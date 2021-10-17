@@ -40,7 +40,8 @@
                      />
                 </Grid>
                 <ListView Grid.Row="1"
-                  HasUnevenRows="True"
+                  HasUnevenRows="True" 
+                  SelectedItem="{Binding SelectedItem}"
                   ItemsSource="{Binding ProfileList}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -54,18 +55,20 @@
                                               CommandParameter="{Binding}" />
                                 </ViewCell.ContextActions>
                                 <ViewCell.View>
-                                    <Grid ColumnDefinitions="0.3*,0.7*"  >
-                                        <StackLayout Grid.Column="1">
-                                            <Label Text="{Binding Id}"/>
-                                            <Label Text="{Binding NickName}"/>
-                                            <Label Text="{Binding Name}"/>
-                                            <Label Text="{Binding Description}"/>
-                                            <Label Text="{Binding CreationTime}"/>
-                                        </StackLayout>
-                                        <Frame Grid.Column="0" >
+                                    <Grid ColumnDefinitions="0.17*,0.73*" Padding="10" >
+                                        <Grid Grid.Column="1"  Padding="20,0,0,0">
+                                            <Label Grid.Row="0" Text="{Binding NickName}"/>
+                                            <Label Grid.Row="1" Text="{Binding Name}" />
+                                            <Label Grid.Row="2" Text="{Binding CreationTime}" VerticalTextAlignment="Start" />
+                                        </Grid>
+                                        <Frame Grid.Column="0" Padding="1,0,0,0"
+                                               CornerRadius="90"
+                                               BackgroundColor="AliceBlue" >
                                             <Image Source="{Binding ImageUrl}"
-                                                   Aspect="AspectFit"
-                                                   HeightRequest="90"/>
+                                                   Aspect="AspectFill"
+                                                   HeightRequest="10"
+                                                   >
+                                            </Image>
                                         </Frame>
                                     </Grid>
                                 </ViewCell.View>

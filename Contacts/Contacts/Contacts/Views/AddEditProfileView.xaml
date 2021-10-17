@@ -34,6 +34,7 @@
                    VerticalOptions="Center"/>
                 <ImageButton Grid.Column="2" 
                          Source="saveW1.png"
+                         IsEnabled="False"
                          Command="{Binding OnSaveButton}"
                          BackgroundColor="Transparent"
                          HeightRequest="40"
@@ -47,6 +48,7 @@
                                        Converter={StaticResource dataHasBeenEntered}}"
                      Value="true">
                             <Setter Property="Source" Value="SaveB" />
+                            <Setter Property="IsEnabled" Value="True" />
                         </DataTrigger>
                         <DataTrigger TargetType="ImageButton"
                      Binding="{Binding Source={x:Reference name},
@@ -54,6 +56,7 @@
                                        Converter={StaticResource dataHasBeenEntered}}"
                      Value="true">
                             <Setter Property="Source" Value="SaveB" />
+                            <Setter Property="IsEnabled" Value="True" />
                         </DataTrigger>
                     </ImageButton.Triggers>
                 </ImageButton>

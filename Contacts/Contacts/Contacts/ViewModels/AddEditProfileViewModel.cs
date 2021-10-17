@@ -75,7 +75,7 @@ namespace Contacts.ViewModels
         }
         #endregion
         #region --- Commands ---
-        public ICommand OnSaveButton => new Command(Save);
+        public ICommand OnSaveButton => new Command(Save,()=>false);
         public ICommand OnPlusTapButton => new Command(GoToTestPage);
         public ICommand OnLArrowTapButton => new Command(GoToMainPage);
         public ICommand OnTapImage => new Command(ActionDialog);
@@ -104,12 +104,6 @@ namespace Contacts.ViewModels
         }
         private async void Save()
         {
-            if (Name == null && NickName == null || Name == "" && NickName == "") return;
-
-            Console.WriteLine("Name---" + Name);
-            Console.WriteLine("Nickname---" + NickName);
-
-
             if (_id >= 0)// Update // текущее
             {
                 Profile = new ProfileModel();
@@ -129,8 +123,8 @@ namespace Contacts.ViewModels
         {
             UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
                            .SetTitle("Choose Type")
-                           .Add("Capture", PickImage, "woman.png")
-                           .Add("File", PickFile, "woman.png")
+                           .Add("Capture", PickImage, "photo.png")
+                           .Add("File", PickFile, "galery.png")
                            .SetUseBottomSheet(false));
         }
         private async void PickImage()

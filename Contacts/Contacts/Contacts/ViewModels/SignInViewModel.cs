@@ -27,13 +27,11 @@ namespace Contacts.ViewModels
             _settingsManager = settingsManager;
             _userName = Converters.Global.Login;
         }
+        
+        public ICommand SignInButtonTapCommand => new Command(TryAuthorisation, () => false);
 
-        public ICommand SignInButtonTapCommand => new Command(TryAuthorisation);
-
-        private async void TryAuthorisation(object obj)
+        private async void TryAuthorisation()
         {
-            if (UserName == null || UserName == "" || Password == null || Password == "") return;
-
             string done = await  _authenticationService.AuthorisatonAsync(_userName, _password);
             var confirmConfig = new ConfirmConfig()
             {

@@ -22,7 +22,7 @@ namespace Contacts.ViewModels
             _authenticationService = authenticationService;
         }
 
-        public ICommand SignUpButtonTapCommand => new Command(ValidateAsync);
+        public ICommand SignUpButtonTapCommand => new Command(ValidateAsync,()=>false);
 
         #region --- Public Properties ---
         private string _userName;
