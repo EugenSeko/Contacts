@@ -1,4 +1,5 @@
 ﻿using Contacts.Services.Authentication;
+using Contacts.Services.Profiles;
 using Contacts.Services.Repository;
 using Contacts.Services.Settings;
 using Contacts.ViewModels;
@@ -26,10 +27,13 @@ namespace Contacts
             containerRegistry.RegisterInstance<IRepository>(Container.Resolve<Repository>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());
             containerRegistry.RegisterInstance<IAuthenticationService>(Container.Resolve<AuthenticationService>());
+            containerRegistry.RegisterInstance<IProfileManager>(Container.Resolve<ProfileManager>());
+
             // Navigation
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<SignInView, SignInViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
             containerRegistry.RegisterForNavigation<TestPage, TestPageViewModel>();
             containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
             containerRegistry.RegisterForNavigation<SignUpView, SignUpViewModel>();
@@ -39,9 +43,7 @@ namespace Contacts
         protected override void OnInitialized()
         {
             InitializeComponent();
-            // NavigationService.NavigateAsync($"{nameof(TestPage)}");
-
-
+            // NavigationService.NavigateAsync($"/{nameof(AddEditProfileView)}");
             // NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(MainListView)}");
 
             var settingsManager = Container.Resolve<ISettingsManager>();

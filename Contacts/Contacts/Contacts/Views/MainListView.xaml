@@ -3,39 +3,87 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.MainListView">
     <ContentPage.Content>
-        <AbsoluteLayout>
-            <StackLayout >
-                <Frame BackgroundColor="#2196F3"
-                       Padding="12" 
-                       CornerRadius="0">
-                    <StackLayout Orientation="Horizontal">
-                        
-                        <Label Text="  MainList" 
-                               HorizontalTextAlignment="Start"
-                               TextColor="White"
-                               FontSize="24"/>
-                        <Button Text="exit"
-                                TextColor="White"
-                                Command="{Binding OnExitButtonTap}"/>
-
-                    </StackLayout>
-                </Frame>
-                <Label Text="Items list" 
-                       x:Name="headLabel" 
-                       HorizontalOptions="Center"
-                       FontSize="Large" />
-                <ListView x:Name="itemsList" 
-                          ItemSelected="Item_Selected"
-                          ItemsSource="{Binding Items}" />
-            </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid RowDefinitions="56, *"
+                  >
+                <Grid Grid.Row="0" BackgroundColor="#2196F3"
+                       ColumnDefinitions="0.7*,0.3*,0.3*"
+                      ColumnSpacing="0"
+                         >
+                    <Label Text="Main List" 
+                    BackgroundColor="Transparent"
+                    FontSize="Title"
+                    Margin="16,0,0,0"
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    />
+                    <ImageButton Source ="exitB.png"
+                     BackgroundColor="Transparent"
+                     Margin="0,0,0,0"  
+                     Padding="0,0,0,0"            
+                     Grid.Column="1"
+                     VerticalOptions="Center"
+                     HeightRequest="35"
+                     Command="{Binding OnLogautButtonTap}"            
+                     />
+                    <ImageButton Source ="settings.png"
+                     BackgroundColor="Transparent"
+                     Margin="0,0,0,0"
+                     Padding="0,0,0,0"           
+                     Grid.Column="2"
+                     VerticalOptions="Center"
+                     HeightRequest="35"
+                     Command="{Binding OnSettingsButtonTap}"          
+                     />
+                </Grid>
+                <ListView Grid.Row="1"
+                  HasUnevenRows="True"
+                  ItemsSource="{Binding ProfileList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions >
+                                    <MenuItem Text="edit"
+                                              Command= "{Binding EditCommand}"
+                                              CommandParameter="{Binding}"/> 
+                                    <MenuItem Text="delete"
+                                              Command="{Binding DeleteCommand }"
+                                              CommandParameter="{Binding}" />
+                                </ViewCell.ContextActions>
+                                <ViewCell.View>
+                                    <Grid ColumnDefinitions="0.3*,0.7*"  >
+                                        <StackLayout Grid.Column="1">
+                                            <Label Text="{Binding Id}"/>
+                                            <Label Text="{Binding NickName}"/>
+                                            <Label Text="{Binding Name}"/>
+                                            <Label Text="{Binding Description}"/>
+                                            <Label Text="{Binding CreationTime}"/>
+                                        </StackLayout>
+                                        <Frame Grid.Column="0" >
+                                            <Image Source="{Binding ImageUrl}"
+                                                   Aspect="AspectFit"
+                                                   HeightRequest="90"/>
+                                        </Frame>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
             <ImageButton Source ="plus.png"
-                         Command="{Binding AddButtonTapCommand}"
-                         BackgroundColor="Transparent" 
-                         WidthRequest="80" 
-                         AbsoluteLayout.LayoutFlags="PositionProportional"
-                         AbsoluteLayout.LayoutBounds=".95,.95,80,80"></ImageButton>
-
-        </AbsoluteLayout>
-        
+                         Command="{Binding OnAddButtonTap}"
+                         BackgroundColor="#2196F3" 
+                         CornerRadius="60"
+                         WidthRequest="70" 
+                         HeightRequest="70"
+                         Margin="0,0,30,42"
+                         VerticalOptions="End"
+                         HorizontalOptions="End"
+                        />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -11,29 +11,12 @@ namespace Contacts.Services.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {
-        // Подтягиваем вспомогательные сервисы.
-        private ISettingsManager _settingsManager;
-        private IRepository _repository;
-
-        
-
+        private readonly ISettingsManager _settingsManager;
+        private readonly IRepository _repository;
         public AuthenticationService(IRepository repository, ISettingsManager settingsManager)
         {
             _settingsManager = settingsManager;
             _repository = repository;
-        }
-
-        public  async void GetAllUsers() //временно
-        {
-            var list =   await _repository.GetAllAsync<UserModel>();
-            
-            foreach(var um in list)
-            {
-            Console.WriteLine(um.Id);
-            Console.WriteLine(um.UserName);
-            Console.WriteLine(um.Password);
-
-            }
         }
 
         public async Task<bool> RegistrationAsync(string username, string password)
@@ -49,7 +32,6 @@ namespace Contacts.Services.Authentication
                     isDone = false;
                 }
             }
-
             if (isDone) 
             {
                 var user = new UserModel()
@@ -57,13 +39,8 @@ namespace Contacts.Services.Authentication
                     UserName = username,
                     Password = password,
                 };
-
                  await _repository.InsertAsync(user); // добавляем в базу
-
-                
-
             }
-
             return await Task.Run(() => isDone);
             
         }
@@ -85,7 +62,6 @@ namespace Contacts.Services.Authentication
                         done = "done";
 
                         _settingsManager.UserName = username; // Сохраняем в настройки
-
                     }
                 }
             }
@@ -95,8 +71,7 @@ namespace Contacts.Services.Authentication
 
         public void ExitAuthorisation()
         {
-           // await _repository.DeleteAllAsync<UserModel>();
-            _settingsManager.UserName = null;                //oчистка таблицы и настроек
+            _settingsManager.UserName = null;            
         }
     }
 }

@@ -1,8 +1,10 @@
-﻿using Contacts.Views;
+﻿using Contacts.Services.Settings;
+using Contacts.Views;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -45,14 +47,18 @@ namespace Contacts.ViewModels
         {
             await _navigationService.NavigateAsync(nameof(SettingsView));
         }
-        public async void GoToAddEditProfilePage()
+        public  async void GoToAddEditProfilePage(int id)
         {
-            await _navigationService.NavigateAsync(nameof(AddEditProfileView));
+            var p = new NavigationParameters();
+            p.Add("id", id);
+            await _navigationService.NavigateAsync(nameof(AddEditProfileView),p);
         }
         public async void GoToTestPage()
         {
             await _navigationService.NavigateAsync(nameof(TestPage));
         }
+
+
         #endregion
     }
 }

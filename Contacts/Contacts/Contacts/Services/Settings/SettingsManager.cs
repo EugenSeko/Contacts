@@ -12,5 +12,6 @@ namespace Contacts.Services.Settings
             get => Preferences.Get(nameof(UserName), null);
             set => Preferences.Set(nameof(UserName), value);
         }
+        
     }
 }

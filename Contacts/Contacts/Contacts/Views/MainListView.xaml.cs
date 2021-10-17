@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contacts.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,20 +18,15 @@ namespace Contacts.Views
         public MainListView()
         {
             InitializeComponent();
-         //string[]items = new string[24];
-         //   for (int i = 0; i < 24; i++)
-         //   {
-         //       items[i] = $"Item {i}";
-         //   }
-         //   Items = items;
-         //   this.BindingContext = this;
+           
+            
         }
       
         private void Item_Selected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem != null)
-                headLabel.Text = e.SelectedItem.ToString();
-            ((ListView)sender).SelectedItem = null;
+            //if (e.SelectedItem != null)
+            //    headLabel.Text = e.SelectedItem.ToString();
+            //((ListView)sender).SelectedItem = null;
         }
     }
 }

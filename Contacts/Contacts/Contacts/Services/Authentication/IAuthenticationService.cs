@@ -11,7 +11,6 @@ namespace Contacts.Services.Authentication
 
          void ExitAuthorisation();
         
-         void GetAllUsers(); //временно
 
          Task<string> AuthorisatonAsync(string username, string password);
 

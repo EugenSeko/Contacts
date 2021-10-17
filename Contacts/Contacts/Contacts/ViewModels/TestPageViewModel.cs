@@ -23,6 +23,8 @@ namespace Contacts.ViewModels
             _repository = repository;
         }
 
+
+
         #region --- Public Properties ---
 
         public ICommand AddButtonTapCommand => new Command(OnAddButtonTap);
@@ -52,7 +54,7 @@ namespace Contacts.ViewModels
             set => SetProperty(ref _selectedItem, value);
         }
 
-        private ObservableCollection<ProfileModel> _profileList; // паблик?
+        private ObservableCollection<ProfileModel> _profileList; 
 
         public ObservableCollection<ProfileModel> ProfileList
         {
@@ -76,8 +78,8 @@ namespace Contacts.ViewModels
             base.OnPropertyChanged(args);
             if (args.PropertyName == nameof(SelectedItem))
             {
-                SelectedItem.FirstName = FirstName;
-                SelectedItem.LastName = LastName;
+                SelectedItem.Name = FirstName;
+                SelectedItem.Description = LastName;
             }
         }
 
@@ -87,15 +89,16 @@ namespace Contacts.ViewModels
         {
             var profile = new ProfileModel()
             {
-                FirstName = FirstName,
-                LastName = LastName,
+                Author = _settingsManager.UserName, 
+                Name = FirstName,
+                Description = LastName,
                 CreationTime = DateTime.Now
             };
             // await _repository.InsertAsync<ProfileModel>(profile);
             var id = await _repository.InsertAsync(profile);
             profile.Id = id;
             ProfileList.Add(profile);
-            //await _repository.DeleteAllAsync<ProfileModel>();
+           // await _repository.DeleteAllAsync<ProfileModel>(); // удаление таблицы
         }
 
         private async void OnUpdateTap(object obj)
@@ -106,8 +109,8 @@ namespace Contacts.ViewModels
                 var profile = new ProfileModel()
                 {
                     Id = SelectedItem.Id,
-                    FirstName = FirstName,
-                    LastName = LastName,
+                    Name = FirstName,
+                    Description = LastName,
                     CreationTime = DateTime.Now
                 };
 

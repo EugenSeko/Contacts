@@ -10,7 +10,7 @@
                         
                     <StackLayout Orientation="Horizontal">
                         
-                        <Label Text="{Binding UserName}"
+                        <Label Text="SignUp"
                                HorizontalTextAlignment="Start" 
                                TextColor="White"
                                FontSize="24"/>
@@ -34,6 +34,7 @@
                         
                         <Entry x:Name="passwordConfirm"
                                Placeholder = "Confirm Password"
+                               Text="{Binding ConfirmPass}"
                                IsPassword ="True"
                                Margin="20"  />
 

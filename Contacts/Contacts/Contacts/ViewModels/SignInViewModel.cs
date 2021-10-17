@@ -1,4 +1,5 @@
-﻿using Contacts.Services.Authentication;
+﻿using Acr.UserDialogs;
+using Contacts.Services.Authentication;
 using Contacts.Services.Settings;
 using Contacts.Views;
 using Prism.Mvvm;
@@ -24,18 +25,38 @@ namespace Contacts.ViewModels
         {
             _authenticationService = authenticationService;
             _settingsManager = settingsManager;
-
+            _userName = Converters.Global.Login;
         }
 
         public ICommand SignInButtonTapCommand => new Command(TryAuthorisation);
 
         private async void TryAuthorisation(object obj)
         {
-            string done = await  _authenticationService.AuthorisatonAsync(_userName, _password);
+            if (UserName == null || UserName == "" || Password == null || Password == "") return;
 
+            string done = await  _authenticationService.AuthorisatonAsync(_userName, _password);
+            var confirmConfig = new ConfirmConfig()
+            {
+                OkText = "Ok",
+                CancelText = ""
+            };
             if (done == "done") {
-                Console.WriteLine("Done");
+                Converters.Global.Login = null;
                 GoToMainPage();
+            }else
+            if(done == "login_missing")
+            {
+                confirmConfig.Message = "No such login";
+                await UserDialogs.Instance.ConfirmAsync(confirmConfig);
+                UserName = "";
+                return;
+            }else
+            if(done== "pass_missing")
+            {
+                confirmConfig.Message = "Wrong password";
+                await UserDialogs.Instance.ConfirmAsync(confirmConfig);
+                Password = "";
+                return;
             }
         }
 

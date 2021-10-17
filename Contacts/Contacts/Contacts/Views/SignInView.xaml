@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Contacts.Controls"
              x:Class="Contacts.Views.SignInView">
     
     <ContentPage.Resources>
-        <StyleSheet Source="/Views/Styles.css" />
+        <ResourceDictionary>
+            <local:MultiTriggerConverter x:Key="dataHasBeenEntered" />
+        </ResourceDictionary>
     </ContentPage.Resources>
-    
+ 
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="125">
@@ -22,17 +26,15 @@
                            Text="{Binding UserName}"
                            Placeholder="Login"
                            Margin="20" />
-                    
                     <Entry x:Name="passwordEntry" 
                            Text="{Binding Password}"
                            Placeholder = "Password" 
                            IsPassword ="True" 
                            Margin="20"  />
-                    
                 </StackLayout>
-                
                 <StackLayout>
-                    <Button 
+                    <Button
+                        x:Name="signInButton"
                         Command="{Binding SignInButtonTapCommand}"
                         Text = "Sign In" 
                         FontSize="Medium"
@@ -40,13 +42,42 @@
                         Margin="32"
                         HorizontalOptions="Center" 
                         VerticalOptions="CenterAndExpand"
-                         />
-                    <Button x:Name="signUpButton"
-                            Command="{Binding SignUpButtonTapCommand}"
-                            Text="SIGN UP"
-                            HorizontalOptions="Center"
-                            FontSize="Medium"
-                            Margin="1,1,1,32"></Button>
+                        IsEnabled="False"
+                        >
+                        <Button.Triggers>
+                            <MultiTrigger TargetType="Button">
+                                <MultiTrigger.Conditions>
+                                    <BindingCondition Binding="{Binding Source={x:Reference loginEntry},
+                              Path=Text.Length,
+                              Converter={StaticResource dataHasBeenEntered}}"
+                          Value="true" />
+                                    <BindingCondition Binding="{Binding Source={x:Reference passwordEntry},
+                              Path=Text.Length,
+                              Converter={StaticResource dataHasBeenEntered}}"
+                          Value="true" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True" />
+                                <Setter Property="BackgroundColor" Value="Coral" />
+                            </MultiTrigger>
+                        </Button.Triggers>
+                    </Button>   
+                    
+                    <Label HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand"
+                           FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="SIGN Up"
+                                 TextColor="Blue"
+                                 TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SignUpButtonTapCommand}"
+                                          />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
