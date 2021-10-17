@@ -104,7 +104,7 @@ namespace Contacts.ViewModels
         }
         private async void Save()
         {
-            if (Name == null || NickName == null || Name == "" || NickName == "") return;
+            if (Name == null && NickName == null || Name == "" && NickName == "") return;
 
             Console.WriteLine("Name---" + Name);
             Console.WriteLine("Nickname---" + NickName);

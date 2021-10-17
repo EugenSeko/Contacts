@@ -67,7 +67,7 @@
                            FontSize="Medium">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="SIGN Up"
+                                <Span Text="SIGN UP"
                                  TextColor="Blue"
                                  TextDecorations="Underline">
                                     <Span.GestureRecognizers>
