@@ -3,13 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.SettingsView">
     <ContentPage.Content>
-        <StackLayout>
-            <RadioButton >
-                
-            </RadioButton>
-            <RadioButton>
-                
-            </RadioButton>
+        <Grid RowDefinitions="0.08*,0.9*">
+            <Grid Grid.Row="0"
+                     BackgroundColor="#2196F3">
+                <ImageButton Grid.Column="0" Command="{Binding LeftArrowCommand}"
+                         Source="arrowL.png" 
+                         BackgroundColor="Transparent"
+                         HorizontalOptions="Start" Margin="20,0,0,0"
+                         HeightRequest="40" 
+                         WidthRequest="25">
+                </ImageButton>
+                <Label Grid.Column="1" 
+                   Text="Settings" FontSize="Title"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+                <Label Grid.Column="2" 
+                       IsVisible="false"
+                   Text="Settings" FontSize="Title"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+            </Grid>
+            <StackLayout Grid.Row="1" Padding="40"
+                     RadioButtonGroup.GroupName="sorting"
+                     RadioButtonGroup.SelectedValue="{Binding SelectedSorting}">
+                <Label Text="Sorting by.." />
+                <RadioButton Content="name" Value="Name"/>
+                <RadioButton Content="nickname" Value="NickName" />
+                <RadioButton Content="date" Value="CreationTime" />
+                <StackLayout 
+                       RadioButtonGroup.GroupName="descending" 
+                       RadioButtonGroup.SelectedValue="{Binding SelectedDescending}">
+                    <Label Text="Descending.." />
+                    <RadioButton Content="des" Value="true"/>
+                    <RadioButton Content="undes" Value="false" />
+                </StackLayout>
+                <Button Text="save" Padding="20"
+                        Command="{Binding OnSaveButton}"/>
         </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

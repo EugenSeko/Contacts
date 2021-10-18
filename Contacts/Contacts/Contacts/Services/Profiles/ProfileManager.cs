@@ -76,14 +76,76 @@ namespace Contacts.Services.Profiles
             var profileList = await _repository.GetAllAsync<ProfileModel>();
 
             ProfileList = new List<ProfileModel>();
-
-            var v = profileList.Where(p => p.Author == _settingsManager.UserName);
-
-            foreach(ProfileModel m in v)
+            //-------------
+            var sortby = _settingsManager.SortBy;
+            var descending = _settingsManager.Descending;
+            if (descending == "true")
             {
-                ProfileList.Add(m);
+                switch (sortby)
+                {
+                    case "Name":
+                        var nm = profileList
+                .Where(p => p.Author == _settingsManager.UserName)
+                .OrderByDescending(x => x.Name);
+                        foreach (ProfileModel m in nm)
+                        {
+                            ProfileList.Add(m);
+                        }
+                        break;
+                    case "NickName":
+                        var nn = profileList
+                .Where(p => p.Author == _settingsManager.UserName)
+                .OrderByDescending(x => x.NickName);
+                        foreach (ProfileModel m in nn)
+                        {
+                            ProfileList.Add(m);
+                        }
+                        break;
+                    case "CreationTime":
+                        var ct = profileList
+                .Where(p => p.Author == _settingsManager.UserName)
+                .OrderByDescending(x => x.CreationTime);
+                        foreach (ProfileModel m in ct)
+                        {
+                            ProfileList.Add(m);
+                        }
+                        break;
+                }
             }
-
+            else
+            {
+                switch (sortby)
+                {
+                    case "Name":
+                        var nm = profileList
+                .Where(p => p.Author == _settingsManager.UserName)
+                .OrderBy(x => x.Name);
+                        foreach (ProfileModel m in nm)
+                        {
+                            ProfileList.Add(m);
+                        }
+                        break;
+                    case "NickName":
+                        var nn = profileList
+                .Where(p => p.Author == _settingsManager.UserName)
+                .OrderBy(x => x.NickName);
+                        foreach (ProfileModel m in nn)
+                        {
+                            ProfileList.Add(m);
+                        }
+                        break;
+                    case "CreationTime":
+                        var ct = profileList
+                .Where(p => p.Author == _settingsManager.UserName)
+                .OrderBy(x => x.CreationTime);
+                        foreach (ProfileModel m in ct)
+                        {
+                            ProfileList.Add(m);
+                        }
+                        break;
+                }
+            }
+            
             return ProfileList;
 
         }

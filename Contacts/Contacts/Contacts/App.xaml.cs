@@ -43,7 +43,7 @@ namespace Contacts
         protected override void OnInitialized()
         {
             InitializeComponent();
-            // NavigationService.NavigateAsync($"/{nameof(AddEditProfileView)}");
+            // NavigationService.NavigateAsync($"/{nameof(SettingsView)}");
             // NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(MainListView)}");
 
             var settingsManager = Container.Resolve<ISettingsManager>();
