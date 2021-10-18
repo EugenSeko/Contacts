@@ -18,7 +18,6 @@ namespace Contacts.Services.Authentication
             _settingsManager = settingsManager;
             _repository = repository;
         }
-
         public async Task<bool> RegistrationAsync(string username, string password)
         {
             bool isDone = true;
@@ -48,30 +47,38 @@ namespace Contacts.Services.Authentication
         public async Task<string> AuthorisatonAsync(string username, string password)
         {
             string done = "login_missing";
-
             var list = await _repository.GetAllAsync<UserModel>();
-
             foreach (var um in list)
             {
                 if (um.UserName == username)
                 {
                     done = "pass_missing";
-
                     if(um.Password == password)
                     {
-                        done = "done";
-
-                        _settingsManager.UserName = username; // Сохраняем в настройки
+                        done = "done";   
+                        _settingsManager.UserName = username;
+                        _settingsManager.SortBy = um.Sortby;
+                        _settingsManager.Descending = um.Descending;
                     }
                 }
             }
-
             return await Task.Run(() => done);
         }
-
-        public void ExitAuthorisation()
+        public async void ExitAuthorisation()
         {
-            _settingsManager.UserName = null;            
+            var list = await _repository.GetAllAsync<UserModel>();
+            foreach (var um in list) 
+            {
+                if (um.UserName == _settingsManager.UserName)
+                {
+                    um.Sortby = _settingsManager.SortBy;
+                    um.Descending = _settingsManager.Descending;
+                    await _repository.UpdateAsync(um);
+                }
+            }
+            _settingsManager.UserName = null;
+            _settingsManager.Descending = "true";
+            _settingsManager.SortBy = "CreationTime";
         }
     }
 }

@@ -27,15 +27,15 @@
                      RadioButtonGroup.GroupName="sorting"
                      RadioButtonGroup.SelectedValue="{Binding SelectedSorting}">
                 <Label Text="Sorting by.." />
-                <RadioButton Content="name" Value="Name"/>
-                <RadioButton Content="nickname" Value="NickName" />
-                <RadioButton Content="date" Value="CreationTime" />
+                <RadioButton Content="By Name" Value="Name" IsChecked="{Binding IsNameChecked}"/>
+                <RadioButton Content="By Nickname" Value="NickName" IsChecked="{Binding IsNickNameChecked}" />
+                <RadioButton Content="By Date" Value="CreationTime" IsChecked="{Binding IsCreationTimechecked}" />
                 <StackLayout 
                        RadioButtonGroup.GroupName="descending" 
                        RadioButtonGroup.SelectedValue="{Binding SelectedDescending}">
                     <Label Text="Descending.." />
-                    <RadioButton Content="des" Value="true"/>
-                    <RadioButton Content="undes" Value="false" />
+                    <RadioButton Content="By Ascending" Value="false" IsChecked="{Binding IsAscendChecked}"/>
+                    <RadioButton Content="By Descending" Value="true" IsChecked="{Binding IsDescendChecked}"/>
                 </StackLayout>
                 <Button Text="save" Padding="20"
                         Command="{Binding OnSaveButton}"/>

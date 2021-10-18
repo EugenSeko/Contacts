@@ -16,6 +16,10 @@ namespace Contacts.Models
 
         public string Password { get; set; }
 
+        //settings
+        public string Sortby { get; set; }
+        public string Descending { get; set; }
+
 
     }
 }
