@@ -1,5 +1,4 @@
-﻿using Contacts.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Contacts.Views
+namespace Contacts.Dialogs
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainListView : ContentPage
+    public partial class ImageDialog
     {
-        public MainListView()
+        public ImageDialog()
         {
             InitializeComponent();
         }

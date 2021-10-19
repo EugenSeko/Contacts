@@ -9,6 +9,8 @@ using Acr.UserDialogs;
 using System.Linq;
 using Contacts.Converters;
 using System;
+using Prism.Services.Dialogs;
+using System.ComponentModel;
 
 namespace Contacts.ViewModels
 {
@@ -16,15 +18,18 @@ namespace Contacts.ViewModels
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IProfileManager _profileManager;
+        private IDialogService _dialogService { get; }
         public MainListViewModel(INavigationService navigationService,
                                  IAuthenticationService authenticationService,
-                                 IProfileManager profileManager) : base(navigationService)
+                                 IProfileManager profileManager, 
+                                 IDialogService dialogservice) : base(navigationService)
         {
             _authenticationService = authenticationService;
             _profileManager = profileManager;
-              Init();
+            _dialogService = dialogservice;
+
+            Init();
         }
-        
         private async void Init()
         {
             var profiles = await _profileManager.GetAllProfilesAsync();
@@ -60,7 +65,21 @@ namespace Contacts.ViewModels
         public ICommand OnSettingsButtonTap => new Command(GoSettings);
         public ICommand OnAddButtonTap => new Command(AddNewProfile);
         #endregion
-
+        #region ---Overrides ---
+        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
+        {
+            base.OnPropertyChanged(args);
+            if (args.PropertyName == nameof(SelectedItem))
+            {
+                _dialogService.ShowDialog("ImageDialog", new DialogParameters
+            {
+                {"name",SelectedItem.Name},
+                { "imageurl",SelectedItem.ImageUrl},
+                {"description",SelectedItem.Description }
+            });
+            }
+            }
+        #endregion
         #region --- Privat Helpers ---
         private void GoEdit(object profileObj)
         {

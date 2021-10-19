@@ -1,9 +1,11 @@
 ﻿using Acr.UserDialogs;
+using Contacts.Dialogs;
 using Contacts.Models;
 using Contacts.Services.Repository;
 using Contacts.Services.Settings;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -17,17 +19,20 @@ namespace Contacts.ViewModels
     {
         private ISettingsManager _settingsManager;
         private IRepository _repository;
-        public TestPageViewModel(ISettingsManager settingsManager, IRepository repository )
+        private IDialogService _dialogService { get; }
+        public TestPageViewModel(ISettingsManager settingsManager, 
+                                 IRepository repository,
+                                 IDialogService dialogservice)
         {
+            _dialogService = dialogservice;
             _settingsManager = settingsManager;
             _repository = repository;
         }
-
+       
 
 
         #region --- Public Properties ---
 
-        public ICommand AddButtonTapCommand => new Command(OnAddButtonTap);
         public ICommand DeleteTapCommand => new Command(OnDeleteTap);
         public ICommand UpdateTapCommand => new Command(OnUpdateTap);
 

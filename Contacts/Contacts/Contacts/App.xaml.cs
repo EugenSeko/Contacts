@@ -22,15 +22,12 @@ namespace Contacts
         #region ---Overrides---
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
             //Services
             containerRegistry.RegisterInstance<IRepository>(Container.Resolve<Repository>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());
             containerRegistry.RegisterInstance<IAuthenticationService>(Container.Resolve<AuthenticationService>());
             containerRegistry.RegisterInstance<IProfileManager>(Container.Resolve<ProfileManager>());
-
             // Navigation
-
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<SignInView, SignInViewModel>();
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
@@ -38,14 +35,15 @@ namespace Contacts
             containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
             containerRegistry.RegisterForNavigation<SignUpView, SignUpViewModel>();
             containerRegistry.RegisterForNavigation<AddEditProfileView, AddEditProfileViewModel>();
+            //Dialogs
+            containerRegistry.RegisterDialog<Dialogs.ImageDialog, Dialogs.ImageDialogViewModel>();
         }
 
         protected override void OnInitialized()
         {
             InitializeComponent();
             // NavigationService.NavigateAsync($"/{nameof(SettingsView)}");
-            // NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(MainListView)}");
-
+            // NavigationService.NavigateAsync($"/{nameof(TestPage)}");
             var settingsManager = Container.Resolve<ISettingsManager>();
 
             if (settingsManager.UserName == null)
@@ -56,8 +54,6 @@ namespace Contacts
             {
                 NavigationService.NavigateAsync("/" + nameof(MainListView));
             }
-
-
         }
 
         protected override void OnStart()

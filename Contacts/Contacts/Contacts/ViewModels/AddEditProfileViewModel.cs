@@ -33,7 +33,6 @@ namespace Contacts.ViewModels
         private int _id;
 
         #region --- Public Properties ---
-
         private ProfileModel _profile;
         public ProfileModel Profile
         {
@@ -104,7 +103,7 @@ namespace Contacts.ViewModels
         }
         private async void Save()
         {
-            if (_id >= 0)// Update // текущее
+            if (_id >= 0)// Update 
             {
                 Profile = new ProfileModel();
                 Profile.Id = _id;

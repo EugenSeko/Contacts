@@ -6,7 +6,7 @@
         <Grid Grid.Row="0"
               ColumnDefinitions="0.3*,0.3*,0.3*">
             
-            <Button Text="Add"
+            <Button Text="Show Dialog"
                     Grid.Column="0"
                     VerticalOptions="Center"
                     Command="{Binding AddButtonTapCommand}"/>
