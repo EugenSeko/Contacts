@@ -2,8 +2,6 @@
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Contacts.Dialogs
 {
@@ -13,7 +11,7 @@ namespace Contacts.Dialogs
         {
             CloseCommand = new DelegateCommand(() => RequestClose(null));
         }
-
+        #region --- Properties ---
         private string _message;
         public string Name
         {
@@ -32,18 +30,14 @@ namespace Contacts.Dialogs
             get => _description;
             set => SetProperty(ref _description, value);
         }
+        #endregion
         public DelegateCommand CloseCommand { get; }
-
-
         public event Action<IDialogParameters> RequestClose;
-
         public bool CanCloseDialog() => true;
-
         public void OnDialogClosed()
         {
             throw new NotImplementedException();
         }
-
         public void OnDialogOpened(IDialogParameters parameters)
         {
             Name = parameters.GetValue<string>("name");

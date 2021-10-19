@@ -1,19 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Contacts.Dialogs.ImageDialog" 
+             x:Class="Contacts.Dialogs.ImageDialog"   
       >
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
     
-    <StackLayout.GestureRecognizers>
+    <Grid.GestureRecognizers>
         <TapGestureRecognizer Command="{Binding CloseCommand}"/>
-    </StackLayout.GestureRecognizers>
-    <Frame CornerRadius="40">
-        <Image  Source="{Binding ImageUrl}"/>
-    </Frame>
+    </Grid.GestureRecognizers>
     
-    <Label Text="{Binding Description}" 
-           BackgroundColor="Transparent" 
-           TextColor="Black" 
-           FontSize="Medium"/>
-
-</StackLayout>
+    <Frame Grid.Row="0" BackgroundColor="Transparent"/>
+    <Image Grid.Row="1"  Source="{Binding ImageUrl}" HorizontalOptions="FillAndExpand" />
+    <Frame Grid.Row="2" BackgroundColor="Transparent"/>
+</Grid>

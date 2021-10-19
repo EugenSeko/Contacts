@@ -1,11 +1,7 @@
 ﻿using Contacts.Models;
 using Contacts.Services.Repository;
 using Contacts.Services.Settings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 
 namespace Contacts.Services.Authentication
 {
@@ -21,9 +17,7 @@ namespace Contacts.Services.Authentication
         public async Task<bool> RegistrationAsync(string username, string password)
         {
             bool isDone = true;
-
             var list = await _repository.GetAllAsync<UserModel>();
-
             foreach (var um in list)
             {
                 if (um.UserName == username) 
@@ -41,9 +35,7 @@ namespace Contacts.Services.Authentication
                  await _repository.InsertAsync(user); // добавляем в базу
             }
             return await Task.Run(() => isDone);
-            
         }
-
         public async Task<string> AuthorisatonAsync(string username, string password)
         {
             string done = "login_missing";

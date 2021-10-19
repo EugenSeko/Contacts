@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Essentials;
+﻿using Xamarin.Essentials;
 
 namespace Contacts.Services.Settings
 {
@@ -12,7 +9,6 @@ namespace Contacts.Services.Settings
             get => Preferences.Get(nameof(UserName), null);
             set => Preferences.Set(nameof(UserName), value);
         }
-        
         public string SortBy
         { 
             get => Preferences.Get(nameof(SortBy), "CreationTime");
