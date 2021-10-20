@@ -1,14 +1,7 @@
-﻿using Contacts.Services.Settings;
-using Contacts.Views;
+﻿using Contacts.Views;
 using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
+
 
 namespace Contacts.ViewModels
 {
@@ -19,7 +12,6 @@ namespace Contacts.ViewModels
         {
             _navigationService = navigationService;
         }
-
         #region --- Navigation ---
         public async void NavigateGoBack()
         {

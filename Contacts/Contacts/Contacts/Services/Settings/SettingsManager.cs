@@ -19,5 +19,10 @@ namespace Contacts.Services.Settings
             get => Preferences.Get(nameof(Descending), "true");
             set => Preferences.Set(nameof(Descending), value);
         }
+        public string ThemeStyle
+        {
+            get => Preferences.Get(nameof(ThemeStyle), "light");
+            set => Preferences.Set(nameof(ThemeStyle), value);
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -17,10 +18,19 @@ namespace Contacts.ViewModels
             _settingsManager = settingsManager;
             RadioButtonsInit();
         }
-
         public ICommand OnSaveButton => new Command(Save);
         public ICommand LeftArrowCommand => new Command(ExitPage);
-
+        #region ---Overrides ---
+        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
+        {
+            base.OnPropertyChanged(args);
+            if (args.PropertyName == nameof(IsDarkToggled) && !(IsDarkToggled == true && Converters.Global.ThemeStyle == "dark" || IsDarkToggled == false && Converters.Global.ThemeStyle == "light"))
+            {
+                Converters.Global.ThemeStyle = IsDarkToggled ? "dark" : "light";
+                GoToSettingsPage();
+            }
+        }
+        #endregion
         #region --- Public Properties ---
         private string _selectedsorting;
         public string SelectedSorting
@@ -70,6 +80,12 @@ namespace Contacts.ViewModels
             get => _isascendchecked;
             set => SetProperty(ref _isascendchecked, value);
         }
+        private bool _isdarktoggled;
+        public bool IsDarkToggled
+        {
+            get => _isdarktoggled;
+            set => SetProperty(ref _isdarktoggled, value);
+        }
         #endregion
         #region --- Privat Helpers ---
         private void RadioButtonsInit()
@@ -95,6 +111,7 @@ namespace Contacts.ViewModels
                     IsCreationTimechecked = true;
                     break;
             }
+            IsDarkToggled = Converters.Global.ThemeStyle == "dark" ? true : false;
         }
         private void ExitPage()
         {
@@ -105,6 +122,8 @@ namespace Contacts.ViewModels
         {
             _settingsManager.SortBy = SelectedSorting != null ? SelectedSorting : "CreationTime";
             _settingsManager.Descending = SelectedDescending != null ? SelectedDescending : "true";
+            _settingsManager.ThemeStyle = IsDarkToggled ? "dark" : "light";
+            Converters.Global.ThemeStyle = IsDarkToggled ? "dark" : "light";
         }
         #endregion
     }

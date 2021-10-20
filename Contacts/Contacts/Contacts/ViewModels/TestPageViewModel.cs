@@ -15,14 +15,15 @@ using Xamarin.Forms;
 
 namespace Contacts.ViewModels
 {
-    class TestPageViewModel : BindableBase, IInitializeAsync
+    class TestPageViewModel : BaseViewModel, IInitializeAsync
     {
         private ISettingsManager _settingsManager;
         private IRepository _repository;
         private IDialogService _dialogService { get; }
         public TestPageViewModel(ISettingsManager settingsManager, 
                                  IRepository repository,
-                                 IDialogService dialogservice)
+                                 IDialogService dialogservice, 
+                                 INavigationService navigationService) : base(navigationService)
         {
             _dialogService = dialogservice;
             _settingsManager = settingsManager;
@@ -131,24 +132,7 @@ namespace Contacts.ViewModels
 
         private async void OnDeleteTap()
         {
-            if(SelectedItem != null)
-            {
-                var confirmConfig = new ConfirmConfig()
-                {
-                    Message = "You really want to delete this profile?",
-                    OkText = "Delete",
-                    CancelText = "Cancel"
-                };
-
-                var confirm = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
-
-                if (confirm)
-                {
-                    await _repository.DeleteAsync(SelectedItem);
-
-                    ProfileList.Remove(SelectedItem);
-                }
-            } 
+          
         }
 
         #endregion

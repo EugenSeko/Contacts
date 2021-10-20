@@ -51,6 +51,8 @@ namespace Contacts.Services.Authentication
                         _settingsManager.UserName = username;
                         _settingsManager.SortBy = um.Sortby;
                         _settingsManager.Descending = um.Descending;
+                        _settingsManager.ThemeStyle = um.ThemeStyle;
+                        Converters.Global.ThemeStyle = um.ThemeStyle;
                     }
                 }
             }
@@ -65,12 +67,14 @@ namespace Contacts.Services.Authentication
                 {
                     um.Sortby = _settingsManager.SortBy;
                     um.Descending = _settingsManager.Descending;
+                    um.ThemeStyle = _settingsManager.ThemeStyle;
                     await _repository.UpdateAsync(um);
                 }
             }
             _settingsManager.UserName = null;
             _settingsManager.Descending = "true";
             _settingsManager.SortBy = "CreationTime";
+            _settingsManager.ThemeStyle = "light";
         }
     }
 }

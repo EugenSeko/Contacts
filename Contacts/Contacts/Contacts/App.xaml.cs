@@ -37,6 +37,7 @@ namespace Contacts
             InitializeComponent();
             // NavigationService.NavigateAsync($"/{nameof(TestPage)}");
             var settingsManager = Container.Resolve<ISettingsManager>();
+            Converters.Global.ThemeStyle = settingsManager.ThemeStyle;
             if (settingsManager.UserName == null)
             {
                 NavigationService.NavigateAsync("/" + nameof(SignInView));

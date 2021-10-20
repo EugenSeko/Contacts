@@ -28,7 +28,7 @@ namespace Contacts.ViewModels
             _profileManager = profileManager;
             _dialogService = dialogservice;
 
-            Init();
+          Init();
         }
         private async void Init()
         {

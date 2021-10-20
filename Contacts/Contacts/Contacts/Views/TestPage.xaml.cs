@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System.Reflection;
+using Xamarin.Forms;
+using Xamarin.Forms.StyleSheets;
 
 namespace Contacts.Views
 {
@@ -7,6 +9,9 @@ namespace Contacts.Views
         public TestPage()
         {
             InitializeComponent();
+            
+
+
         }
     }
 }
