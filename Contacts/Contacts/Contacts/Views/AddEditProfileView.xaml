@@ -12,33 +12,35 @@
 
 
     <ContentPage.Content> <!--внимание. при повороте страницы все ломается-->
-        <Grid RowDefinitions="0.05*,0.3*,0.09*,0.09*,0.32*" 
+        <Grid RowDefinitions="0.06*,0.3*,0.09*,0.09*,0.32*"
+              BackgroundColor="LightGray"
           RowSpacing="10">
             <!--<Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>-->
             <Grid Grid.Row="0"
-                     BackgroundColor="#2196F3">
+                     BackgroundColor="Gray">
             <ImageButton Grid.Column="0" 
-                         Source="arrowL.png" 
+                         Source="arrow2.png" 
                          Command="{Binding OnLArrowTapButton}"
-                         BackgroundColor="Transparent"
+                         BackgroundColor="Transparent" Opacity="0.55"
                          HorizontalOptions="Start" Margin="20,0,0,0"
-                         HeightRequest="40" 
-                         WidthRequest="25">
-                    
+                         WidthRequest="30">
                 </ImageButton>
             <Label Grid.Column="1" 
-                   Text="Add profile" FontSize="Title"
+                   Text="Profile" FontSize="Title"
+                   FontAttributes="Italic" 
+                   TextColor="Black" 
+                   Opacity="0.6"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
                 <ImageButton Grid.Column="2" 
                          Source="saveW1.png"
                          IsEnabled="False"
                          Command="{Binding OnSaveButton}"
-                         BackgroundColor="Transparent"
-                         HeightRequest="40"
-                         WidthRequest="30" 
+                             BackgroundColor="Transparent"
+                         Opacity="0.55"
+                         WidthRequest="38" 
                          Margin="0,0,25,0"
                          HorizontalOptions="End">
                     <ImageButton.Triggers>
@@ -71,18 +73,21 @@
             </Image>
         <Entry Grid.Row="2"
                x:Name="nickname"
-               Placeholder="NickName"
+               Placeholder="NickName" 
+               FontAttributes="Italic"
                Text="{Binding NickName}"
                 Margin="40,10,40,10"
                VerticalOptions="End"  />
         <Entry Grid.Row="3"
                x:Name="name"
                Placeholder="Name" 
+               FontAttributes="Italic"
                Text="{Binding Name }"
                 Margin="40,10,40,10"
                VerticalOptions="End" />
         <Editor Grid.Row="4" 
-                Placeholder="Description"
+                Placeholder="Description" 
+                FontAttributes="Italic"
                 Text="{Binding Description}"
                 BackgroundColor="Gray"
                 Margin="40,30,40,30"

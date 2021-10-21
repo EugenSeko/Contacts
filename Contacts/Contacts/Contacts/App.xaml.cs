@@ -35,7 +35,7 @@ namespace Contacts
         protected override void OnInitialized()
         {
             InitializeComponent();
-            // NavigationService.NavigateAsync($"/{nameof(TestPage)}");
+             // NavigationService.NavigateAsync($"/{nameof(SignInView)}");
             var settingsManager = Container.Resolve<ISettingsManager>();
             Converters.Global.ThemeStyle = settingsManager.ThemeStyle;
             if (settingsManager.UserName == null)

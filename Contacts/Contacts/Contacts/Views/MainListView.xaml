@@ -3,33 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.MainListView">
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="LightGray">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid RowDefinitions="56, *"
                   >
-                <Grid Grid.Row="0" BackgroundColor="#2196F3"
+                <Grid Grid.Row="0" BackgroundColor="Gray"
                        ColumnDefinitions="0.7*,0.3*,0.3*"
-                      ColumnSpacing="0"
                          >
-                    <Label Text="Main List" 
-                    BackgroundColor="Transparent"
+                    <Label Text="Contacts" 
+                           Opacity="0.6"
+                    TextColor="Black" 
+                    FontAttributes="Italic"
                     FontSize="Title"
                     Margin="16,0,0,0"
                     Grid.Column="0"
                     VerticalOptions="Center"
                     />
-                    <ImageButton Source ="exitB.png"
+                    <ImageButton Source ="Exit.png"
                      BackgroundColor="Transparent"
                      Margin="0,0,0,0"  
                      Padding="0,0,0,0"            
                      Grid.Column="1"
                      VerticalOptions="Center"
-                     HeightRequest="35"
+                     HeightRequest="30"
                      Command="{Binding OnLogautButtonTap}"            
                      />
-                    <ImageButton Source ="settings.png"
+                    <ImageButton Source ="set2.png"
                      BackgroundColor="Transparent"
                      Margin="0,0,0,0"
                      Padding="0,0,0,0"           
@@ -39,14 +40,14 @@
                      Command="{Binding OnSettingsButtonTap}"          
                      />
                 </Grid>
-                <ListView Grid.Row="1"
+                <ListView Grid.Row="1" BackgroundColor="LightGray"
                   HasUnevenRows="True" 
                   SelectedItem="{Binding SelectedItem}" 
                   ItemsSource="{Binding ProfileList}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <ViewCell.ContextActions >
+                                <ViewCell.ContextActions>
                                     <MenuItem Text="edit"
                                               Command= "{Binding EditCommand}"
                                               CommandParameter="{Binding}"/> 
@@ -55,14 +56,23 @@
                                               CommandParameter="{Binding}" />
                                 </ViewCell.ContextActions>
                                 <ViewCell.View>
-                                    <Grid ColumnDefinitions="0.17*,0.73*"
+                                    <Grid ColumnDefinitions="0.22*,0.73*"
                                           Padding="10" >
                                         <Grid Grid.Column="1"  Padding="20,0,0,0">
-                                            <Label Grid.Row="0" Text="{Binding NickName}"/>
-                                            <Label Grid.Row="1" Text="{Binding Name}" />
-                                            <Label Grid.Row="2" Text="{Binding CreationTime}" VerticalTextAlignment="Start" />
+                                            <Label Grid.Row="0"
+                                                   Text="{Binding NickName}" 
+                                                   FontAttributes="Italic"
+                                                   FontSize="Medium"/>
+                                            <Label Grid.Row="1"
+                                                   Text="{Binding Name}" 
+                                                   FontFamily="fantasy" 
+                                                   FontAttributes="Italic"
+                                                   FontSize="Medium"/>
+                                            <Label Grid.Row="2"
+                                                   Text="{Binding CreationTime}" 
+                                                   FontAttributes="Italic" />
                                         </Grid>
-                                        <Frame Grid.Column="0" Padding="1,0,0,0"
+                                        <Frame Grid.Column="0" Padding="0,0,0,0"
                                                CornerRadius="90"
                                                BackgroundColor="AliceBlue" >
                                             <Image Source="{Binding ImageUrl}"
@@ -78,12 +88,13 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-            <ImageButton Source ="plus.png"
+            <ImageButton Source ="plus100.png"
                          Command="{Binding OnAddButtonTap}"
                          BackgroundColor="Transparent" 
-                         CornerRadius="60"
-                         WidthRequest="70" 
-                         HeightRequest="80"
+                         Opacity="0.65"
+                         CornerRadius="0"
+                         WidthRequest="80" 
+                         HeightRequest="90"
                          Margin="0,0,30,42"
                          VerticalOptions="End"
                          HorizontalOptions="End"

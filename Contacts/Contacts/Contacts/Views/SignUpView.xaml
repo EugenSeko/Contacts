@@ -9,65 +9,70 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-            <ScrollView>
-                <StackLayout Spacing="125">
-                    <Frame BackgroundColor="#2196F3" Padding="12"  CornerRadius="0">
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="SignUp"
+        <Grid RowDefinitions="0.7*,4*,4*" BackgroundColor="LightGray">
+            <Frame Grid.Row="0" BackgroundColor="Gray" 
+                   Padding="12"  
+                   CornerRadius="0">
+                    <Label Text="SignUp"
                                HorizontalTextAlignment="Start" 
+                               FontAttributes="Italic"
                                TextColor="White"
                                FontSize="24"/>
-                    </StackLayout>
-                    </Frame>
-                    <StackLayout  Spacing="12" Padding="20,10,20,10" >
-                        <Entry x:Name="loginEntry"
-                               Placeholder="Login"
+            </Frame>
+            <StackLayout  Grid.Row="1" Padding="40" Margin="0,40,0,0">
+                <Entry x:Name="loginEntry"
+                               FontAttributes="Italic"
+                               Placeholder="Login" 
                                Margin="20"
                                Text="{Binding UserName}"/>
-                        <Entry x:Name="passwordEntry" 
-                               Placeholder = "Password"
+                <Entry x:Name="passwordEntry" 
+                               FontAttributes="Italic"
+                               Placeholder = "Password" 
                                IsPassword ="True" 
                                Margin="20" 
                                Text="{Binding Password}"/>
-                        <Entry x:Name="passwordConfirm"
-                               Placeholder = "Confirm Password"
+                <Entry x:Name="passwordConfirm"
+                               FontAttributes="Italic"
+                               Placeholder = "Confirm Password" 
                                Text="{Binding ConfirmPass}"
                                IsPassword ="True"
                                Margin="20"  />
-                </StackLayout>
-                    <StackLayout>
-                    <Button x:Name="signUpButton" 
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+                <Button x:Name="signUpButton" 
                                 Command="{Binding SignUpButtonTapCommand}"
+                                BackgroundColor="Gray"
                                 Text = "Sign Up" 
                                 FontSize="Medium"
-                                Padding="120,20,120,20"
-                                Margin="32"
+                                Padding="100,20,100,20" 
+                                CornerRadius="45"
+                                Margin="0"
                                 HorizontalOptions="Center"
                                 VerticalOptions="CenterAndExpand" 
                                 IsEnabled="False">
-                        <Button.Triggers>
-                            <MultiTrigger TargetType="Button">
-                                <MultiTrigger.Conditions>
-                                    <BindingCondition Binding="{Binding Source={x:Reference loginEntry},
+                    <Button.Triggers>
+                        <MultiTrigger TargetType="Button">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition Binding="{Binding Source={x:Reference loginEntry},
                               Path=Text.Length,
                               Converter={StaticResource dataHasBeenEntered}}"
                           Value="true" />
-                                    <BindingCondition Binding="{Binding Source={x:Reference passwordEntry},
+                                <BindingCondition Binding="{Binding Source={x:Reference passwordEntry},
                               Path=Text.Length,
                               Converter={StaticResource dataHasBeenEntered}}"
                           Value="true" />
-                                    <BindingCondition Binding="{Binding Source={x:Reference passwordConfirm},
+                                <BindingCondition Binding="{Binding Source={x:Reference passwordConfirm},
                               Path=Text.Length,
                               Converter={StaticResource dataHasBeenEntered}}"
                           Value="true" />
-                                </MultiTrigger.Conditions>
-                                <Setter Property="IsEnabled" Value="True" />
-                                <Setter Property="BackgroundColor" Value="Coral" />
-                            </MultiTrigger>
-                        </Button.Triggers>
-                    </Button>
-                </StackLayout>
-                </StackLayout>
-            </ScrollView>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Setter Property="BackgroundColor" Value="Coral" />
+                        </MultiTrigger>
+                    </Button.Triggers>
+                </Button>
+            </StackLayout>
+        </Grid>
+                  
         </ContentPage.Content>
 </ContentPage>
