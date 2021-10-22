@@ -56,8 +56,9 @@
                                               CommandParameter="{Binding}" />
                                 </ViewCell.ContextActions>
                                 <ViewCell.View>
-                                    <Grid ColumnDefinitions="0.22*,0.73*"
-                                          Padding="10" >
+                                    <Grid ColumnDefinitions="0.22*,0.73*" 
+                                          Padding="10"  >
+                                        
                                         <Grid Grid.Column="1"  Padding="20,0,0,0">
                                             <Label Grid.Row="0"
                                                    Text="{Binding NickName}" 
@@ -72,15 +73,19 @@
                                                    Text="{Binding CreationTime}" 
                                                    FontAttributes="Italic" />
                                         </Grid>
-                                        <Frame Grid.Column="0" Padding="0,0,0,0"
-                                               CornerRadius="90"
+                                        <RelativeLayout>
+                                        <Frame Grid.Column="0" Padding="0,0,0,0" 
+                                               HeightRequest="85"
+                                               WidthRequest="85"
+                                               HasShadow="True" 
+                                               CornerRadius="90" 
                                                BackgroundColor="AliceBlue" >
                                             <Image Source="{Binding ImageUrl}"
                                                    Aspect="AspectFill"
-                                                   HeightRequest="10"
                                                    >
                                             </Image>
                                         </Frame>
+                                        </RelativeLayout>
                                     </Grid>
                                 </ViewCell.View>
                             </ViewCell>
