@@ -35,17 +35,17 @@ namespace Contacts
         protected override void OnInitialized()
         {
             InitializeComponent();
-             // NavigationService.NavigateAsync($"/{nameof(SignInView)}");
-            var settingsManager = Container.Resolve<ISettingsManager>();
-            Converters.Global.ThemeStyle = settingsManager.ThemeStyle;
-            if (settingsManager.UserName == null)
-            {
-                NavigationService.NavigateAsync("/" + nameof(SignInView));
-            }
-            else
-            {
-                NavigationService.NavigateAsync("/" + nameof(MainListView));
-            }
+              NavigationService.NavigateAsync($"/{nameof(SettingsView)}");
+            //var settingsManager = Container.Resolve<ISettingsManager>();
+            //Converters.Global.ThemeStyle = settingsManager.ThemeStyle;
+            //if (settingsManager.UserName == null)
+            //{
+            //    NavigationService.NavigateAsync("/" + nameof(SignInView));
+            //}
+            //else
+            //{
+            //    NavigationService.NavigateAsync("/" + nameof(MainListView));
+            //}
         }
         protected override void OnStart()
         {

@@ -3,44 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.MainListView">
     <ContentPage.Content>
-        <Grid BackgroundColor="LightGray">
+        <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid RowDefinitions="56, *"
                   >
-                <Grid Grid.Row="0" BackgroundColor="Gray"
-                       ColumnDefinitions="0.7*,0.3*,0.3*"
+                <Grid Grid.Row="0" StyleClass="header"
+                       ColumnDefinitions="0.76*,0.12*,0.12*"
                          >
                     <Label Text="Contacts" 
-                           Opacity="0.6"
-                    TextColor="Black" 
-                    FontAttributes="Italic"
+                    FontAttributes="Italic" 
+                    TextColor="White"
                     FontSize="Title"
                     Margin="16,0,0,0"
                     Grid.Column="0"
                     VerticalOptions="Center"
                     />
-                    <ImageButton Source ="Exit.png"
+                    <ImageButton Source ="outline_exit_to_app_white_48.png"
+                     Margin="0,0,10,0"  
+                     Grid.Column="1" 
                      BackgroundColor="Transparent"
-                     Margin="0,0,0,0"  
-                     Padding="0,0,0,0"            
-                     Grid.Column="1"
-                     VerticalOptions="Center"
-                     HeightRequest="30"
+                     VerticalOptions="Center" 
+                     HorizontalOptions="End"
+                     Scale="0.8"
                      Command="{Binding OnLogautButtonTap}"            
                      />
-                    <ImageButton Source ="set2.png"
+                    <ImageButton Grid.Column="2"
+                     Source ="outline_settings_white_48.png"
+                     CornerRadius="90" 
                      BackgroundColor="Transparent"
-                     Margin="0,0,0,0"
-                     Padding="0,0,0,0"           
-                     Grid.Column="2"
-                     VerticalOptions="Center"
-                     HeightRequest="35"
+                     Margin="0,0,10,0"
+                     VerticalOptions="Center" HorizontalOptions="End"
+                     Scale="0.8"
                      Command="{Binding OnSettingsButtonTap}"          
                      />
                 </Grid>
-                <ListView Grid.Row="1" BackgroundColor="LightGray"
+                <ListView Grid.Row="1" StyleClass="body"
                   HasUnevenRows="True" 
                   SelectedItem="{Binding SelectedItem}" 
                   ItemsSource="{Binding ProfileList}">
@@ -49,7 +48,7 @@
                             <ViewCell>
                                 <ViewCell.ContextActions>
                                     <MenuItem Text="edit"
-                                              Command= "{Binding EditCommand}"
+                                              Command="{Binding EditCommand}"
                                               CommandParameter="{Binding}"/> 
                                     <MenuItem Text="delete"
                                               Command="{Binding DeleteCommand }"
@@ -63,20 +62,20 @@
                                             <Label Grid.Row="0"
                                                    Text="{Binding NickName}" 
                                                    FontAttributes="Italic"
-                                                   FontSize="Medium"/>
+                                                   FontSize="Small"/>
                                             <Label Grid.Row="1"
                                                    Text="{Binding Name}" 
                                                    FontFamily="fantasy" 
                                                    FontAttributes="Italic"
-                                                   FontSize="Medium"/>
+                                                   FontSize="Small"/>
                                             <Label Grid.Row="2"
                                                    Text="{Binding CreationTime}" 
                                                    FontAttributes="Italic" />
                                         </Grid>
                                         <RelativeLayout>
-                                        <Frame Grid.Column="0" Padding="0,0,0,0" 
-                                               HeightRequest="85"
-                                               WidthRequest="85"
+                                        <Frame Grid.Column="0" Padding="0,0,0,0" Margin="12,0,0,0"
+                                               HeightRequest="65"
+                                               WidthRequest="65"
                                                HasShadow="True" 
                                                CornerRadius="90" 
                                                BackgroundColor="AliceBlue" >
@@ -93,14 +92,14 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-            <ImageButton Source ="plus100.png"
+            <ImageButton Source ="outline_add_circle_outline_white_48.png"
+                         StyleClass="imbutton"
+                         BackgroundColor="Transparent"
                          Command="{Binding OnAddButtonTap}"
-                         BackgroundColor="Transparent" 
-                         Opacity="0.65"
-                         CornerRadius="0"
-                         WidthRequest="80" 
-                         HeightRequest="90"
-                         Margin="0,0,30,42"
+                         Opacity="1"
+                         Scale="0.8"
+                         CornerRadius="90"
+                         Margin="0,0,15,15"
                          VerticalOptions="End"
                          HorizontalOptions="End"
                         />

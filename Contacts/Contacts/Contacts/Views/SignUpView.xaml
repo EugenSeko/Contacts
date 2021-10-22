@@ -10,33 +10,41 @@
     
     <ContentPage.Content>
         <Grid RowDefinitions="0.7*,4*,4*" BackgroundColor="LightGray">
-            <Frame Grid.Row="0" BackgroundColor="Gray" 
-                   Padding="12"  
-                   CornerRadius="0">
-                    <Label Text="SignUp"
-                               HorizontalTextAlignment="Start" 
+            <Grid Grid.Row="0" BackgroundColor="Gray">
+                <Label Text="SignUp"
+                               HorizontalTextAlignment="Center" 
+                               VerticalOptions="Center"
                                FontAttributes="Italic"
                                TextColor="White"
                                FontSize="24"/>
-            </Frame>
-            <StackLayout  Grid.Row="1" Padding="40" Margin="0,40,0,0">
+                <ImageButton Grid.Column="0" 
+                         Source="outline_arrow_circle_left_white_48.png" 
+                         Command="{Binding OnLeftArrowTap}"
+                         BackgroundColor="Transparent" 
+                         HorizontalOptions="Start"
+                         Margin="10,0,0,0"
+                         Scale="0.55"
+                         >
+                </ImageButton>
+            </Grid>
+            <StackLayout  Grid.Row="1"  Margin="40,120,40,0">
                 <Entry x:Name="loginEntry"
                                FontAttributes="Italic"
                                Placeholder="Login" 
-                               Margin="20"
+                               Margin="20,0,20,0"
                                Text="{Binding UserName}"/>
                 <Entry x:Name="passwordEntry" 
                                FontAttributes="Italic"
                                Placeholder = "Password" 
                                IsPassword ="True" 
-                               Margin="20" 
+                               Margin="20,0,20,0" 
                                Text="{Binding Password}"/>
                 <Entry x:Name="passwordConfirm"
                                FontAttributes="Italic"
                                Placeholder = "Confirm Password" 
                                Text="{Binding ConfirmPass}"
                                IsPassword ="True"
-                               Margin="20"  />
+                               Margin="20,0,20,0"  />
             </StackLayout>
             <StackLayout Grid.Row="2">
                 <Button x:Name="signUpButton" 
@@ -73,6 +81,5 @@
                 </Button>
             </StackLayout>
         </Grid>
-                  
-        </ContentPage.Content>
+    </ContentPage.Content>
 </ContentPage>

@@ -23,6 +23,8 @@ namespace Contacts.ViewModels
         }
 
         public ICommand SignUpButtonTapCommand => new Command(ValidateAsync,()=>false);
+        public ICommand OnLeftArrowTap => new Command(GoSignInPage);
+
 
         #region --- Public Properties ---
         private string _userName;

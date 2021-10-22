@@ -16,6 +16,11 @@ namespace Contacts.Views
                 this.Resources.Add(StyleSheet.FromResource
                      ("Views/dark.css", IntrospectionExtensions.GetTypeInfo(typeof(TestPage)).Assembly));
             }
+            else
+            {
+                this.Resources.Add(StyleSheet.FromResource
+                     ("Views/light.css", IntrospectionExtensions.GetTypeInfo(typeof(TestPage)).Assembly));
+            }
         }
     }
 }

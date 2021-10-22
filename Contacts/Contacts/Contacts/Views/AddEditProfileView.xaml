@@ -11,37 +11,34 @@
     </ContentPage.Resources>
 
 
-    <ContentPage.Content> <!--внимание. при повороте страницы все ломается-->
+    <ContentPage.Content> 
         <Grid RowDefinitions="0.06*,0.3*,0.09*,0.09*,0.32*"
-              BackgroundColor="LightGray"
           RowSpacing="10">
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>-->
             <Grid Grid.Row="0"
-                     BackgroundColor="Gray">
-            <ImageButton Grid.Column="0" 
-                         Source="arrow2.png" 
+                     StyleClass="header">
+                <ImageButton Grid.Column="0" 
+                         Source="outline_arrow_circle_left_white_48.png" 
                          Command="{Binding OnLArrowTapButton}"
-                         BackgroundColor="Transparent" Opacity="0.55"
-                         HorizontalOptions="Start" Margin="20,0,0,0"
-                         WidthRequest="30">
+                         BackgroundColor="Transparent" 
+                         HorizontalOptions="Start"
+                         Margin="10,0,0,0"
+                         Scale="0.68"
+                         >
                 </ImageButton>
-            <Label Grid.Column="1" 
-                   Text="Profile" FontSize="Title"
+                <Label Grid.Column="1" 
+                   Text="Profile" 
+                   FontSize="Title" 
+                   StyleClass="headertext"
                    FontAttributes="Italic" 
-                   TextColor="Black" 
-                   Opacity="0.6"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
                 <ImageButton Grid.Column="2" 
-                         Source="saveW1.png"
+                         Source="outline_save_white_48.png"
                          IsEnabled="False"
                          Command="{Binding OnSaveButton}"
-                             BackgroundColor="Transparent"
-                         Opacity="0.55"
-                         WidthRequest="38" 
-                         Margin="0,0,25,0"
+                         BackgroundColor="Transparent"
+                         Scale="0.68"
+                         Margin="0,0,12,0"
                          HorizontalOptions="End">
                     <ImageButton.Triggers>
                         <DataTrigger TargetType="ImageButton"
@@ -49,7 +46,6 @@
                                        Path=Text.Length,
                                        Converter={StaticResource dataHasBeenEntered}}"
                      Value="true">
-                            <Setter Property="Source" Value="SaveB" />
                             <Setter Property="IsEnabled" Value="True" />
                         </DataTrigger>
                         <DataTrigger TargetType="ImageButton"
@@ -57,7 +53,6 @@
                                        Path=Text.Length,
                                        Converter={StaticResource dataHasBeenEntered}}"
                      Value="true">
-                            <Setter Property="Source" Value="SaveB" />
                             <Setter Property="IsEnabled" Value="True" />
                         </DataTrigger>
                     </ImageButton.Triggers>
@@ -65,31 +60,35 @@
             </Grid>
             <Image Grid.Row="1"
                Source = "{Binding ImageUrl}"
-               BackgroundColor="Transparent"
+               BackgroundColor="Transparent" 
                >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OnTapImage}"/>
                 </Image.GestureRecognizers>
-            </Image>
+            </Image>  
+            
         <Entry Grid.Row="2"
                x:Name="nickname"
                Placeholder="NickName" 
+               PlaceholderColor="Gray"
                FontAttributes="Italic"
                Text="{Binding NickName}"
                 Margin="40,10,40,10"
                VerticalOptions="End"  />
-        <Entry Grid.Row="3"
+            <Entry Grid.Row="3"
                x:Name="name"
                Placeholder="Name" 
+               PlaceholderColor="Gray"
                FontAttributes="Italic"
                Text="{Binding Name }"
                 Margin="40,10,40,10"
-               VerticalOptions="End" />
-        <Editor Grid.Row="4" 
+               VerticalOptions="End" >
+            </Entry>
+            <Editor Grid.Row="4" 
                 Placeholder="Description" 
-                FontAttributes="Italic"
+                PlaceholderColor="Gray"
+                FontAttributes="Italic" 
                 Text="{Binding Description}"
-                BackgroundColor="Gray"
                 Margin="40,30,40,30"
                  />
 

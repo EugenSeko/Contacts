@@ -1,8 +1,27 @@
 ﻿
-label{
-    color:black;
-    background-color:black;
+^contentpage {
+    background-color: #051e25;
 }
-button{
-    color:red;
+grid {
+    background-color: #0e1621;
 }
+label {
+    color: lightsteelblue;
+}
+entry {
+    color: lightsteelblue;
+}
+editor {
+    color: lightsteelblue;
+}
+
+.radio {
+    color: lightgray;
+}
+.header {
+    background-color: #17212b;
+}
+.body {
+    background-color: #0e1621;
+}
+

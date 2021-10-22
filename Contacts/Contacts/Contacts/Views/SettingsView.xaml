@@ -5,18 +5,20 @@
     
     
     <ContentPage.Content>
-        <Grid RowDefinitions="0.07*,0.8*,0.1*" BackgroundColor="LightGray">
+        <Grid RowDefinitions="0.07*,0.8*,0.1*">
             <Grid Grid.Row="0"
-                     BackgroundColor="Gray">
+                     StyleClass="header">
                 <ImageButton Grid.Column="0" Command="{Binding LeftArrowCommand}"
-                         Source="Arrow2.png" Opacity="0.5" 
+                         Source="outline_arrow_circle_left_white_48.png" 
                          BackgroundColor="Transparent"
-                         HorizontalOptions="Start" Margin="20,0,0,0"
+                         HorizontalOptions="Start" 
+                         Margin="20,0,0,0"
                          HeightRequest="0" 
                          WidthRequest="30">
                 </ImageButton>
-                <Label Grid.Column="1" Opacity="0.8"
-                   Text="Settings" FontSize="Title" 
+                <Label Grid.Column="1"
+                   Text="Settings" 
+                   FontSize="Title" 
                    TextColor="GhostWhite"
                    FontAttributes="Italic"
                    HorizontalOptions="Center"
@@ -31,49 +33,53 @@
                      RadioButtonGroup.GroupName="sorting"
                      RadioButtonGroup.SelectedValue="{Binding SelectedSorting}"
                          Margin="10" >
-                <Label Text="Sorting by.." />
-                <RadioButton Content="By Name" Value="Name" IsChecked="{Binding IsNameChecked}"
-                             TextColor="Black"
+                <Label Text="Sort by:" StyleClass="radio" FontSize="Large"/>
+                <RadioButton Content="Name" Value="Name" IsChecked="{Binding IsNameChecked}"
+                             StyleClass="radio"
                              FontAttributes="Italic"
                              Opacity="0.7" 
+                             Margin="50,0,0,0"
                              />
-                <RadioButton Content="By Nickname" Value="NickName" IsChecked="{Binding IsNickNameChecked}"
-                             TextColor="Black"
+                <RadioButton Content="Nickname" Value="NickName" IsChecked="{Binding IsNickNameChecked}"
+                             StyleClass="radio"
                              FontAttributes="Italic"
                              Opacity="0.7" 
+                             Margin="50,0,0,0"
                              />
-                <RadioButton Content="By Date" Value="CreationTime" IsChecked="{Binding IsCreationTimechecked}" 
-                             TextColor="Black"
+                <RadioButton Content="Date" Value="CreationTime" IsChecked="{Binding IsCreationTimechecked}" 
+                             StyleClass="radio"
                              FontAttributes="Italic"
                              Opacity="0.7" 
+                             Margin="50,0,0,0"
                              />
                 <StackLayout Spacing="10"
                        RadioButtonGroup.GroupName="descending" 
                        RadioButtonGroup.SelectedValue="{Binding SelectedDescending}">
-                    <Label Text="Descending.." />
-                    <RadioButton Content="By Ascending" Value="false" IsChecked="{Binding IsAscendChecked}"
-                             TextColor="Black"
+                    <Label Text="Range by:" StyleClass="radio" FontSize="Large" />
+                    <RadioButton Content="Ascending" Value="false" IsChecked="{Binding IsAscendChecked}"
+                             StyleClass="radio"
                              Opacity="0.7"
                              FontAttributes="Italic" 
+                             Margin="50,0,0,0" 
                                  />
-                    <RadioButton Content="By Descending" Value="true" IsChecked="{Binding IsDescendChecked}"
-                             TextColor="Black" 
+                    <RadioButton Content="Descending" Value="true" IsChecked="{Binding IsDescendChecked}"
+                             StyleClass="radio" 
                              FontAttributes="Italic"
-                             Opacity="0.7"
+                             Opacity="0.7" 
+                             Margin="50,0,0,0"
                                  />
                 </StackLayout>
                 <StackLayout Grid.Row="2" 
                              Orientation="Horizontal"
-                             Padding="20">
-                    <Label Text="Dark Theme" 
-                           TextColor="Black" 
+                             Padding="0,30,0,0" Margin="0,0,0,0">
+                    <Label Text="Dark Theme" FontSize="Large"
+                           StyleClass="radio" 
                            Opacity="0.7"
-                           FontAttributes="Italic" 
-                           FontSize="Medium"/>
+                           />
                     <Switch OnColor="FloralWhite" Scale="1.2"
                              HorizontalOptions="CenterAndExpand"
                             IsToggled="{Binding IsDarkToggled}"
-                            ThumbColor="GhostWhite" /> 
+                            ThumbColor="Gray" /> 
                 </StackLayout>
             </StackLayout>
         </Grid>
