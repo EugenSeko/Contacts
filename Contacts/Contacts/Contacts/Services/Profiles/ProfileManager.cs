@@ -12,46 +12,19 @@ namespace Contacts.Services.Profiles
 {
    public class ProfileManager : IProfileManager
     {
-
         private ISettingsManager _settingsManager;
         private IRepository _repository;
-
         public ProfileManager(ISettingsManager settingsManager, IRepository repository)
         {
             _settingsManager = settingsManager;
             _repository = repository;
         }
-
-
-
-        #region --- Public Properties ---
-        
-        public ProfileModel Profile 
-        { 
-            get; 
-            set; 
-        }
-
-        public List<ProfileModel> ProfileList 
-        { 
-            get; 
-            set; 
-        }
-        private string _name;
-        public string Name
-        {
-            get => _settingsManager.UserName;
-            set { _settingsManager.UserName = value; }
-        }
-
-        #endregion
-
+        private List<ProfileModel> _profilelist;
 
         public async Task<int>  DeleteAsync(ProfileModel profile)
         {
             return await _repository.DeleteAsync(profile);
         }
-
         public async Task<int> CreateAsync(ProfileModel profile)
         {
            return await _repository.InsertAsync<ProfileModel>(profile);
@@ -59,24 +32,23 @@ namespace Contacts.Services.Profiles
         public async Task<int> UpdateAsync(ProfileModel profile)
         {
             return await _repository.UpdateAsync(profile);
+
         }
         public async Task<ProfileModel> GetProfileById(int id)
         {
-           ProfileList = await GetAllProfilesAsync();
-            ProfileModel pm = new ProfileModel(); // null?
-            foreach(ProfileModel m in ProfileList)
+           _profilelist = await GetAllProfilesAsync();
+            ProfileModel pm = new ProfileModel(); 
+            foreach(ProfileModel m in _profilelist)
             {
                 if (m.Id == id) pm = m;
             }
             return pm;
         }
-
         public async Task<List<ProfileModel>> GetAllProfilesAsync() // получаем все профили определенного юзера
         {
             var profileList = await _repository.GetAllAsync<ProfileModel>();
-
-            ProfileList = new List<ProfileModel>();
-            //-------------
+            _profilelist = new List<ProfileModel>();
+         
             var sortby = _settingsManager.SortBy;
             var descending = _settingsManager.Descending;
             if (descending == "true")
@@ -89,7 +61,7 @@ namespace Contacts.Services.Profiles
                 .OrderByDescending(x => x.Name);
                         foreach (ProfileModel m in nm)
                         {
-                            ProfileList.Add(m);
+                            _profilelist.Add(m);
                         }
                         break;
                     case "NickName":
@@ -98,7 +70,7 @@ namespace Contacts.Services.Profiles
                 .OrderByDescending(x => x.NickName);
                         foreach (ProfileModel m in nn)
                         {
-                            ProfileList.Add(m);
+                            _profilelist.Add(m);
                         }
                         break;
                     case "CreationTime":
@@ -107,7 +79,7 @@ namespace Contacts.Services.Profiles
                 .OrderByDescending(x => x.CreationTime);
                         foreach (ProfileModel m in ct)
                         {
-                            ProfileList.Add(m);
+                            _profilelist.Add(m);
                         }
                         break;
                 }
@@ -122,7 +94,7 @@ namespace Contacts.Services.Profiles
                 .OrderBy(x => x.Name);
                         foreach (ProfileModel m in nm)
                         {
-                            ProfileList.Add(m);
+                            _profilelist.Add(m);
                         }
                         break;
                     case "NickName":
@@ -131,7 +103,7 @@ namespace Contacts.Services.Profiles
                 .OrderBy(x => x.NickName);
                         foreach (ProfileModel m in nn)
                         {
-                            ProfileList.Add(m);
+                            _profilelist.Add(m);
                         }
                         break;
                     case "CreationTime":
@@ -140,14 +112,12 @@ namespace Contacts.Services.Profiles
                 .OrderBy(x => x.CreationTime);
                         foreach (ProfileModel m in ct)
                         {
-                            ProfileList.Add(m);
+                            _profilelist.Add(m);
                         }
                         break;
                 }
             }
-            
-            return ProfileList;
-
+            return _profilelist;
         }
     }
 }

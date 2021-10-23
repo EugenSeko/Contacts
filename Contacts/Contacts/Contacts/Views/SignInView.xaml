@@ -32,22 +32,23 @@
                            Text="{Binding UserName}"
                            FontAttributes="Italic"
                            Placeholder="Login"
-                           Margin="60,160,60,0" />
+                           Margin="60,140,60,0" />
                     <Entry Grid.Row="1" x:Name="passwordEntry" 
                            Text="{Binding Password}" 
                            FontAttributes="Italic"
                            Placeholder = "Password" 
                            IsPassword ="True"
-                           Margin="60,0,60,160"  />
+                           Margin="60,0,60,140"  />
                 </Grid>
                 <StackLayout Grid.Row="2">
                     <Button
                         x:Name="signInButton"
                         Command="{Binding SignInButtonTapCommand}"
                         Text = "Sign In" 
+                        TextColor="Black"
                         FontAttributes="Italic"
                         FontSize="Medium"
-                        BackgroundColor="Gray"
+                        BackgroundColor="Gray" 
                         CornerRadius="45"
                         Padding="100,20,100,20"
                         HorizontalOptions="Center" 

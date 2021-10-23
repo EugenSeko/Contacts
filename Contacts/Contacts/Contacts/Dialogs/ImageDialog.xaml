@@ -10,8 +10,19 @@
     <Grid.GestureRecognizers>
         <TapGestureRecognizer Command="{Binding CloseCommand}"/>
     </Grid.GestureRecognizers>
-    
-    <Frame Grid.Row="0" BackgroundColor="Transparent"/>
-    <Image Grid.Row="1"  Source="{Binding ImageUrl}" HorizontalOptions="FillAndExpand" />
-    <Frame Grid.Row="2" BackgroundColor="Transparent"/>
+    <Frame Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Transparent"/>
+    <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="Transparent"/>
+    <Image Grid.Row="1" Grid.Column="1"  Source="{Binding ImageUrl}" HorizontalOptions="FillAndExpand" />
+    <Frame Grid.Row="1" Grid.Column="2" BackgroundColor="Transparent"/>
+    <Frame Grid.Row="2" Grid.Column="0" BackgroundColor="Transparent"/>
+    <Label Grid.Row="2" Grid.Column="1"
+               FontSize="Small"
+               Text="{Binding Description, StringFormat='Description:  {0}'}"
+               TextColor="Black"  
+               HorizontalOptions="Center" 
+               VerticalOptions="Start"
+               Opacity="0.6"
+               BackgroundColor="LightGray">
+    </Label>
+    <Frame Grid.Row="2" Grid.Column="2" BackgroundColor="Transparent"/>
 </Grid>

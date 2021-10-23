@@ -15,7 +15,7 @@ using Acr.UserDialogs;
 
 namespace Contacts.ViewModels
 {
-    class AddEditProfileViewModel : BaseViewModel, INavigationAware
+    class AddEditProfileViewModel : BaseViewModel
     {
         private readonly IProfileManager _profileManager;
         private readonly ISettingsManager _settingsManager;
@@ -29,9 +29,7 @@ namespace Contacts.ViewModels
             _id = Global.Id;
              Init(_id);
         }
-
         private int _id;
-
         #region --- Public Properties ---
         private ProfileModel _profile;
         public ProfileModel Profile
@@ -75,7 +73,6 @@ namespace Contacts.ViewModels
         #endregion
         #region --- Commands ---
         public ICommand OnSaveButton => new Command(Save,()=>false);
-        public ICommand OnPlusTapButton => new Command(GoToTestPage);
         public ICommand OnLArrowTapButton => new Command(GoToMainPage);
         public ICommand OnTapImage => new Command(ActionDialog);
         #endregion
@@ -155,16 +152,6 @@ namespace Contacts.ViewModels
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }
-        }
-        #endregion
-        #region --- Navigation ---
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-            _id = parameters.GetValue<int>("id");
-        }
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-
         }
         #endregion
     }

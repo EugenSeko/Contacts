@@ -27,7 +27,6 @@ namespace Contacts.ViewModels
             _authenticationService = authenticationService;
             _profileManager = profileManager;
             _dialogService = dialogservice;
-
           Init();
         }
         private async void Init()
@@ -78,13 +77,13 @@ namespace Contacts.ViewModels
                 {"description",SelectedItem.Description }
             });
             }
-            }
+        }
         #endregion
         #region --- Privat Helpers ---
         private void GoEdit(object profileObj)
         {
             Global.Id = (profileObj as ProfileViewModel).Id;
-            GoToAddEditProfilePage((profileObj as ProfileViewModel).Id);
+            GoToAddEditProfilePage();
         }
         private async void DeleteAsync(object profileObj) 
         {
@@ -96,9 +95,7 @@ namespace Contacts.ViewModels
                     OkText = "Delete",
                     CancelText = "Cancel"
                 };
-
                 var confirm = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
-
                 if (confirm)
                 {
                     ProfileList.Remove(profileObj as ProfileViewModel);
@@ -115,7 +112,7 @@ namespace Contacts.ViewModels
         private void AddNewProfile(object obj)
         {
             Global.Id = -1;
-            GoToAddEditProfilePage(-1); // внимание параметр id отрицательный
+            GoToAddEditProfilePage();
         }
         private void GoSettings(object obj)
         {

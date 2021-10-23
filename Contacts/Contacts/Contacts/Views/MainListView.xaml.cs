@@ -14,12 +14,12 @@ namespace Contacts.Views
             if (Converters.Global.ThemeStyle == "dark")
             {
                 this.Resources.Add(StyleSheet.FromResource
-                     ("Views/dark.css", IntrospectionExtensions.GetTypeInfo(typeof(TestPage)).Assembly));
+                     ("Views/dark.css", IntrospectionExtensions.GetTypeInfo(typeof(MainListView)).Assembly));
             }
             else
             {
                 this.Resources.Add(StyleSheet.FromResource
-                     ("Views/light.css", IntrospectionExtensions.GetTypeInfo(typeof(TestPage)).Assembly));
+                     ("Views/light.css", IntrospectionExtensions.GetTypeInfo(typeof(MainListView)).Assembly));
             }
         }
     }

@@ -86,6 +86,7 @@
             </Entry>
             <Editor Grid.Row="4" 
                 Placeholder="Description" 
+                MaxLength="120"
                 PlaceholderColor="Gray"
                 FontAttributes="Italic" 
                 Text="{Binding Description}"

@@ -57,7 +57,6 @@
                                 <ViewCell.View>
                                     <Grid ColumnDefinitions="0.22*,0.73*" 
                                           Padding="10"  >
-                                        
                                         <Grid Grid.Column="1"  Padding="20,0,0,0">
                                             <Label Grid.Row="0"
                                                    Text="{Binding NickName}" 
@@ -93,10 +92,8 @@
                 </ListView>
             </Grid>
             <ImageButton Source ="outline_add_circle_outline_white_48.png"
-                         StyleClass="imbutton"
-                         BackgroundColor="Transparent"
+                         BackgroundColor="Transparent" 
                          Command="{Binding OnAddButtonTap}"
-                         Opacity="1"
                          Scale="0.8"
                          CornerRadius="90"
                          Margin="0,0,15,15"

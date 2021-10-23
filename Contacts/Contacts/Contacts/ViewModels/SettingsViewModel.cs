@@ -26,7 +26,7 @@ namespace Contacts.ViewModels
             base.OnPropertyChanged(args);
             if (args.PropertyName == nameof(IsDarkToggled) && !(IsDarkToggled == true && Converters.Global.ThemeStyle == "dark" || IsDarkToggled == false && Converters.Global.ThemeStyle == "light"))
             {
-                Converters.Global.ThemeStyle = IsDarkToggled ? "dark" : "light";
+                Save();
                 GoToSettingsPage();
             }
         }

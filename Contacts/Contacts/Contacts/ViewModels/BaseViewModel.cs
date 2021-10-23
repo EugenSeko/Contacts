@@ -1,7 +1,7 @@
 ﻿using Contacts.Views;
 using Prism.Mvvm;
 using Prism.Navigation;
-
+using System.Collections.ObjectModel;
 
 namespace Contacts.ViewModels
 {
@@ -39,16 +39,11 @@ namespace Contacts.ViewModels
         {
             await _navigationService.NavigateAsync(nameof(SettingsView));
         }
-        public  async void GoToAddEditProfilePage(int id)
+        public  async void GoToAddEditProfilePage()
         {
-            var p = new NavigationParameters();
-            p.Add("id", id);
-            await _navigationService.NavigateAsync(nameof(AddEditProfileView),p);
+            await _navigationService.NavigateAsync(nameof(AddEditProfileView));
         }
-        public async void GoToTestPage()
-        {
-            await _navigationService.NavigateAsync(nameof(TestPage));
-        }
+        
 
 
         #endregion

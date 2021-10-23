@@ -25,7 +25,6 @@ namespace Contacts
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<SignInView, SignInViewModel>();
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
-            containerRegistry.RegisterForNavigation<TestPage, TestPageViewModel>();
             containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
             containerRegistry.RegisterForNavigation<SignUpView, SignUpViewModel>();
             containerRegistry.RegisterForNavigation<AddEditProfileView, AddEditProfileViewModel>();
@@ -35,17 +34,18 @@ namespace Contacts
         protected override void OnInitialized()
         {
             InitializeComponent();
-              NavigationService.NavigateAsync($"/{nameof(SettingsView)}");
-            //var settingsManager = Container.Resolve<ISettingsManager>();
-            //Converters.Global.ThemeStyle = settingsManager.ThemeStyle;
-            //if (settingsManager.UserName == null)
-            //{
-            //    NavigationService.NavigateAsync("/" + nameof(SignInView));
-            //}
-            //else
-            //{
-            //    NavigationService.NavigateAsync("/" + nameof(MainListView));
-            //}
+            //  NavigationService.NavigateAsync($"/{nameof(SettingsView)}");
+            var settingsManager = Container.Resolve<ISettingsManager>();
+            Converters.Global.ThemeStyle = settingsManager.ThemeStyle;
+
+            if (settingsManager.UserName == null)
+            {
+                NavigationService.NavigateAsync("/" + nameof(SignInView));
+            }
+            else
+            {
+                NavigationService.NavigateAsync("/" + nameof(MainListView));
+            }
         }
         protected override void OnStart()
         {
