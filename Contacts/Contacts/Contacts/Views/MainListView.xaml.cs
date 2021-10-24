@@ -21,12 +21,12 @@ namespace Contacts.Views
                 this.Resources.Add(StyleSheet.FromResource
                      ("Views/light.css", IntrospectionExtensions.GetTypeInfo(typeof(MainListView)).Assembly));
             }
+            
         }
         private void ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item != null)
             ((ListView)sender).SelectedItem = null;
-
         }
     }
 }
