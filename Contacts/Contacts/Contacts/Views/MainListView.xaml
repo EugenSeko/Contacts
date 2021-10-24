@@ -46,7 +46,8 @@
                      />
                 </Grid>
                 <ListView Grid.Row="1" 
-                  StyleClass="body"
+                  StyleClass="body" 
+                  x:Name="list"   
                   HasUnevenRows="True" 
                   ItemTapped="ItemTapped"
                   SelectedItem="{Binding SelectedItem}" 
@@ -68,14 +69,14 @@
                                         <Grid Grid.Column="1"  Padding="20,0,0,0">
                                             <Label Grid.Row="0" 
                                                    Text="{Binding NickName}" 
-                                                   FontAttributes="Italic"
+                                                   FontAttributes="Italic" 
                                                    FontSize="Small"/>
                                             <Label Grid.Row="1"
                                                    Text="{Binding Name}" 
                                                    FontFamily="fantasy" 
                                                    FontAttributes="Italic"
                                                    FontSize="Small"/>
-                                            <Label Grid.Row="2"
+                                            <Label Grid.Row="2" 
                                                    Text="{Binding CreationTime}" 
                                                    FontAttributes="Italic" />
                                         </Grid>
@@ -108,7 +109,6 @@
                          VerticalOptions="End"
                          HorizontalOptions="End"
                         />
-            <Label Text="Empty list" x:Name="emptylabel" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
         </Grid>
 
     </ContentPage.Content>
