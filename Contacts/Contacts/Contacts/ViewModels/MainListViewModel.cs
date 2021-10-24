@@ -3,14 +3,13 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Contacts.Services.Authentication;
 using Contacts.Services.Profiles;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Acr.UserDialogs;
 using System.Linq;
 using Contacts.Converters;
-using System;
 using Prism.Services.Dialogs;
 using System.ComponentModel;
+using Contacts.Resx;
 
 namespace Contacts.ViewModels
 {
@@ -68,7 +67,7 @@ namespace Contacts.ViewModels
         protected override void OnPropertyChanged(PropertyChangedEventArgs args)
         {
             base.OnPropertyChanged(args);
-            if (args.PropertyName == nameof(SelectedItem))
+            if (args.PropertyName == nameof(SelectedItem)&SelectedItem!=null)
             {
                 _dialogService.ShowDialog("ImageDialog", new DialogParameters
             {
@@ -91,9 +90,10 @@ namespace Contacts.ViewModels
             {
                 var confirmConfig = new ConfirmConfig()
                 {
-                    Message = "You really want to delete this profile?",
-                    OkText = "Delete",
-                    CancelText = "Cancel"
+                  //  Message = "You really want to delete this profile?",
+                  Message = AppResources.deletedial,
+                  OkText = AppResources.Delete,
+                  CancelText = AppResources.Cancel
                 };
                 var confirm = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
                 if (confirm)

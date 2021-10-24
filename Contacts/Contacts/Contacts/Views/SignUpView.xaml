@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Contacts.Controls"
-             x:Class="Contacts.Views.SignUpView">
+             x:Class="Contacts.Views.SignUpView" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:MultiTriggerConverter x:Key="dataHasBeenEntered" />
@@ -11,7 +12,7 @@
     <ContentPage.Content>
         <Grid RowDefinitions="0.7*,4*,4*" BackgroundColor="LightGray">
             <Grid Grid.Row="0" BackgroundColor="Gray">
-                <Label Text="SignUp"
+                <Label Text="{xct:Translate Signup}"
                                HorizontalTextAlignment="Center" 
                                VerticalOptions="Center"
                                FontAttributes="Italic"
@@ -30,18 +31,18 @@
             <StackLayout  Grid.Row="1"  Margin="40,120,40,0">
                 <Entry x:Name="loginEntry"
                                FontAttributes="Italic"
-                               Placeholder="Login" 
+                               Placeholder="{xct:Translate Login}" 
                                Margin="20,0,20,0"
                                Text="{Binding UserName}"/>
                 <Entry x:Name="passwordEntry" 
                                FontAttributes="Italic"
-                               Placeholder = "Password" 
+                               Placeholder = "{xct:Translate Password}" 
                                IsPassword ="True" 
                                Margin="20,0,20,0" 
                                Text="{Binding Password}"/>
                 <Entry x:Name="passwordConfirm"
                                FontAttributes="Italic"
-                               Placeholder = "Confirm Password" 
+                               Placeholder = "{xct:Translate Confirmpassword}" 
                                Text="{Binding ConfirmPass}"
                                IsPassword ="True"
                                Margin="20,0,20,0"  />
@@ -51,7 +52,7 @@
                                 Command="{Binding SignUpButtonTapCommand}"
                                 BackgroundColor="Gray" 
                                 TextColor="Black"
-                                Text = "Sign Up" 
+                                Text = "{xct:Translate SignupButt}" 
                                 FontSize="Medium"
                                 Padding="100,20,100,20" 
                                 CornerRadius="45"

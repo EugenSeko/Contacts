@@ -1,4 +1,5 @@
-﻿using Contacts.Services.Authentication;
+﻿using Contacts.Resx;
+using Contacts.Services.Authentication;
 using Contacts.Services.Profiles;
 using Contacts.Services.Repository;
 using Contacts.Services.Settings;
@@ -6,6 +7,7 @@ using Contacts.ViewModels;
 using Contacts.Views;
 using Prism.Ioc;
 using Prism.Unity;
+using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
 
 namespace Contacts
@@ -34,8 +36,9 @@ namespace Contacts
         protected override void OnInitialized()
         {
             InitializeComponent();
-            //  NavigationService.NavigateAsync($"/{nameof(SettingsView)}");
             var settingsManager = Container.Resolve<ISettingsManager>();
+            LocalizationResourceManager.Current.PropertyChanged += (_, _) => AppResources.Culture = LocalizationResourceManager.Current.CurrentCulture;
+            LocalizationResourceManager.Current.Init(AppResources.ResourceManager);
             Converters.Global.ThemeStyle = settingsManager.ThemeStyle;
 
             if (settingsManager.UserName == null)

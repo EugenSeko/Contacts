@@ -1,52 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Contacts.Views.SettingsView">
     
     
     <ContentPage.Content>
         <Grid RowDefinitions="0.07*,0.8*,0.1*">
-            <Grid Grid.Row="0"
+            <Grid Grid.Row="0" ColumnDefinitions="0.2*,0.8*"
                      StyleClass="header">
                 <ImageButton Grid.Column="0" Command="{Binding LeftArrowCommand}"
                          Source="outline_arrow_circle_left_white_48.png" 
                          BackgroundColor="Transparent"
                          HorizontalOptions="Start" 
-                         Margin="20,0,0,0"
-                         HeightRequest="0" 
-                         WidthRequest="30">
+                         Margin="10,0,0,0" 
+                         Scale="0.55" >
                 </ImageButton>
                 <Label Grid.Column="1"
-                   Text="Settings" 
+                   Text="{xct:Translate Settings}" 
                    FontSize="Title" 
                    TextColor="GhostWhite"
                    FontAttributes="Italic"
-                   HorizontalOptions="Center"
+                   HorizontalOptions="Start" Margin="0,0,80,0"
                    VerticalOptions="Center"/>
-                <Label Grid.Column="2" 
-                       IsVisible="false"
-                   Text="Settings" FontSize="Title"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
+               
             </Grid>
             <StackLayout Grid.Row="1" Padding="40" Spacing="10"
                      RadioButtonGroup.GroupName="sorting"
                      RadioButtonGroup.SelectedValue="{Binding SelectedSorting}"
                          Margin="10" >
-                <Label Text="Sort by:" StyleClass="radio" FontSize="Large"/>
-                <RadioButton Content="Name" Value="Name" IsChecked="{Binding IsNameChecked}"
+                <Label Text="{xct:Translate Sortby}" StyleClass="radio" FontSize="Large"/>
+                <RadioButton Content="{xct:Translate Name}" Value="Name" IsChecked="{Binding IsNameChecked}"
                              StyleClass="radio"
                              FontAttributes="Italic"
                              Opacity="0.7" 
                              Margin="50,0,0,0"
                              />
-                <RadioButton Content="Nickname" Value="NickName" IsChecked="{Binding IsNickNameChecked}"
+                <RadioButton Content="{xct:Translate Nickname}" Value="NickName" IsChecked="{Binding IsNickNameChecked}"
                              StyleClass="radio"
                              FontAttributes="Italic"
                              Opacity="0.7" 
                              Margin="50,0,0,0"
                              />
-                <RadioButton Content="Date" Value="CreationTime" IsChecked="{Binding IsCreationTimechecked}" 
+                <RadioButton Content="{xct:Translate Creationtime}" Value="CreationTime" IsChecked="{Binding IsCreationTimechecked}" 
                              StyleClass="radio"
                              FontAttributes="Italic"
                              Opacity="0.7" 
@@ -55,14 +51,14 @@
                 <StackLayout Spacing="10"
                        RadioButtonGroup.GroupName="descending" 
                        RadioButtonGroup.SelectedValue="{Binding SelectedDescending}">
-                    <Label Text="Range by:" StyleClass="radio" FontSize="Large" />
-                    <RadioButton Content="Ascending" Value="false" IsChecked="{Binding IsAscendChecked}"
+                    <Label Text="{xct:Translate Rangeby}" StyleClass="radio" FontSize="Large" />
+                    <RadioButton Content="{xct:Translate Ascending}" Value="false" IsChecked="{Binding IsAscendChecked}"
                              StyleClass="radio"
                              Opacity="0.7"
                              FontAttributes="Italic" 
                              Margin="50,0,0,0" 
                                  />
-                    <RadioButton Content="Descending" Value="true" IsChecked="{Binding IsDescendChecked}"
+                    <RadioButton Content="{xct:Translate Descending}" Value="true" IsChecked="{Binding IsDescendChecked}"
                              StyleClass="radio" 
                              FontAttributes="Italic"
                              Opacity="0.7" 
@@ -72,7 +68,7 @@
                 <StackLayout Grid.Row="2" 
                              Orientation="Horizontal"
                              Padding="0,30,0,0" Margin="0,0,0,0">
-                    <Label Text="Dark Theme" FontSize="Large"
+                    <Label Text="{xct:Translate Darktheme}" FontSize="Large"
                            StyleClass="radio" 
                            Opacity="0.7"
                            />
@@ -81,6 +77,13 @@
                             IsToggled="{Binding IsDarkToggled}"
                             ThumbColor="Gray" /> 
                 </StackLayout>
+                <Button Grid.Row="3" 
+                        BackgroundColor="Gray"
+                        CornerRadius="45"
+                        Margin="40" 
+                        TextColor="Black"
+                        Text="{xct:Translate ChangeLanguage}" 
+                        Command="{Binding ChangeLanguageCommand}" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>

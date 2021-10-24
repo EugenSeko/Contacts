@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Contacts.Controls"
-             x:Class="Contacts.Views.SignInView">
+             x:Class="Contacts.Views.SignInView" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
     
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -10,41 +11,38 @@
         </ResourceDictionary>
     </ContentPage.Resources>
  
-
     <ContentPage.Content>
         <Grid  RowDefinitions="0.08*,0.6*,0.3*" BackgroundColor="LightGray">
-
                 <Frame Grid.Row="0" 
                        BackgroundColor="Gray" 
                        Padding="12"  
                        CornerRadius="0">
-                    
-                    <Label Text="SignIn" 
+                <Label Text="{xct:Translate Signin}" 
                            HorizontalTextAlignment="Start" 
                            FontAttributes="Italic"
                            TextColor="White" 
                            FontSize="24"/>
                 </Frame>
-
-                <Grid  Grid.Row="1">
-                    
-                    <Entry Grid.Row="0" x:Name="loginEntry" 
+                <StackLayout Grid.Row="1">
+                    <Entry Grid.Row="0" 
+                           x:Name="loginEntry" 
                            Text="{Binding UserName}"
                            FontAttributes="Italic"
-                           Placeholder="Login"
-                           Margin="60,140,60,0" />
-                    <Entry Grid.Row="1" x:Name="passwordEntry" 
+                           Placeholder="{xct:Translate Login}"
+                           Margin="60,140,60,10" />
+                    <Entry Grid.Row="1" 
+                           x:Name="passwordEntry" 
                            Text="{Binding Password}" 
                            FontAttributes="Italic"
-                           Placeholder = "Password" 
+                           Placeholder = "{xct:Translate Password}" 
                            IsPassword ="True"
-                           Margin="60,0,60,140"  />
-                </Grid>
+                           Margin="60,0,60,150"  />
+                </StackLayout>
                 <StackLayout Grid.Row="2">
                     <Button
                         x:Name="signInButton"
                         Command="{Binding SignInButtonTapCommand}"
-                        Text = "Sign In" 
+                        Text = "{xct:Translate SigninButt}" 
                         TextColor="Black"
                         FontAttributes="Italic"
                         FontSize="Medium"
@@ -71,13 +69,12 @@
                             </MultiTrigger>
                         </Button.Triggers>
                     </Button>   
-                    
                     <Label HorizontalOptions="Center"
                            Padding="40"
                            FontSize="Medium">
                         <Label.FormattedText>
                             <FormattedString>
-                               <Span Text="SIGN UP" 
+                            <Span Text="{xct:Translate Signupref}" 
                                      FontAttributes="Italic"
                                      TextColor="Black" FontSize="Medium"
                                      TextDecorations="Underline">

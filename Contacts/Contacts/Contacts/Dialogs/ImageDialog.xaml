@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Grid xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Contacts.Dialogs.ImageDialog"   
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Contacts.Dialogs.ImageDialog"    
       >
     <Grid.RowDefinitions>
         <RowDefinition Height="*"/>
@@ -17,12 +18,13 @@
     <Frame Grid.Row="2" Grid.Column="0" BackgroundColor="Transparent"/>
     <Label Grid.Row="2" Grid.Column="1"
                FontSize="Small"
-               Text="{Binding Description, StringFormat='Description:  {0}'}"
-               TextColor="Black"  
+               Text="{Binding Description}"
+               TextColor="WhiteSmoke"  
                HorizontalOptions="Center" 
                VerticalOptions="Start"
+               Margin="10"
                Opacity="0.6"
-               BackgroundColor="LightGray">
+               BackgroundColor="Transparent">
     </Label>
     <Frame Grid.Row="2" Grid.Column="2" BackgroundColor="Transparent"/>
 </Grid>

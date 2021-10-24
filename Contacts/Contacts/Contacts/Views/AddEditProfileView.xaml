@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Contacts.Controls"
-             x:Class="Contacts.Views.AddEditProfileView">
+             x:Class="Contacts.Views.AddEditProfileView" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -26,9 +27,9 @@
                          >
                 </ImageButton>
                 <Label Grid.Column="1" 
-                   Text="Profile" 
+                   Text="{xct:Translate Profile}" 
                    FontSize="Title" 
-                   StyleClass="headertext"
+                   TextColor="White"
                    FontAttributes="Italic" 
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
@@ -69,7 +70,7 @@
             
         <Entry Grid.Row="2"
                x:Name="nickname"
-               Placeholder="NickName" 
+               Placeholder="{xct:Translate NickNameplch}" 
                PlaceholderColor="Gray"
                FontAttributes="Italic"
                Text="{Binding NickName}"
@@ -77,7 +78,7 @@
                VerticalOptions="End"  />
             <Entry Grid.Row="3"
                x:Name="name"
-               Placeholder="Name" 
+               Placeholder="{xct:Translate Nameplch}" 
                PlaceholderColor="Gray"
                FontAttributes="Italic"
                Text="{Binding Name }"
@@ -85,7 +86,7 @@
                VerticalOptions="End" >
             </Entry>
             <Editor Grid.Row="4" 
-                Placeholder="Description" 
+                Placeholder="{xct:Translate Description}" 
                 MaxLength="120"
                 PlaceholderColor="Gray"
                 FontAttributes="Italic" 

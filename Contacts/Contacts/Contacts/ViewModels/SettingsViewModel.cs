@@ -1,10 +1,16 @@
-﻿using Contacts.Services.Settings;
+﻿using Contacts.Resx;
+using Contacts.Services.Settings;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.Helpers;
+using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Contacts.ViewModels
@@ -17,6 +23,8 @@ namespace Contacts.ViewModels
         {
             _settingsManager = settingsManager;
             RadioButtonsInit();
+            CurrentLanguage = new(GetCurrentLanguageName);
+            ChangeLanguageCommand = new AsyncCommand(ChangeLanguage);
         }
         public ICommand OnSaveButton => new Command(Save);
         public ICommand LeftArrowCommand => new Command(ExitPage);
@@ -111,7 +119,7 @@ namespace Contacts.ViewModels
                     IsCreationTimechecked = true;
                     break;
             }
-            IsDarkToggled = Converters.Global.ThemeStyle == "dark" ? true : false;
+            IsDarkToggled = Converters.Global.ThemeStyle == "dark";
         }
         private void ExitPage()
         {
@@ -120,10 +128,40 @@ namespace Contacts.ViewModels
         }
         private void Save()
         {
-            _settingsManager.SortBy = SelectedSorting != null ? SelectedSorting : "CreationTime";
-            _settingsManager.Descending = SelectedDescending != null ? SelectedDescending : "true";
+            _settingsManager.SortBy = SelectedSorting ?? "CreationTime";
+            _settingsManager.Descending = SelectedDescending ??  "true";
             _settingsManager.ThemeStyle = IsDarkToggled ? "dark" : "light";
             Converters.Global.ThemeStyle = IsDarkToggled ? "dark" : "light";
+        }
+        #endregion
+        #region --- Localization ---
+        List<(Func<string> name, string value)> languageMapping { get; } = new()
+        {
+            (() => AppResources.System, null),
+            (() => AppResources.English, "en"),
+            (() => AppResources.Ukrainian, "uk"),
+            (() => AppResources.Russian, "ru"),
+        };
+        public LocalizedString CurrentLanguage { get; }
+        public LocalizedString Version { get; } = new(() => string.Format(AppResources.Version, AppInfo.VersionString));
+        public ICommand ChangeLanguageCommand { get; }
+        private string GetCurrentLanguageName()
+        {
+            var (knownName, _) = languageMapping.SingleOrDefault(m => m.value == LocalizationResourceManager.Current.CurrentCulture.TwoLetterISOLanguageName);
+            return knownName != null ? knownName() : LocalizationResourceManager.Current.CurrentCulture.DisplayName;
+        }
+        private async Task ChangeLanguage()
+        {
+            string selectedName = await Application.Current.MainPage.DisplayActionSheet(
+                AppResources.ChangeLanguage,
+                null, null,
+                languageMapping.Select(m => m.name()).ToArray());
+            if (selectedName == null)
+            {
+                return;
+            }
+            string selectedValue = languageMapping.Single(m => m.name() == selectedName).value;
+            LocalizationResourceManager.Current.CurrentCulture = selectedValue == null ? CultureInfo.CurrentCulture : new CultureInfo(selectedValue);
         }
         #endregion
     }

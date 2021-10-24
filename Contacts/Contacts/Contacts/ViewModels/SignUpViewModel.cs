@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Contacts.Resx;
 using Contacts.Services.Authentication;
 using Prism.Navigation;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Contacts.ViewModels
 {
     class SignUpViewModel : BaseViewModel
     {
-        private  IAuthenticationService _authenticationService;
+        private readonly  IAuthenticationService _authenticationService;
         public SignUpViewModel(INavigationService navigationService, 
                                IAuthenticationService authenticationService) : base(navigationService)
         {
@@ -48,35 +49,35 @@ namespace Contacts.ViewModels
             };
             confirmConfig.Message = null;
 
-            if(_password==null || _userName == null)
-                confirmConfig.Message = "Password and login fields should not be empty";
+            if (_password == null || _userName == null)
+                confirmConfig.Message = AppResources.emptyLogin;
             if (_confirmpass != _password)
-                confirmConfig.Message = "Password is not equal to password confirmation";
+                confirmConfig.Message = AppResources.badconfirm;
 
             var m = new Regex(@"^\d{1}").Matches(_userName);
             if (m.Count > 0)
-                confirmConfig.Message = "login must not start with a number";
+                confirmConfig.Message = AppResources.loginstartwnum;
             else
-            if (_userName.Length<4 || _userName.Length > 16)
-                confirmConfig.Message = "login must be at least 4 characters and no more than 16 characters";
-            
+            if (_userName.Length < 4 || _userName.Length > 16)
+                confirmConfig.Message = AppResources.badloginlength;
+
             if (_password.Length < 8 || _password.Length > 16)
-                confirmConfig.Message = "Password must be at least 8 characters and no more than 16 characters";
+                confirmConfig.Message = AppResources.badpasslength;
             else
             if (!_password.Any(char.IsLetter))
-                confirmConfig.Message = "Password must contain letters";
-            else 
+                confirmConfig.Message = AppResources.numpass;
+            else
             if (!_password.Any(char.IsDigit))
-                confirmConfig.Message = "Password must contain numbers";
-            else 
+                confirmConfig.Message = AppResources.letterpass;
+            else
             if (!_password.Any(char.IsLower))
-                confirmConfig.Message = "Password must contain lowercase";
-            else 
+                confirmConfig.Message = AppResources.loverless;
+            else
             if (!_password.Any(char.IsUpper))
-                confirmConfig.Message = "Password must contain uppercase";
+                confirmConfig.Message = AppResources.upperless;
 
-            if (confirmConfig.Message==null & !await _authenticationService.RegistrationAsync(UserName, Password))
-                confirmConfig.Message = "This login is already taken";
+            if (confirmConfig.Message == null & !await _authenticationService.RegistrationAsync(UserName, Password))
+                confirmConfig.Message = AppResources.takenlogin;
 
             if (confirmConfig.Message == null)
             {
