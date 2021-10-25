@@ -127,7 +127,7 @@
   <data name="badconfirm" xml:space="preserve">
     <value>Пароли не совпадают</value>
   </data>
-  <data name="badloginlenght" xml:space="preserve">
+  <data name="badloginlength" xml:space="preserve">
     <value>Логин не должен быть больше 16 символов и меньше 4</value>
   </data>
   <data name="badpasslength" xml:space="preserve">

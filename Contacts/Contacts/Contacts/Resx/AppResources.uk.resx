@@ -149,7 +149,7 @@
   <data name="badconfirm" xml:space="preserve">
     <value>Паролі не співпадають</value>
   </data>
-  <data name="badloginlenght" xml:space="preserve">
+  <data name="badloginlength" xml:space="preserve">
     <value>Логін не може мати більше ніж 16 символів або меньше 4-х</value>
   </data>
   <data name="badpasslength" xml:space="preserve">
