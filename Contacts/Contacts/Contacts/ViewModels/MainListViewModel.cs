@@ -3,11 +3,13 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Contacts.Services.Authentication;
 using Contacts.Services.Profiles;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Acr.UserDialogs;
 using System.Linq;
 using Contacts.Converters;
+using Prism.Services.Dialogs;
+using System.ComponentModel;
+using Contacts.Resx;
 
 namespace Contacts.ViewModels
 {
@@ -15,15 +17,17 @@ namespace Contacts.ViewModels
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IProfileManager _profileManager;
+        private IDialogService _dialogService { get; }
         public MainListViewModel(INavigationService navigationService,
                                  IAuthenticationService authenticationService,
-                                 IProfileManager profileManager) : base(navigationService)
+                                 IProfileManager profileManager, 
+                                 IDialogService dialogservice) : base(navigationService)
         {
             _authenticationService = authenticationService;
             _profileManager = profileManager;
-              Init();
+            _dialogService = dialogservice;
+          Init();
         }
-        
         private async void Init()
         {
             var profiles = await _profileManager.GetAllProfilesAsync();
@@ -45,18 +49,40 @@ namespace Contacts.ViewModels
             get => _profileList;
             set => SetProperty(ref _profileList, value);
         }
+        private ProfileViewModel _selecteditem;
+        public ProfileViewModel SelectedItem
+        {
+            get => _selecteditem;
+            set => SetProperty(ref _selecteditem, value);
+        }
+        
+
         #endregion
         #region --- Commands ---
         public ICommand OnLogautButtonTap => new Command(ExitAuthorisation);
         public ICommand OnSettingsButtonTap => new Command(GoSettings);
         public ICommand OnAddButtonTap => new Command(AddNewProfile);
         #endregion
-
+        #region ---Overrides ---
+        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
+        {
+            base.OnPropertyChanged(args);
+            if (args.PropertyName == nameof(SelectedItem)&SelectedItem!=null)
+            {
+                _dialogService.ShowDialog("ImageDialog", new DialogParameters
+            {
+                {"name",SelectedItem.Name},
+                { "imageurl",SelectedItem.ImageUrl},
+                {"description",SelectedItem.Description }
+            });
+            }
+        }
+        #endregion
         #region --- Privat Helpers ---
         private void GoEdit(object profileObj)
         {
             Global.Id = (profileObj as ProfileViewModel).Id;
-            GoToAddEditProfilePage((profileObj as ProfileViewModel).Id);
+            GoToAddEditProfilePage();
         }
         private async void DeleteAsync(object profileObj) 
         {
@@ -64,13 +90,12 @@ namespace Contacts.ViewModels
             {
                 var confirmConfig = new ConfirmConfig()
                 {
-                    Message = "You really want to delete this profile?",
-                    OkText = "Delete",
-                    CancelText = "Cancel"
+                  //  Message = "You really want to delete this profile?",
+                  Message = AppResources.deletedial,
+                  OkText = AppResources.Delete,
+                  CancelText = AppResources.Cancel
                 };
-
                 var confirm = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
-
                 if (confirm)
                 {
                     ProfileList.Remove(profileObj as ProfileViewModel);
@@ -87,7 +112,7 @@ namespace Contacts.ViewModels
         private void AddNewProfile(object obj)
         {
             Global.Id = -1;
-            GoToAddEditProfilePage(-1); // внимание параметр id отрицательный
+            GoToAddEditProfilePage();
         }
         private void GoSettings(object obj)
         {

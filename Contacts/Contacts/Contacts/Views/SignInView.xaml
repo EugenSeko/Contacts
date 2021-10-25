@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Contacts.Controls"
-             x:Class="Contacts.Views.SignInView">
+             x:Class="Contacts.Views.SignInView" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
     
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -10,38 +11,45 @@
         </ResourceDictionary>
     </ContentPage.Resources>
  
-
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Spacing="125">
-
-                <Frame BackgroundColor="#2196F3" Padding="12"  CornerRadius="0">
-                    
-                    <Label Text="  User SignIn" HorizontalTextAlignment="Start" TextColor="White" FontSize="24"/>
+        <Grid  RowDefinitions="0.08*,0.6*,0.3*" BackgroundColor="LightGray">
+                <Frame Grid.Row="0" 
+                       BackgroundColor="Gray" 
+                       Padding="12"  
+                       CornerRadius="0">
+                <Label Text="{xct:Translate Signin}" 
+                           HorizontalTextAlignment="Start" 
+                           FontAttributes="Italic"
+                           TextColor="White" 
+                           FontSize="24"/>
                 </Frame>
-
-                <StackLayout  Spacing="12" Padding="20,10,20,10" >
-                    
-                    <Entry x:Name="loginEntry"
+                <StackLayout Grid.Row="1">
+                    <Entry Grid.Row="0" 
+                           x:Name="loginEntry" 
                            Text="{Binding UserName}"
-                           Placeholder="Login"
-                           Margin="20" />
-                    <Entry x:Name="passwordEntry" 
-                           Text="{Binding Password}"
-                           Placeholder = "Password" 
-                           IsPassword ="True" 
-                           Margin="20"  />
+                           FontAttributes="Italic"
+                           Placeholder="{xct:Translate Login}"
+                           Margin="60,140,60,10" />
+                    <Entry Grid.Row="1" 
+                           x:Name="passwordEntry" 
+                           Text="{Binding Password}" 
+                           FontAttributes="Italic"
+                           Placeholder = "{xct:Translate Password}" 
+                           IsPassword ="True"
+                           Margin="60,0,60,150"  />
                 </StackLayout>
-                <StackLayout>
+                <StackLayout Grid.Row="2">
                     <Button
                         x:Name="signInButton"
                         Command="{Binding SignInButtonTapCommand}"
-                        Text = "Sign In" 
+                        Text = "{xct:Translate SigninButt}" 
+                        TextColor="Black"
+                        FontAttributes="Italic"
                         FontSize="Medium"
-                        Padding="120,20,120,20"
-                        Margin="32"
+                        BackgroundColor="Gray" 
+                        CornerRadius="45"
+                        Padding="100,20,100,20"
                         HorizontalOptions="Center" 
-                        VerticalOptions="CenterAndExpand"
                         IsEnabled="False"
                         >
                         <Button.Triggers>
@@ -61,15 +69,15 @@
                             </MultiTrigger>
                         </Button.Triggers>
                     </Button>   
-                    
                     <Label HorizontalOptions="Center"
-                           VerticalOptions="CenterAndExpand"
+                           Padding="40"
                            FontSize="Medium">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="SIGN Up"
-                                 TextColor="Blue"
-                                 TextDecorations="Underline">
+                            <Span Text="{xct:Translate Signupref}" 
+                                     FontAttributes="Italic"
+                                     TextColor="Black" FontSize="Medium"
+                                     TextDecorations="Underline">
                                     <Span.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding SignUpButtonTapCommand}"
                                           />
@@ -79,7 +87,6 @@
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
-            </StackLayout>
-        </ScrollView>
+            </Grid>
     </ContentPage.Content>
 </ContentPage>

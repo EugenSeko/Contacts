@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Contacts.Controls"
-             x:Class="Contacts.Views.AddEditProfileView">
+             x:Class="Contacts.Views.AddEditProfileView" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -11,34 +12,37 @@
     </ContentPage.Resources>
 
 
-    <ContentPage.Content> <!--внимание. при повороте страницы все ломается-->
-        <Grid RowDefinitions="0.05*,0.3*,0.09*,0.09*,0.32*" 
+    <ContentPage.Content> 
+        <Grid RowDefinitions="0.06*,0.3*,0.09*,0.09*,0.32*"
           RowSpacing="10">
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>-->
             <Grid Grid.Row="0"
-                     BackgroundColor="#2196F3">
-            <ImageButton Grid.Column="0" 
-                         Source="arrowL.png" 
+                     StyleClass="header">
+                <ImageButton Grid.Column="0" 
+                         Source="outline_arrow_circle_left_white_48.png" 
                          Command="{Binding OnLArrowTapButton}"
-                         BackgroundColor="Transparent"
-                         HorizontalOptions="Start" Margin="20,0,0,0"
-                         HeightRequest="40" 
-                         WidthRequest="25">
-                    
+                         BackgroundColor="Transparent" 
+                         Opacity="0.8"
+                         HorizontalOptions="Start"
+                         Margin="10,0,0,0"
+                         Scale="0.68"
+                         >
                 </ImageButton>
-            <Label Grid.Column="1" 
-                   Text="Add profile" FontSize="Title"
+                <Label Grid.Column="1" 
+                   Text="{xct:Translate Profile}" 
+                   FontSize="Title" 
+                    Opacity="0.8"
+                   TextColor="White"
+                   FontAttributes="Italic" 
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
                 <ImageButton Grid.Column="2" 
-                         Source="saveW1.png"
+                         Source="outline_save_white_48.png"
+                         IsEnabled="False"
                          Command="{Binding OnSaveButton}"
-                         BackgroundColor="Transparent"
-                         HeightRequest="40"
-                         WidthRequest="30" 
-                         Margin="0,0,25,0"
+                         BackgroundColor="Transparent" 
+                         Opacity="0.8"
+                         Scale="0.68"
+                         Margin="0,0,12,0"
                          HorizontalOptions="End">
                     <ImageButton.Triggers>
                         <DataTrigger TargetType="ImageButton"
@@ -46,42 +50,50 @@
                                        Path=Text.Length,
                                        Converter={StaticResource dataHasBeenEntered}}"
                      Value="true">
-                            <Setter Property="Source" Value="SaveB" />
+                            <Setter Property="IsEnabled" Value="True" />
                         </DataTrigger>
                         <DataTrigger TargetType="ImageButton"
                      Binding="{Binding Source={x:Reference name},
                                        Path=Text.Length,
                                        Converter={StaticResource dataHasBeenEntered}}"
                      Value="true">
-                            <Setter Property="Source" Value="SaveB" />
+                            <Setter Property="IsEnabled" Value="True" />
                         </DataTrigger>
                     </ImageButton.Triggers>
                 </ImageButton>
             </Grid>
             <Image Grid.Row="1"
                Source = "{Binding ImageUrl}"
-               BackgroundColor="Transparent"
+               BackgroundColor="Transparent" 
                >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OnTapImage}"/>
                 </Image.GestureRecognizers>
-            </Image>
+            </Image>  
+            
         <Entry Grid.Row="2"
                x:Name="nickname"
-               Placeholder="NickName"
+               Placeholder="{xct:Translate NickNameplch}" 
+               PlaceholderColor="Gray"
+               FontAttributes="Italic"
                Text="{Binding NickName}"
                 Margin="40,10,40,10"
                VerticalOptions="End"  />
-        <Entry Grid.Row="3"
+            <Entry Grid.Row="3"
                x:Name="name"
-               Placeholder="Name" 
+               Placeholder="{xct:Translate Nameplch}" 
+               PlaceholderColor="Gray"
+               FontAttributes="Italic"
                Text="{Binding Name }"
                 Margin="40,10,40,10"
-               VerticalOptions="End" />
-        <Editor Grid.Row="4" 
-                Placeholder="Description"
+               VerticalOptions="End" >
+            </Entry>
+            <Editor Grid.Row="4" 
+                Placeholder="{xct:Translate Description}" 
+                MaxLength="120"
+                PlaceholderColor="Gray"
+                FontAttributes="Italic" 
                 Text="{Binding Description}"
-                BackgroundColor="Gray"
                 Margin="40,30,40,30"
                  />
 

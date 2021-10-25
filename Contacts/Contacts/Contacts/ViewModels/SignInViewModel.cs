@@ -1,11 +1,7 @@
 ﻿using Acr.UserDialogs;
+using Contacts.Resx;
 using Contacts.Services.Authentication;
-using Contacts.Services.Settings;
-using Contacts.Views;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -13,27 +9,16 @@ namespace Contacts.ViewModels
 {
     class SignInViewModel : BaseViewModel
     {
-
-        private IAuthenticationService _authenticationService;
-
-        private ISettingsManager _settingsManager;
-
-
+        private readonly IAuthenticationService _authenticationService;
         public SignInViewModel(INavigationService navigationService,
-            IAuthenticationService authenticationService,
-            ISettingsManager settingsManager) : base(navigationService)
+            IAuthenticationService authenticationService) : base(navigationService)
         {
             _authenticationService = authenticationService;
-            _settingsManager = settingsManager;
             _userName = Converters.Global.Login;
         }
-
-        public ICommand SignInButtonTapCommand => new Command(TryAuthorisation);
-
-        private async void TryAuthorisation(object obj)
+        public ICommand SignInButtonTapCommand => new Command(TryAuthorisation, () => false);
+        private async void TryAuthorisation()
         {
-            if (UserName == null || UserName == "" || Password == null || Password == "") return;
-
             string done = await  _authenticationService.AuthorisatonAsync(_userName, _password);
             var confirmConfig = new ConfirmConfig()
             {
@@ -46,21 +31,19 @@ namespace Contacts.ViewModels
             }else
             if(done == "login_missing")
             {
-                confirmConfig.Message = "No such login";
+                confirmConfig.Message = AppResources.nologin;
                 await UserDialogs.Instance.ConfirmAsync(confirmConfig);
                 UserName = "";
                 return;
             }else
             if(done== "pass_missing")
             {
-                confirmConfig.Message = "Wrong password";
+                confirmConfig.Message = AppResources.wrongpass;
                 await UserDialogs.Instance.ConfirmAsync(confirmConfig);
                 Password = "";
                 return;
             }
         }
-
-
         #region --- Public Properties ---
 
         private string _userName;
@@ -77,9 +60,6 @@ namespace Contacts.ViewModels
             set => SetProperty(ref _password, value);
         }
         #endregion
-
-
-
         #region --- Navigation ---
         public ICommand SignUpButtonTapCommand =>
             new Command(GoToSignUpPage);

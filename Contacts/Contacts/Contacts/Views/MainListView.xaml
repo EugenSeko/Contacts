@@ -1,72 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Contacts.Views.MainListView">
+             x:Class="Contacts.Views.MainListView"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+
     <ContentPage.Content>
-        <Grid>
+        
+        <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid RowDefinitions="56, *"
                   >
-                <Grid Grid.Row="0" BackgroundColor="#2196F3"
-                       ColumnDefinitions="0.7*,0.3*,0.3*"
-                      ColumnSpacing="0"
+                <Grid Grid.Row="0" StyleClass="header"
+                       ColumnDefinitions="0.76*,0.12*,0.12*"
                          >
-                    <Label Text="Main List" 
-                    BackgroundColor="Transparent"
+                <Label Text="{xct:Translate Contacts}" 
+                    FontAttributes="Italic" 
+                    TextColor="White" 
+                    Opacity="0.8"
                     FontSize="Title"
                     Margin="16,0,0,0"
                     Grid.Column="0"
                     VerticalOptions="Center"
                     />
-                    <ImageButton Source ="exitB.png"
-                     BackgroundColor="Transparent"
-                     Margin="0,0,0,0"  
-                     Padding="0,0,0,0"            
-                     Grid.Column="1"
-                     VerticalOptions="Center"
-                     HeightRequest="35"
+                    <ImageButton Source ="outline_exit_to_app_white_48.png"
+                     Margin="0,0,10,0"  
+                     Grid.Column="1" 
+                     BackgroundColor="Transparent" 
+                     Opacity="0.8"
+                     VerticalOptions="Center" 
+                     HorizontalOptions="End"
+                     Scale="0.8"
                      Command="{Binding OnLogautButtonTap}"            
                      />
-                    <ImageButton Source ="settings.png"
+                    <ImageButton Grid.Column="2"
+                     Source ="outline_settings_white_48.png"
+                     CornerRadius="90" 
+                     Opacity="0.85"
                      BackgroundColor="Transparent"
-                     Margin="0,0,0,0"
-                     Padding="0,0,0,0"           
-                     Grid.Column="2"
-                     VerticalOptions="Center"
-                     HeightRequest="35"
+                     Margin="0,0,10,0"
+                     VerticalOptions="Center" HorizontalOptions="End"
+                     Scale="0.8"
                      Command="{Binding OnSettingsButtonTap}"          
                      />
                 </Grid>
-                <ListView Grid.Row="1"
-                  HasUnevenRows="True"
+                <ListView Grid.Row="1" 
+                  StyleClass="body" 
+                  x:Name="list"   
+                  HasUnevenRows="True" 
+                  ItemTapped="ItemTapped"
+                  SelectedItem="{Binding SelectedItem}" 
                   ItemsSource="{Binding ProfileList}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <ViewCell.ContextActions >
-                                    <MenuItem Text="edit"
-                                              Command= "{Binding EditCommand}"
-                                              CommandParameter="{Binding}"/> 
-                                    <MenuItem Text="delete"
+                            <ViewCell >
+                                <ViewCell.ContextActions>
+                                <MenuItem Text="{xct:Translate Edit}"
+                                              Command="{Binding EditCommand}"
+                                              CommandParameter="{Binding}"/>
+                                    <MenuItem Text="{xct:Translate Delete}"
                                               Command="{Binding DeleteCommand }"
                                               CommandParameter="{Binding}" />
                                 </ViewCell.ContextActions>
-                                <ViewCell.View>
-                                    <Grid ColumnDefinitions="0.3*,0.7*"  >
-                                        <StackLayout Grid.Column="1">
-                                            <Label Text="{Binding Id}"/>
-                                            <Label Text="{Binding NickName}"/>
-                                            <Label Text="{Binding Name}"/>
-                                            <Label Text="{Binding Description}"/>
-                                            <Label Text="{Binding CreationTime}"/>
-                                        </StackLayout>
-                                        <Frame Grid.Column="0" >
+                                <ViewCell.View >
+                                    <Grid ColumnDefinitions="0.22*,0.73*" 
+                                          Padding="10"  >
+                                        <Grid Grid.Column="1"  Padding="20,0,0,0">
+                                            <Label Grid.Row="0" 
+                                                   Text="{Binding NickName}" 
+                                                   FontAttributes="Italic" 
+                                                   FontSize="Small"/>
+                                            <Label Grid.Row="1"
+                                                   Text="{Binding Name}" 
+                                                   FontFamily="fantasy" 
+                                                   FontAttributes="Italic"
+                                                   FontSize="Small"/>
+                                            <Label Grid.Row="2" 
+                                                   Text="{Binding CreationTime}" 
+                                                   FontAttributes="Italic" />
+                                        </Grid>
+                                        <RelativeLayout>
+                                        <Frame Grid.Column="0" Padding="0,0,0,0" Margin="12,0,0,0"
+                                               HeightRequest="65"
+                                               WidthRequest="65"
+                                               HasShadow="True" 
+                                               CornerRadius="90" 
+                                               BackgroundColor="AliceBlue" >
                                             <Image Source="{Binding ImageUrl}"
-                                                   Aspect="AspectFit"
-                                                   HeightRequest="90"/>
+                                                   Aspect="AspectFill"
+                                                   >
+                                            </Image>
                                         </Frame>
+                                        </RelativeLayout>
                                     </Grid>
                                 </ViewCell.View>
                             </ViewCell>
@@ -74,16 +100,16 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-            <ImageButton Source ="plus.png"
+            <ImageButton Source ="outline_add_circle_outline_white_48.png"
+                         BackgroundColor="Transparent" 
                          Command="{Binding OnAddButtonTap}"
-                         BackgroundColor="#2196F3" 
-                         CornerRadius="60"
-                         WidthRequest="70" 
-                         HeightRequest="70"
-                         Margin="0,0,30,42"
+                         Scale="0.8"
+                         CornerRadius="90"
+                         Margin="0,0,15,15"
                          VerticalOptions="End"
                          HorizontalOptions="End"
                         />
         </Grid>
+
     </ContentPage.Content>
 </ContentPage>

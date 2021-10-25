@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppDescription" xml:space="preserve">
+    <value>This app demonstrates how to change language at runtime using Xamarin.CommunityToolkit</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Ukrainian" xml:space="preserve">
+    <value>Ukrainian</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version: {0}</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>Change language</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome to Xamarin.Forms!</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Sortby" xml:space="preserve">
+    <value>Sort by:</value>
+    <comment>settings</comment>
+  </data>
+  <data name="Ascending" xml:space="preserve">
+    <value>Ascending</value>
+    <comment>settings</comment>
+  </data>
+  <data name="badconfirm" xml:space="preserve">
+    <value>Password is not equal to password confirmation</value>
+  </data>
+  <data name="badloginlength" xml:space="preserve">
+    <value>login must have at least 4 characters and no more than 16 characters</value>
+  </data>
+  <data name="badpasslength" xml:space="preserve">
+    <value>Password must have at least 8 characters and no more than 16 characters</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Confirmpassword" xml:space="preserve">
+    <value>Confirm Password</value>
+    <comment>plch</comment>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Contacts</value>
+    <comment>main</comment>
+  </data>
+  <data name="Creationtime" xml:space="preserve">
+    <value>Creation time</value>
+    <comment>settings</comment>
+  </data>
+  <data name="Darktheme" xml:space="preserve">
+    <value>Dark Theme</value>
+    <comment>settings</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>main</comment>
+  </data>
+  <data name="deletedial" xml:space="preserve">
+    <value>Do you really want to delete this profile?</value>
+    <comment>dlg</comment>
+  </data>
+  <data name="Descending" xml:space="preserve">
+    <value>Descending</value>
+    <comment>settings</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>plch</comment>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>main</comment>
+  </data>
+  <data name="emptyLogin" xml:space="preserve">
+    <value>Password and login fields should not be empty</value>
+  </data>
+  <data name="letterpass" xml:space="preserve">
+    <value>Password must contain numbers</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+    <comment>plch</comment>
+  </data>
+  <data name="loginstartwnum" xml:space="preserve">
+    <value>login must not start with a number</value>
+  </data>
+  <data name="loverless" xml:space="preserve">
+    <value>Password must contain lowercase</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>settings</comment>
+  </data>
+  <data name="Nameplch" xml:space="preserve">
+    <value>Name</value>
+    <comment>plch</comment>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>Nickname</value>
+    <comment>settings</comment>
+  </data>
+  <data name="NickNameplch" xml:space="preserve">
+    <value>Nickname</value>
+    <comment>plch</comment>
+  </data>
+  <data name="nologin" xml:space="preserve">
+    <value>This login doesn't exist</value>
+  </data>
+  <data name="numpass" xml:space="preserve">
+    <value>Password must contain letters</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+    <comment>plch</comment>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+    <comment>addpage</comment>
+  </data>
+  <data name="Rangeby" xml:space="preserve">
+    <value>Range by:</value>
+    <comment>settings</comment>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>Russian</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+    <comment>settings</comment>
+  </data>
+  <data name="Signin" xml:space="preserve">
+    <value>SignIn</value>
+    <comment>signinPage</comment>
+  </data>
+  <data name="SigninButt" xml:space="preserve">
+    <value>Sign In</value>
+    <comment>signinPage</comment>
+  </data>
+  <data name="Signup" xml:space="preserve">
+    <value>Sign Up</value>
+    <comment>signupPage</comment>
+  </data>
+  <data name="SignupButt" xml:space="preserve">
+    <value>Sign Up</value>
+    <comment>signupPage</comment>
+  </data>
+  <data name="Signupref" xml:space="preserve">
+    <value>SIGN UP</value>
+    <comment>signinPage</comment>
+  </data>
+  <data name="takenlogin" xml:space="preserve">
+    <value>This login is already taken</value>
+  </data>
+  <data name="upperless" xml:space="preserve">
+    <value>Password must contain uppercase</value>
+  </data>
+  <data name="wrongpass" xml:space="preserve">
+    <value>Wrong password</value>
+  </data>
+</root>

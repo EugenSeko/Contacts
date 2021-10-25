@@ -1,11 +1,7 @@
 ﻿using Contacts.Models;
 using Contacts.Services.Repository;
 using Contacts.Services.Settings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 
 namespace Contacts.Services.Authentication
 {
@@ -18,13 +14,10 @@ namespace Contacts.Services.Authentication
             _settingsManager = settingsManager;
             _repository = repository;
         }
-
         public async Task<bool> RegistrationAsync(string username, string password)
         {
             bool isDone = true;
-
             var list = await _repository.GetAllAsync<UserModel>();
-
             foreach (var um in list)
             {
                 if (um.UserName == username) 
@@ -42,36 +35,46 @@ namespace Contacts.Services.Authentication
                  await _repository.InsertAsync(user); // добавляем в базу
             }
             return await Task.Run(() => isDone);
-            
         }
-
         public async Task<string> AuthorisatonAsync(string username, string password)
         {
             string done = "login_missing";
-
             var list = await _repository.GetAllAsync<UserModel>();
-
             foreach (var um in list)
             {
                 if (um.UserName == username)
                 {
                     done = "pass_missing";
-
                     if(um.Password == password)
                     {
-                        done = "done";
-
-                        _settingsManager.UserName = username; // Сохраняем в настройки
+                        done = "done";   
+                        _settingsManager.UserName = username;
+                        _settingsManager.SortBy = um.Sortby;
+                        _settingsManager.Descending = um.Descending;
+                        _settingsManager.ThemeStyle = um.ThemeStyle;
+                        Converters.Global.ThemeStyle = um.ThemeStyle;
                     }
                 }
             }
-
             return await Task.Run(() => done);
         }
-
-        public void ExitAuthorisation()
+        public async void ExitAuthorisation()
         {
-            _settingsManager.UserName = null;            
+            var list = await _repository.GetAllAsync<UserModel>();
+            foreach (var um in list) 
+            {
+                if (um.UserName == _settingsManager.UserName)
+                {
+                    um.Sortby = _settingsManager.SortBy;
+                    um.Descending = _settingsManager.Descending;
+                    um.ThemeStyle = _settingsManager.ThemeStyle;
+                    await _repository.UpdateAsync(um);
+                }
+            }
+            _settingsManager.UserName = null;
+            _settingsManager.Descending = "true";
+            _settingsManager.SortBy = "CreationTime";
+            _settingsManager.ThemeStyle = "light";
         }
     }
 }

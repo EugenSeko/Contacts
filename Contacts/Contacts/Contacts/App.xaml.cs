@@ -1,52 +1,45 @@
-﻿using Contacts.Services.Authentication;
+﻿using Contacts.Resx;
+using Contacts.Services.Authentication;
 using Contacts.Services.Profiles;
 using Contacts.Services.Repository;
 using Contacts.Services.Settings;
 using Contacts.ViewModels;
 using Contacts.Views;
 using Prism.Ioc;
-using Prism.Navigation;
 using Prism.Unity;
-using System;
+using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Contacts
 {
     public partial class App : PrismApplication
     {
-        public App()
-        {
-           
-        }
+        public App() { }
         #region ---Overrides---
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
             //Services
             containerRegistry.RegisterInstance<IRepository>(Container.Resolve<Repository>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());
             containerRegistry.RegisterInstance<IAuthenticationService>(Container.Resolve<AuthenticationService>());
             containerRegistry.RegisterInstance<IProfileManager>(Container.Resolve<ProfileManager>());
-
             // Navigation
-
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<SignInView, SignInViewModel>();
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
-            containerRegistry.RegisterForNavigation<TestPage, TestPageViewModel>();
             containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
             containerRegistry.RegisterForNavigation<SignUpView, SignUpViewModel>();
             containerRegistry.RegisterForNavigation<AddEditProfileView, AddEditProfileViewModel>();
+            //Dialogs
+            containerRegistry.RegisterDialog<Dialogs.ImageDialog, Dialogs.ImageDialogViewModel>();
         }
-
         protected override void OnInitialized()
         {
             InitializeComponent();
-            // NavigationService.NavigateAsync($"/{nameof(AddEditProfileView)}");
-            // NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(MainListView)}");
-
             var settingsManager = Container.Resolve<ISettingsManager>();
+            LocalizationResourceManager.Current.PropertyChanged += (_, _) => AppResources.Culture = LocalizationResourceManager.Current.CurrentCulture;
+            LocalizationResourceManager.Current.Init(AppResources.ResourceManager);
+            Converters.Global.ThemeStyle = settingsManager.ThemeStyle;
 
             if (settingsManager.UserName == null)
             {
@@ -56,22 +49,16 @@ namespace Contacts
             {
                 NavigationService.NavigateAsync("/" + nameof(MainListView));
             }
-
-
         }
-
         protected override void OnStart()
         {
         }
-
         protected override void OnSleep()
         {
         }
-
         protected override void OnResume()
         {
         }
         #endregion
-
     }
 }

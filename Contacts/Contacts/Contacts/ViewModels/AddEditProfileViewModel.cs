@@ -15,7 +15,7 @@ using Acr.UserDialogs;
 
 namespace Contacts.ViewModels
 {
-    class AddEditProfileViewModel : BaseViewModel, INavigationAware
+    class AddEditProfileViewModel : BaseViewModel
     {
         private readonly IProfileManager _profileManager;
         private readonly ISettingsManager _settingsManager;
@@ -29,11 +29,8 @@ namespace Contacts.ViewModels
             _id = Global.Id;
              Init(_id);
         }
-
         private int _id;
-
         #region --- Public Properties ---
-
         private ProfileModel _profile;
         public ProfileModel Profile
         {
@@ -75,8 +72,7 @@ namespace Contacts.ViewModels
         }
         #endregion
         #region --- Commands ---
-        public ICommand OnSaveButton => new Command(Save);
-        public ICommand OnPlusTapButton => new Command(GoToTestPage);
+        public ICommand OnSaveButton => new Command(Save,()=>false);
         public ICommand OnLArrowTapButton => new Command(GoToMainPage);
         public ICommand OnTapImage => new Command(ActionDialog);
         #endregion
@@ -104,13 +100,7 @@ namespace Contacts.ViewModels
         }
         private async void Save()
         {
-            if (Name == null || NickName == null || Name == "" || NickName == "") return;
-
-            Console.WriteLine("Name---" + Name);
-            Console.WriteLine("Nickname---" + NickName);
-
-
-            if (_id >= 0)// Update // текущее
+            if (_id >= 0)// Update 
             {
                 Profile = new ProfileModel();
                 Profile.Id = _id;
@@ -129,8 +119,8 @@ namespace Contacts.ViewModels
         {
             UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
                            .SetTitle("Choose Type")
-                           .Add("Capture", PickImage, "woman.png")
-                           .Add("File", PickFile, "woman.png")
+                           .Add("Capture", PickImage, "photo.png")
+                           .Add("File", PickFile, "galery.png")
                            .SetUseBottomSheet(false));
         }
         private async void PickImage()
@@ -162,16 +152,6 @@ namespace Contacts.ViewModels
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }
-        }
-        #endregion
-        #region --- Navigation ---
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-            _id = parameters.GetValue<int>("id");
-        }
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-
         }
         #endregion
     }

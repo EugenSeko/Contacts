@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Reflection;
 using Xamarin.Forms;
+using Xamarin.Forms.StyleSheets;
 using Xamarin.Forms.Xaml;
 
 namespace Contacts.Views
@@ -15,6 +11,16 @@ namespace Contacts.Views
         public SettingsView()
         {
             InitializeComponent();
+            if (Converters.Global.ThemeStyle=="dark")
+            {
+                this.Resources.Add(StyleSheet.FromResource
+                     ("Views/dark.css", IntrospectionExtensions.GetTypeInfo(typeof(SettingsView)).Assembly));
+            }
+            else
+            {
+                this.Resources.Add(StyleSheet.FromResource
+                     ("Views/light.css", IntrospectionExtensions.GetTypeInfo(typeof(SettingsView)).Assembly));
+            }
         }
     }
 }

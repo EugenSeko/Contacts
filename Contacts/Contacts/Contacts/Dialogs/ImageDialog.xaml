@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Contacts.Dialogs.ImageDialog"    
+      >
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    
+    <Grid.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding CloseCommand}"/>
+    </Grid.GestureRecognizers>
+    <Frame Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Transparent"/>
+    <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="Transparent"/>
+    <Image Grid.Row="1" Grid.Column="1"  Source="{Binding ImageUrl}" HorizontalOptions="FillAndExpand" />
+    <Frame Grid.Row="1" Grid.Column="2" BackgroundColor="Transparent"/>
+    <Frame Grid.Row="2" Grid.Column="0" BackgroundColor="Transparent"/>
+    <Label Grid.Row="2" Grid.Column="1"
+               FontSize="Small"
+               Text="{Binding Description}"
+               TextColor="WhiteSmoke"  
+               HorizontalOptions="Center" 
+               VerticalOptions="Start"
+               Margin="10"
+               Opacity="0.6"
+               BackgroundColor="Transparent">
+    </Label>
+    <Frame Grid.Row="2" Grid.Column="2" BackgroundColor="Transparent"/>
+</Grid>

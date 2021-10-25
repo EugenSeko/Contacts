@@ -1,14 +1,7 @@
-﻿using Contacts.Services.Settings;
-using Contacts.Views;
+﻿using Contacts.Views;
 using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
+using System.Collections.ObjectModel;
 
 namespace Contacts.ViewModels
 {
@@ -19,7 +12,6 @@ namespace Contacts.ViewModels
         {
             _navigationService = navigationService;
         }
-
         #region --- Navigation ---
         public async void NavigateGoBack()
         {
@@ -47,16 +39,11 @@ namespace Contacts.ViewModels
         {
             await _navigationService.NavigateAsync(nameof(SettingsView));
         }
-        public  async void GoToAddEditProfilePage(int id)
+        public  async void GoToAddEditProfilePage()
         {
-            var p = new NavigationParameters();
-            p.Add("id", id);
-            await _navigationService.NavigateAsync(nameof(AddEditProfileView),p);
+            await _navigationService.NavigateAsync(nameof(AddEditProfileView));
         }
-        public async void GoToTestPage()
-        {
-            await _navigationService.NavigateAsync(nameof(TestPage));
-        }
+        
 
 
         #endregion

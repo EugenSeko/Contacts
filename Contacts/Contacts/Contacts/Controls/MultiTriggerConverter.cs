@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Contacts.Controls
@@ -11,12 +9,11 @@ namespace Contacts.Controls
         public object Convert(object value, Type targetType,
         object parameter, CultureInfo culture)
         {
-            if ((int)value > 0) // length > 0 ?
-                return true;            // some data has been entered
+            if ((int)value > 0) 
+                return true;         
             else
-                return false;            // input is empty
+                return false;         
         }
-
         public object ConvertBack(object value, Type targetType,
             object parameter, CultureInfo culture)
         {

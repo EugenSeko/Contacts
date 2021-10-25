@@ -1,58 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Contacts.Views.SignUpView">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Contacts.Controls"
+             x:Class="Contacts.Views.SignUpView" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:MultiTriggerConverter x:Key="dataHasBeenEntered" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
-            <ScrollView>
-                <StackLayout Spacing="125">
-
-                    <Frame BackgroundColor="#2196F3" Padding="12"  CornerRadius="0">
-                        
-                    <StackLayout Orientation="Horizontal">
-                        
-                        <Label Text="SignUp"
-                               HorizontalTextAlignment="Start" 
+        <Grid RowDefinitions="0.7*,4*,4*" BackgroundColor="LightGray">
+            <Grid Grid.Row="0" BackgroundColor="Gray">
+                <Label Text="{xct:Translate Signup}"
+                               HorizontalTextAlignment="Center" 
+                               VerticalOptions="Center"
+                               FontAttributes="Italic"
                                TextColor="White"
                                FontSize="24"/>
-                        
-                    </StackLayout>
-                        
-                    </Frame>
-
-                    <StackLayout  Spacing="12" Padding="20,10,20,10" >
-                        
-                        <Entry x:Name="loginEntry"
-                               Placeholder="Login"
-                               Margin="20"
+                <ImageButton Grid.Column="0" 
+                         Source="outline_arrow_circle_left_white_48.png" 
+                         Command="{Binding OnLeftArrowTap}"
+                         BackgroundColor="Transparent" 
+                         HorizontalOptions="Start"
+                         Margin="10,0,0,0"
+                         Scale="0.55"
+                         >
+                </ImageButton>
+            </Grid>
+            <StackLayout  Grid.Row="1"  Margin="40,120,40,0">
+                <Entry x:Name="loginEntry"
+                               FontAttributes="Italic"
+                               Placeholder="{xct:Translate Login}" 
+                               Margin="20,0,20,0"
                                Text="{Binding UserName}"/>
-                        
-                        <Entry x:Name="passwordEntry" 
-                               Placeholder = "Password"
+                <Entry x:Name="passwordEntry" 
+                               FontAttributes="Italic"
+                               Placeholder = "{xct:Translate Password}" 
                                IsPassword ="True" 
-                               Margin="20" 
+                               Margin="20,0,20,0" 
                                Text="{Binding Password}"/>
-                        
-                        <Entry x:Name="passwordConfirm"
-                               Placeholder = "Confirm Password"
+                <Entry x:Name="passwordConfirm"
+                               FontAttributes="Italic"
+                               Placeholder = "{xct:Translate Confirmpassword}" 
                                Text="{Binding ConfirmPass}"
                                IsPassword ="True"
-                               Margin="20"  />
-
-                </StackLayout>
-                    <StackLayout>
-                        
-                        <Button x:Name="signUpButton" 
+                               Margin="20,0,20,0"  />
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+                <Button x:Name="signUpButton" 
                                 Command="{Binding SignUpButtonTapCommand}"
-                                Text = "Sign Up" 
+                                BackgroundColor="Gray" 
+                                TextColor="Black"
+                                Text = "{xct:Translate SignupButt}" 
                                 FontSize="Medium"
-                                Padding="120,20,120,20"
-                                Margin="32"
+                                Padding="100,20,100,20" 
+                                CornerRadius="45"
+                                Margin="0"
                                 HorizontalOptions="Center"
-                                VerticalOptions="CenterAndExpand"
-                         />
-                        
-                    </StackLayout>
-                </StackLayout>
-            </ScrollView>
-        </ContentPage.Content>
+                                VerticalOptions="CenterAndExpand" 
+                                IsEnabled="False">
+                    <Button.Triggers>
+                        <MultiTrigger TargetType="Button">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition Binding="{Binding Source={x:Reference loginEntry},
+                              Path=Text.Length,
+                              Converter={StaticResource dataHasBeenEntered}}"
+                          Value="true" />
+                                <BindingCondition Binding="{Binding Source={x:Reference passwordEntry},
+                              Path=Text.Length,
+                              Converter={StaticResource dataHasBeenEntered}}"
+                          Value="true" />
+                                <BindingCondition Binding="{Binding Source={x:Reference passwordConfirm},
+                              Path=Text.Length,
+                              Converter={StaticResource dataHasBeenEntered}}"
+                          Value="true" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Setter Property="BackgroundColor" Value="Coral" />
+                        </MultiTrigger>
+                    </Button.Triggers>
+                </Button>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>
