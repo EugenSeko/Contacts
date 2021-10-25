@@ -45,14 +45,12 @@ namespace Contacts.ViewModels
             }
         }
         #region --- Public Properties ---
-
         private string _userName;
         public string UserName
         {
             get => _userName;
             set => SetProperty(ref _userName, value);
         }
-
         private string _password;
         public string Password
         {

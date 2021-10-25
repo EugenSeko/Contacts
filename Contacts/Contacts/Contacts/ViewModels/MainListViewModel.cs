@@ -118,7 +118,6 @@ namespace Contacts.ViewModels
         {
             GoToSettingsPage();
         }
-
         #endregion
     }
 }

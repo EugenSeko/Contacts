@@ -1,13 +1,9 @@
 ﻿using Prism.Navigation;
 using System;
-using System.Collections.Generic;
-using Contacts.Views;
-using Prism.Mvvm;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Contacts.Services.Profiles;
 using Contacts.Models;
-using System.Threading.Tasks;
 using Contacts.Services.Settings;
 using Xamarin.Essentials;
 using Contacts.Converters;

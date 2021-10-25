@@ -1,10 +1,7 @@
 ﻿using Contacts.Models;
 using Contacts.Services.Repository;
 using Contacts.Services.Settings;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 

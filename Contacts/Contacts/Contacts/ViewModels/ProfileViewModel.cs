@@ -1,11 +1,6 @@
-﻿using Contacts.Models;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace Contacts.ViewModels
 {
@@ -69,14 +64,12 @@ namespace Contacts.ViewModels
         {
             get => _deletecommand;
             set => SetProperty(ref _deletecommand, value);
-
         }
         private ICommand _editcommand;
         public ICommand EditCommand
         {
             get => _editcommand;
             set => SetProperty(ref _editcommand, value);
-
         }
         #endregion
 
